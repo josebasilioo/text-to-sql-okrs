@@ -13,6 +13,16 @@ import { computeTableSimilarity } from '../evaluation/tableSimilarity_v2';
 import { SqlFixService } from '../services/sqlFixService';
 import { TextToSqlService } from '../services/textToSqlService';
 
+// ========================================
+// 🔧 CONFIGURAÇÃO DO PROVIDER
+// ========================================
+// Opções: 'gpt', 'gemini', 'llama'
+const PROVIDER: 'gpt' | 'gemini' | 'llama' = 'gpt';
+
+// Nome do arquivo de resultado (sem extensão)
+const OUTPUT_FILENAME = '1-shot-4O-mini';
+// ========================================
+
 interface GoldEntry {
   question: string;
   gold: string;
@@ -724,6 +734,7 @@ function generateReportCSV(report: Report): string {
 
 async function main() {
   console.log('🚀 Iniciando avaliação de predições...\n');
+  console.log(`📌 Provider selecionado: ${PROVIDER.toUpperCase()}\n`);
 
   try {
     // Carrega dados
@@ -761,8 +772,8 @@ async function main() {
     // Gera relatório
     const report = await generateReport(results);
 
-    // Cria diretório results se não existir
-    const resultsDir = join(__dirname, '../../results');
+    // Cria diretório results/<provider> se não existir
+    const resultsDir = join(__dirname, '../../results', PROVIDER);
     try {
       mkdirSync(resultsDir, { recursive: true });
     } catch (error) {
@@ -770,23 +781,23 @@ async function main() {
     }
 
     // Salva relatório em arquivo JSON
-    const reportJsonPath = join(resultsDir, 'evaluation-report.json');
+    const reportJsonPath = join(resultsDir, `${OUTPUT_FILENAME}.json`);
     writeFileSync(reportJsonPath, JSON.stringify(report, null, 2), 'utf-8');
     console.log(`\n💾 Relatório JSON salvo em: ${reportJsonPath}`);
 
     // Gera e salva relatório em arquivo TXT
     const reportText = generateReportText(report);
-    const reportTxtPath = join(resultsDir, 'evaluation-report.txt');
+    const reportTxtPath = join(resultsDir, `${OUTPUT_FILENAME}.txt`);
     writeFileSync(reportTxtPath, reportText, 'utf-8');
     console.log(`💾 Relatório TXT salvo em: ${reportTxtPath}`);
 
     // Gera e salva relatório em arquivo CSV
     const reportCSV = generateReportCSV(report);
-    const reportCsvPath = join(resultsDir, 'evaluation-report.csv');
+    const reportCsvPath = join(resultsDir, `${OUTPUT_FILENAME}.csv`);
     writeFileSync(reportCsvPath, reportCSV, 'utf-8');
     console.log(`💾 Relatório CSV salvo em: ${reportCsvPath}`);
 
-    console.log('\n✅ Avaliação concluída!\n');
+    console.log(`\n✅ Avaliação concluída! Resultados salvos em: results/${PROVIDER}/`);
   } catch (error) {
     console.error('❌ Erro fatal:', error);
     process.exit(1);
