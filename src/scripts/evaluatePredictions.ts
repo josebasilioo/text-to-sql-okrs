@@ -20,7 +20,7 @@ import { TextToSqlService } from '../services/textToSqlService';
 const PROVIDER: 'gpt' | 'gemini' | 'llama' = 'gpt';
 
 // Nome do arquivo de resultado (sem extensão)
-const OUTPUT_FILENAME = '1-shot-4O-mini';
+const OUTPUT_FILENAME = '0-shot-no-linking-gpt-5-mini';
 // ========================================
 
 interface GoldEntry {
