@@ -2,30 +2,42 @@ import axios, { AxiosInstance } from 'axios';
 import { LLMProvider } from './LLMProvider';
 import { LLMProviderConfig, LLMRequest, LLMResponse } from './types';
 
-interface OpenAIConfig {
+interface OpenRouterConfig {
   apiKey: string;
   model: string;
-  baseUrl?: string;
+  appName?: string; // Nome da aplicação (para tracking)
+  siteUrl?: string; // URL do site (para tracking)
 }
 
-export class OpenAIProvider implements LLMProvider {
-  readonly name = 'OpenAI';
+/**
+ * Provider para OpenRouter
+ * OpenRouter é um proxy que oferece acesso a múltiplos modelos de LLM
+ * através de uma única API compatível com OpenAI
+ */
+export class OpenRouterProvider implements LLMProvider {
+  readonly name = 'OpenRouter';
   private client: AxiosInstance;
   private model: string;
   private config: LLMProviderConfig;
 
-  constructor(openaiConfig: OpenAIConfig, providerConfig: LLMProviderConfig) {
-    this.model = openaiConfig.model;
+  constructor(openRouterConfig: OpenRouterConfig, providerConfig: LLMProviderConfig) {
+    this.model = openRouterConfig.model;
     this.config = providerConfig;
 
-    const baseURL = openaiConfig.baseUrl || 'https://api.openai.com/v1';
+    const headers: Record<string, string> = {
+      Authorization: `Bearer ${openRouterConfig.apiKey}`,
+      'Content-Type': 'application/json',
+    };
+
+    // Headers opcionais para tracking e rankings no OpenRouter
+    if (openRouterConfig.appName) {
+      headers['HTTP-Referer'] = openRouterConfig.siteUrl || 'https://localhost';
+      headers['X-Title'] = openRouterConfig.appName;
+    }
 
     this.client = axios.create({
-      baseURL,
-      headers: {
-        Authorization: `Bearer ${openaiConfig.apiKey}`,
-        'Content-Type': 'application/json',
-      },
+      baseURL: 'https://openrouter.ai/api/v1',
+      headers,
       timeout: providerConfig.timeout,
     });
   }
@@ -58,7 +70,7 @@ export class OpenAIProvider implements LLMProvider {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const message = error.response?.data?.error?.message || error.message;
-        throw new Error(`Erro OpenAI: ${message}`);
+        throw new Error(`Erro OpenRouter: ${message}`);
       }
       throw error;
     }

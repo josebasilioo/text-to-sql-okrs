@@ -1,0 +1,3240 @@
+{
+  "timestamp": "2025-11-27T02:38:43.204Z",
+  "totalQuestions": 76,
+  "successful": 71,
+  "errors": 5,
+  "retries": {
+    "totalWithRetries": 20,
+    "totalRetryAttempts": 26,
+    "averageRetriesPerQuestion": 1.3,
+    "maxRetries": 2,
+    "successfulAfterRetry": 15,
+    "failedAfterRetry": 5
+  },
+  "metrics": {
+    "exactMatch": {
+      "total": 71,
+      "matches": 3,
+      "accuracy": 0.04225352112676056
+    },
+    "componentMatch": {
+      "total": 71,
+      "averageCM": 0.7491
+    },
+    "executionMatch": {
+      "total": 71,
+      "matches": 6,
+      "accuracy": 0.08450704225352113
+    },
+    "cosineSimilarity": {
+      "total": 71,
+      "average": 0.8697
+    },
+    "tableSimilarity": {
+      "total": 71,
+      "average": 0.3147
+    },
+    "queryAffinityScore": {
+      "total": 71,
+      "average": 0.5922
+    }
+  },
+  "results": [
+    {
+      "question": "Existe correlação entre a prioridade da iniciativa e o progresso médio de seus OKRs?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;"
+        }
+      ],
+      "predictedSql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;",
+      "executionTimeMs": 3768,
+      "goldSql": "SELECT i.priority, AVG(kr.progress / NULLIF(kr.target, 0)) AS avg_progress FROM initiative i JOIN okr ON okr.initiative_id = i.id JOIN kr ON kr.okr_id = okr.id GROUP BY i.priority ORDER BY i.priority;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.9798159819461996,
+      "finalSql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;",
+      "executionMatch": false,
+      "tableSimilarity": 0.5,
+      "queryAffinityScore": 0.7399079909730998
+    },
+    {
+      "question": "Iniciativas com maior prioridade tendem a ter maior progresso médio nos OKRs?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;"
+        }
+      ],
+      "predictedSql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;",
+      "executionTimeMs": 3782,
+      "goldSql": "SELECT i.priority, AVG(kr.progress / NULLIF(kr.target, 0)) AS avg_progress FROM initiative i JOIN okr ON okr.initiative_id = i.id JOIN kr ON kr.okr_id = okr.id GROUP BY i.priority ORDER BY i.priority;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.9798159819461996,
+      "finalSql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;",
+      "executionMatch": false,
+      "tableSimilarity": 0.5,
+      "queryAffinityScore": 0.7399079909730998
+    },
+    {
+      "question": "Qual é a relação entre prioridade da iniciativa e o desempenho médio dos seus OKRs?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_performance FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;"
+        }
+      ],
+      "predictedSql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_performance FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;",
+      "executionTimeMs": 4028,
+      "goldSql": "SELECT i.priority, AVG(kr.progress / NULLIF(kr.target, 0)) AS avg_progress FROM initiative i JOIN okr ON okr.initiative_id = i.id JOIN kr ON kr.okr_id = okr.id GROUP BY i.priority ORDER BY i.priority;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.9663591229902054,
+      "finalSql": "SELECT i.priority, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_performance FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.priority ORDER BY i.priority;",
+      "executionMatch": false,
+      "tableSimilarity": 0.5,
+      "queryAffinityScore": 0.7331795614951027
+    },
+    {
+      "question": "Iniciativas de qual categoria têm maior taxa de conclusão de KRs?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.category, COUNT(k.id) AS total_krs, SUM(CASE WHEN (k.direction = 'up' AND k.progress / NULLIF(k.target, 0) >= 1.0) OR (k.direction = 'down' AND k.progress / NULLIF(k.target, 0) <= 1.0) THEN 1 ELSE 0 END) AS completed_krs, (SUM(CASE WHEN (k.direction = 'up' AND k.progress / NULLIF(k.target, 0) >= 1.0) OR (k.direction = 'down' AND k.progress / NULLIF(k.target, 0) <= 1.0) THEN 1 ELSE 0 END) * 1.0 / COUNT(k.id)) AS completion_rate FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category ORDER BY completion_rate DESC;"
+        }
+      ],
+      "predictedSql": "SELECT i.category, COUNT(k.id) AS total_krs, SUM(CASE WHEN (k.direction = 'up' AND k.progress / NULLIF(k.target, 0) >= 1.0) OR (k.direction = 'down' AND k.progress / NULLIF(k.target, 0) <= 1.0) THEN 1 ELSE 0 END) AS completed_krs, (SUM(CASE WHEN (k.direction = 'up' AND k.progress / NULLIF(k.target, 0) >= 1.0) OR (k.direction = 'down' AND k.progress / NULLIF(k.target, 0) <= 1.0) THEN 1 ELSE 0 END) * 1.0 / COUNT(k.id)) AS completion_rate FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category ORDER BY completion_rate DESC;",
+      "executionTimeMs": 6530,
+      "goldSql": "SELECT i.category, CAST(SUM(CASE WHEN (k.direction = 'up'   AND k.progress / NULLIF(k.target,0) >= 1) OR (k.direction = 'down' AND k.progress / NULLIF(k.target,0) <= 1) THEN 1 ELSE 0 END) AS FLOAT) / COUNT(k.id) AS completion_rate FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category ORDER BY completion_rate DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.9434891768740683,
+      "finalSql": "SELECT i.category, COUNT(k.id) AS total_krs, SUM(CASE WHEN (k.direction = 'up' AND k.progress / NULLIF(k.target, 0) >= 1.0) OR (k.direction = 'down' AND k.progress / NULLIF(k.target, 0) <= 1.0) THEN 1 ELSE 0 END) AS completed_krs, (SUM(CASE WHEN (k.direction = 'up' AND k.progress / NULLIF(k.target, 0) >= 1.0) OR (k.direction = 'down' AND k.progress / NULLIF(k.target, 0) <= 1.0) THEN 1 ELSE 0 END) * 1.0 / COUNT(k.id)) AS completion_rate FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category ORDER BY completion_rate DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.25,
+      "queryAffinityScore": 0.5967445884370342
+    },
+    {
+      "question": "Qual categoria de iniciativa apresenta menor frequência de updates?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.category, COUNT(iu.id) AS update_count FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.category ORDER BY update_count ASC LIMIT 1;"
+        }
+      ],
+      "predictedSql": "SELECT i.category, COUNT(iu.id) AS update_count FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.category ORDER BY update_count ASC LIMIT 1;",
+      "executionTimeMs": 2779,
+      "goldSql": "SELECT i.category, CAST(COUNT(iu.id) AS FLOAT) / COUNT(DISTINCT i.id) AS avg_updates_per_initiative FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.category ORDER BY avg_updates_per_initiative ASC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 0,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.8423659564020008,
+      "finalSql": "SELECT i.category, COUNT(iu.id) AS update_count FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.category ORDER BY update_count ASC LIMIT 1;",
+      "executionMatch": false,
+      "tableSimilarity": 0.125,
+      "queryAffinityScore": 0.4836829782010004
+    },
+    {
+      "question": "Colaboradores com mais KRs favoritos têm desempenho melhor nos OKRs?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH kr_favorites AS (SELECT bookmarked_by_id, COUNT(*) AS favorite_kr_count FROM kr WHERE bookmarked = TRUE GROUP BY bookmarked_by_id), performance AS (SELECT c.id AS collaborator_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_performance FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id GROUP BY c.id) SELECT kf.bookmarked_by_id, kf.favorite_kr_count, p.avg_performance FROM kr_favorites kf LEFT JOIN performance p ON kf.bookmarked_by_id = p.collaborator_id ORDER BY kf.favorite_kr_count DESC;"
+        }
+      ],
+      "predictedSql": "WITH kr_favorites AS (SELECT bookmarked_by_id, COUNT(*) AS favorite_kr_count FROM kr WHERE bookmarked = TRUE GROUP BY bookmarked_by_id), performance AS (SELECT c.id AS collaborator_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_performance FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id GROUP BY c.id) SELECT kf.bookmarked_by_id, kf.favorite_kr_count, p.avg_performance FROM kr_favorites kf LEFT JOIN performance p ON kf.bookmarked_by_id = p.collaborator_id ORDER BY kf.favorite_kr_count DESC;",
+      "executionTimeMs": 5003,
+      "goldSql": "SELECT c.name, COUNT(k.id) AS total_bookmarked_krs, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress_of_bookmarked_krs FROM collaborator c JOIN kr k ON c.id = k.bookmarked_by_id GROUP BY c.id, c.name ORDER BY total_bookmarked_krs DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.8699270027237036,
+      "finalSql": "WITH kr_favorites AS (SELECT bookmarked_by_id, COUNT(*) AS favorite_kr_count FROM kr WHERE bookmarked = TRUE GROUP BY bookmarked_by_id), performance AS (SELECT c.id AS collaborator_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_performance FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id GROUP BY c.id) SELECT kf.bookmarked_by_id, kf.favorite_kr_count, p.avg_performance FROM kr_favorites kf LEFT JOIN performance p ON kf.bookmarked_by_id = p.collaborator_id ORDER BY kf.favorite_kr_count DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.08000000000000007,
+      "queryAffinityScore": 0.47496350136185184
+    },
+    {
+      "question": "Há diferença de progresso médio entre KRs do tipo “YES_NO” e “NUMERIC”?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT k.metric, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress FROM kr k WHERE k.metric IN ('YES_NO', 'NUMERIC') GROUP BY k.metric;"
+        }
+      ],
+      "predictedSql": "SELECT k.metric, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress FROM kr k WHERE k.metric IN ('YES_NO', 'NUMERIC') GROUP BY k.metric;",
+      "executionTimeMs": 2783,
+      "goldSql": "SELECT k.metric, AVG(k.progress / NULLIF(k.target, 0)) AS average_progress FROM kr k WHERE k.metric IN ('YES_NO', 'NUMERIC') GROUP BY k.metric;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 1
+      },
+      "cosineSimilarity": 0.980586456311514,
+      "finalSql": "SELECT k.metric, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress FROM kr k WHERE k.metric IN ('YES_NO', 'NUMERIC') GROUP BY k.metric;",
+      "executionMatch": false,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 0.990293228155757
+    },
+    {
+      "question": "Quais iniciativas concentram mais KRs com métrica percentual?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.title, COUNT(k.id) AS kr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE k.metric = 'PERC' GROUP BY i.title ORDER BY kr_count DESC;"
+        }
+      ],
+      "predictedSql": "SELECT i.title, COUNT(k.id) AS kr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE k.metric = 'PERC' GROUP BY i.title ORDER BY kr_count DESC;",
+      "executionTimeMs": 3342,
+      "goldSql": "SELECT i.title, COUNT(k.id) AS total_percentage_krs FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE k.metric = 'PERC' GROUP BY i.id, i.title ORDER BY total_percentage_krs DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.9425002715748116,
+      "finalSql": "SELECT i.title, COUNT(k.id) AS kr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE k.metric = 'PERC' GROUP BY i.title ORDER BY kr_count DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.2674418604651163,
+      "queryAffinityScore": 0.604971066019964
+    },
+    {
+      "question": "Qual a média de progresso dos OKRs de iniciativas de alta prioridade?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM okr o JOIN initiative i ON o.initiative_id = i.id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 'alta';",
+          "error": "invalid input syntax for type integer: \"alta\""
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM okr o JOIN initiative i ON o.initiative_id = i.id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 1;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM okr o JOIN initiative i ON o.initiative_id = i.id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 'alta';",
+      "executionTimeMs": 2889,
+      "goldSql": "SELECT AVG(k.progress / NULLIF(k.target, 0)) AS average_okr_progress_high_priority FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE i.priority = 1;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.9345273462152991,
+      "finalSql": "SELECT AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM okr o JOIN initiative i ON o.initiative_id = i.id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 1;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.46726367310764955
+    },
+    {
+      "question": "Qual o impacto dos updates de iniciativa no progresso dos KRs associados?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT iu.initiative_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress_after_update FROM initiative_update iu JOIN initiative i ON iu.initiative_id = i.id JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY iu.initiative_id;",
+          "error": "column k.initiative_id does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT iu.initiative_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress_after_update FROM initiative_update iu JOIN initiative i ON iu.initiative_id = i.id JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY iu.initiative_id;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT iu.initiative_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress_after_update FROM initiative_update iu JOIN initiative i ON iu.initiative_id = i.id JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY iu.initiative_id;",
+      "executionTimeMs": 2806,
+      "goldSql": "WITH normalized_history AS (SELECT kh.kr_id, kh.date, (kh.progress / NULLIF(k.target,0)) AS rel_progress, LAG(kh.progress / NULLIF(k.target,0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS rel_before FROM kr_history kh JOIN kr k ON k.id = kh.kr_id), updates AS (SELECT initiative_id, created_date FROM initiative_update), link AS (SELECT nh.kr_id, nh.rel_progress, nh.rel_before, nh.date AS progress_date, (SELECT iu.created_date FROM initiative_update iu JOIN kr k ON iu.initiative_id = k.okr_id JOIN okr o ON k.okr_id = o.id WHERE iu.initiative_id = o.initiative_id AND iu.created_date < nh.date ORDER BY iu.created_date DESC LIMIT 1) AS last_update FROM normalized_history nh JOIN kr k ON nh.kr_id = k.id JOIN okr o ON k.okr_id = o.id) SELECT AVG(rel_progress - rel_before) AS avg_progress_change_after_update FROM link WHERE rel_before IS NOT NULL AND last_update IS NOT NULL;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 0,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5
+      },
+      "cosineSimilarity": 0.7615568199391314,
+      "finalSql": "SELECT iu.initiative_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress_after_update FROM initiative_update iu JOIN initiative i ON iu.initiative_id = i.id JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY iu.initiative_id;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.3807784099695657
+    },
+    {
+      "question": "Há aumento no ritmo de updates próximo aos deadlines dos OKRs?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT COUNT(iu.id) AS total_updates, COUNT(i.id) AS total_okrs, SUM(CASE WHEN iu.created_date >= (o.deadline - INTERVAL '7 days') THEN 1 ELSE 0 END) AS updates_near_deadline FROM initiative_update iu JOIN okr o ON iu.initiative_id = o.initiative_id JOIN initiative i ON o.initiative_id = i.id GROUP BY i.id;"
+        }
+      ],
+      "predictedSql": "SELECT COUNT(iu.id) AS total_updates, COUNT(i.id) AS total_okrs, SUM(CASE WHEN iu.created_date >= (o.deadline - INTERVAL '7 days') THEN 1 ELSE 0 END) AS updates_near_deadline FROM initiative_update iu JOIN okr o ON iu.initiative_id = o.initiative_id JOIN initiative i ON o.initiative_id = i.id GROUP BY i.id;",
+      "executionTimeMs": 3364,
+      "goldSql": "SELECT o.id AS okr_id, o.deadline, SUM(CASE WHEN iu.created_date BETWEEN o.deadline - INTERVAL '30 days' AND o.deadline THEN 1 ELSE 0 END) AS updates_last_30_days, SUM(CASE WHEN iu.created_date < o.deadline - INTERVAL '30 days' THEN 1 ELSE 0 END) AS updates_before_30_days FROM okr o LEFT JOIN initiative_update iu ON iu.initiative_id = o.initiative_id AND iu.created_date <= o.deadline GROUP BY o.id, o.deadline ORDER BY o.deadline;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.75
+      },
+      "cosineSimilarity": 0.8822207676347094,
+      "finalSql": "SELECT COUNT(iu.id) AS total_updates, COUNT(i.id) AS total_okrs, SUM(CASE WHEN iu.created_date >= (o.deadline - INTERVAL '7 days') THEN 1 ELSE 0 END) AS updates_near_deadline FROM initiative_update iu JOIN okr o ON iu.initiative_id = o.initiative_id JOIN initiative i ON o.initiative_id = i.id GROUP BY i.id;",
+      "executionMatch": false,
+      "tableSimilarity": 0.020522388059701524,
+      "queryAffinityScore": 0.45137157784720544
+    },
+    {
+      "question": "Qual é o alinhamento entre as datas de fim de iniciativa e deadlines de OKRs?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.end_date, o.deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id;"
+        }
+      ],
+      "predictedSql": "SELECT i.end_date, o.deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id;",
+      "executionTimeMs": 1991,
+      "goldSql": "SELECT CASE WHEN o.deadline < i.end_date THEN 'OKR ANTES da Iniciativa' WHEN o.deadline = i.end_date THEN 'OKR e Iniciativa na MESMA DATA' WHEN o.deadline > i.end_date THEN 'OKR DEPOIS da Iniciativa' ELSE 'Sem data de fim para Iniciativa' END AS alinhamento, COUNT(o.id) AS total_okrs FROM okr o JOIN initiative i ON o.initiative_id = i.id GROUP BY alinhamento;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.6882681125831216,
+      "finalSql": "SELECT i.end_date, o.deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.3441340562915608
+    },
+    {
+      "question": "Quantos OKRs estão diretamente vinculados a iniciativas prioritárias (por categoria) e quantos ainda não possuem ligação clara com uma iniciativa?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.category, COUNT(o.id) AS okrs_linked_to_priority_initiatives, COUNT(CASE WHEN i.id IS NULL THEN o.id END) AS okrs_without_initiative FROM okr o LEFT JOIN initiative i ON o.initiative_id = i.id WHERE i.priority = TRUE OR i.id IS NULL GROUP BY i.category;",
+          "error": "operator does not exist: integer = boolean"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT i.category, COUNT(o.id) AS okrs_linked_to_priority_initiatives, COUNT(CASE WHEN i.id IS NULL THEN o.id END) AS okrs_without_initiative FROM okr o LEFT JOIN initiative i ON o.initiative_id = i.id WHERE i.priority IS TRUE OR i.id IS NULL GROUP BY i.category;",
+          "fixed": true,
+          "error": "argument of IS TRUE must be type boolean, not type integer"
+        },
+        {
+          "attempt": 3,
+          "sql": "SELECT i.category, COUNT(o.id) AS okrs_linked_to_priority_initiatives, COUNT(CASE WHEN i.id IS NULL THEN o.id END) AS okrs_without_initiative FROM okr o LEFT JOIN initiative i ON o.initiative_id = i.id WHERE i.priority > 0 OR i.id IS NULL GROUP BY i.category;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT i.category, COUNT(o.id) AS okrs_linked_to_priority_initiatives, COUNT(CASE WHEN i.id IS NULL THEN o.id END) AS okrs_without_initiative FROM okr o LEFT JOIN initiative i ON o.initiative_id = i.id WHERE i.priority = TRUE OR i.id IS NULL GROUP BY i.category;",
+      "executionTimeMs": 2863,
+      "goldSql": "SELECT COALESCE(i.category, 'SEM INICIATIVA') AS category, COALESCE(i.priority, -1) AS priority, COUNT(o.id) AS okrs_count FROM okr o LEFT JOIN initiative i ON o.initiative_id = i.id GROUP BY category, priority ORDER BY category, priority;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.841790428337814,
+      "finalSql": "SELECT i.category, COUNT(o.id) AS okrs_linked_to_priority_initiatives, COUNT(CASE WHEN i.id IS NULL THEN o.id END) AS okrs_without_initiative FROM okr o LEFT JOIN initiative i ON o.initiative_id = i.id WHERE i.priority > 0 OR i.id IS NULL GROUP BY i.category;",
+      "executionMatch": false,
+      "tableSimilarity": 0.05555555555555547,
+      "queryAffinityScore": 0.44867299194668475
+    },
+    {
+      "question": "Quantas atualizações de iniciativas foram registradas neste trimestre e quais são os principais temas dos “highlights” e “brutal facts”?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT COUNT(*) AS total_updates, INITCAP(STRING_AGG(DISTINCT highlights, ', ')) AS main_highlights, INITCAP(STRING_AGG(DISTINCT brutal_facts, ', ')) AS main_brutal_facts FROM initiative_update WHERE created_date >= DATE_TRUNC('quarter', CURRENT_DATE) AND created_date < DATE_TRUNC('quarter', CURRENT_DATE) + INTERVAL '3 months';"
+        }
+      ],
+      "predictedSql": "SELECT COUNT(*) AS total_updates, INITCAP(STRING_AGG(DISTINCT highlights, ', ')) AS main_highlights, INITCAP(STRING_AGG(DISTINCT brutal_facts, ', ')) AS main_brutal_facts FROM initiative_update WHERE created_date >= DATE_TRUNC('quarter', CURRENT_DATE) AND created_date < DATE_TRUNC('quarter', CURRENT_DATE) + INTERVAL '3 months';",
+      "executionTimeMs": 3310,
+      "goldSql": "SELECT COUNT(iu.id) AS total_updates_trimestre, STRING_AGG(iu.highlights, ' | ') AS todos_highlights, STRING_AGG(iu.brutal_facts, ' | ') AS todos_brutal_facts FROM initiative_update iu WHERE iu.created_date >= date_trunc('quarter', CURRENT_DATE) AND iu.created_date < date_trunc('quarter', CURRENT_DATE) + interval '3 month';",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 0,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.875
+      },
+      "cosineSimilarity": 0.9075500306002294,
+      "finalSql": "SELECT COUNT(*) AS total_updates, INITCAP(STRING_AGG(DISTINCT highlights, ', ')) AS main_highlights, INITCAP(STRING_AGG(DISTINCT brutal_facts, ', ')) AS main_brutal_facts FROM initiative_update WHERE created_date >= DATE_TRUNC('quarter', CURRENT_DATE) AND created_date < DATE_TRUNC('quarter', CURRENT_DATE) + INTERVAL '3 months';",
+      "executionMatch": false,
+      "tableSimilarity": 0.33333333333333337,
+      "queryAffinityScore": 0.6204416819667814
+    },
+    {
+      "question": "Apresentar os KRs com maior desvio padrão de progresso ao longo do histórico, indicando instabilidade.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT k.id, k.title, STDDEV(kh.progress / NULLIF(kh.target, 0)) AS stddev_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.id, k.title ORDER BY stddev_progress DESC;"
+        }
+      ],
+      "predictedSql": "SELECT k.id, k.title, STDDEV(kh.progress / NULLIF(kh.target, 0)) AS stddev_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.id, k.title ORDER BY stddev_progress DESC;",
+      "executionTimeMs": 3207,
+      "goldSql": "SELECT k.title, o.description AS okr_description, STDDEV(kh.progress / NULLIF(kh.target, 0)) AS desvio_padrao_progresso FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id GROUP BY kh.kr_id, k.title, o.description HAVING COUNT(kh.id) > 1 ORDER BY desvio_padrao_progresso DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.8927146976483183,
+      "finalSql": "SELECT k.id, k.title, STDDEV(kh.progress / NULLIF(kh.target, 0)) AS stddev_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.id, k.title ORDER BY stddev_progress DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.6504065040650406,
+      "queryAffinityScore": 0.7715606008566795
+    },
+    {
+      "question": "Comparar o progresso médio dos KRs com o progresso médio das iniciativas às quais estão vinculados, destacando as maiores variações.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH kr_progress AS (SELECT k.initiative_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_kr_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.initiative_id), initiative_progress AS (SELECT i.id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_initiative_progress FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id) SELECT ip.id AS initiative_id, ip.avg_initiative_progress, kp.avg_kr_progress, ABS(ip.avg_initiative_progress - kp.avg_kr_progress) AS variation FROM initiative_progress ip JOIN kr_progress kp ON ip.id = kp.initiative_id ORDER BY variation DESC;",
+          "error": "column k.initiative_id does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "WITH kr_progress AS ( SELECT k.okr_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_kr_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.okr_id), initiative_progress AS ( SELECT i.id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_initiative_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id) SELECT ip.id AS initiative_id, ip.avg_initiative_progress, kp.avg_kr_progress, ABS(ip.avg_initiative_progress - kp.avg_kr_progress) AS variation FROM initiative_progress ip JOIN kr_progress kp ON ip.id = kp.okr_id ORDER BY variation DESC;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "WITH kr_progress AS (SELECT k.initiative_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_kr_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.initiative_id), initiative_progress AS (SELECT i.id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_initiative_progress FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id) SELECT ip.id AS initiative_id, ip.avg_initiative_progress, kp.avg_kr_progress, ABS(ip.avg_initiative_progress - kp.avg_kr_progress) AS variation FROM initiative_progress ip JOIN kr_progress kp ON ip.id = kp.initiative_id ORDER BY variation DESC;",
+      "executionTimeMs": 5291,
+      "goldSql": "WITH InitiativeProgress AS (SELECT i.id AS initiative_id, AVG(k.progress / NULLIF(k.target, 0)) AS avg_initiative_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.id), CalculatedVariance AS (SELECT k.title AS kr_title, (k.progress / NULLIF(k.target, 0)) AS kr_current_progress, ip.avg_initiative_progress, (k.progress / NULLIF(k.target, 0)) - ip.avg_initiative_progress AS progress_variance FROM kr k JOIN okr o ON k.okr_id = o.id JOIN InitiativeProgress ip ON o.initiative_id = ip.initiative_id) SELECT kr_title, kr_current_progress, avg_initiative_progress, progress_variance FROM CalculatedVariance ORDER BY ABS(progress_variance) DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.8225159696940981,
+      "finalSql": "WITH kr_progress AS ( SELECT k.okr_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_kr_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.okr_id), initiative_progress AS ( SELECT i.id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_initiative_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id) SELECT ip.id AS initiative_id, ip.avg_initiative_progress, kp.avg_kr_progress, ABS(ip.avg_initiative_progress - kp.avg_kr_progress) AS variation FROM initiative_progress ip JOIN kr_progress kp ON ip.id = kp.okr_id ORDER BY variation DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.0006097560975609762,
+      "queryAffinityScore": 0.41156286289582955
+    },
+    {
+      "question": "Construir o ranking das categorias de iniciativa com base no progresso médio ponderado pelo número de KRs associados.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH kr_counts AS (SELECT i.category, COUNT(k.id) AS kr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category), avg_progress AS (SELECT i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.category) SELECT ap.category, ap.avg_progress, kc.kr_count, (ap.avg_progress * kc.kr_count) AS weighted_avg_progress FROM avg_progress ap JOIN kr_counts kc ON ap.category = kc.category ORDER BY weighted_avg_progress DESC;"
+        }
+      ],
+      "predictedSql": "WITH kr_counts AS (SELECT i.category, COUNT(k.id) AS kr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category), avg_progress AS (SELECT i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.category) SELECT ap.category, ap.avg_progress, kc.kr_count, (ap.avg_progress * kc.kr_count) AS weighted_avg_progress FROM avg_progress ap JOIN kr_counts kc ON ap.category = kc.category ORDER BY weighted_avg_progress DESC;",
+      "executionTimeMs": 7617,
+      "goldSql": "SELECT i.category, AVG(k.progress / NULLIF(k.target, 0)) AS weighted_average_progress, COUNT(k.id) AS total_krs FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category ORDER BY weighted_average_progress DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.75
+      },
+      "cosineSimilarity": 0.921046624411116,
+      "finalSql": "WITH kr_counts AS (SELECT i.category, COUNT(k.id) AS kr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category), avg_progress AS (SELECT i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.category) SELECT ap.category, ap.avg_progress, kc.kr_count, (ap.avg_progress * kc.kr_count) AS weighted_avg_progress FROM avg_progress ap JOIN kr_counts kc ON ap.category = kc.category ORDER BY weighted_avg_progress DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.5,
+      "queryAffinityScore": 0.710523312205558
+    },
+    {
+      "question": "Avaliar a correlação entre o número de updates registrados em cada iniciativa e o progresso médio de seus KRs.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.id AS initiative_id, COUNT(iu.id) AS number_of_updates, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id LEFT JOIN kr k ON i.id = (SELECT initiative_id FROM okr WHERE id = k.okr_id) LEFT JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id;"
+        }
+      ],
+      "predictedSql": "SELECT i.id AS initiative_id, COUNT(iu.id) AS number_of_updates, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id LEFT JOIN kr k ON i.id = (SELECT initiative_id FROM okr WHERE id = k.okr_id) LEFT JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id;",
+      "executionTimeMs": 3375,
+      "goldSql": "WITH InitiativeMetrics AS (SELECT i.id AS initiative_id, COUNT(iu.id) AS total_updates, (SELECT AVG(k.progress / NULLIF(k.target,0)) FROM okr o JOIN kr k ON o.id = k.okr_id WHERE o.initiative_id = i.id) AS average_kr_progress FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id) SELECT CORR(im.total_updates, im.average_kr_progress) AS correlation_updates_vs_progress FROM InitiativeMetrics im;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.8389671790230576,
+      "finalSql": "SELECT i.id AS initiative_id, COUNT(iu.id) AS number_of_updates, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id LEFT JOIN kr k ON i.id = (SELECT initiative_id FROM okr WHERE id = k.okr_id) LEFT JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.4194835895115288
+    },
+    {
+      "question": "Detectar iniciativas que apresentaram regressão média no progresso de KRs durante o último ciclo.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH kr_progress AS (SELECT i.id AS initiative_id, AVG(CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(kh.target, 0) ELSE NULLIF(kh.target, 0) / NULLIF(kh.progress, 0) END) AS avg_progress FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.date >= (CURRENT_DATE - INTERVAL '1 month') GROUP BY i.id) SELECT i.title, kp.avg_progress FROM initiative i JOIN kr_progress kp ON i.id = kp.initiative_id WHERE kp.avg_progress < 1.0 ORDER BY kp.avg_progress;",
+          "error": "column k.initiative_id does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "WITH kr_progress AS ( SELECT i.id AS initiative_id, AVG(CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(kh.target, 0) ELSE NULLIF(kh.target, 0) / NULLIF(kh.progress, 0) END) AS avg_progress FROM initiative i JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.date >= (CURRENT_DATE - INTERVAL '1 month') GROUP BY i.id) SELECT i.title, kp.avg_progress FROM initiative i JOIN kr_progress kp ON i.id = kp.initiative_id WHERE kp.avg_progress < 1.0 ORDER BY kp.avg_progress;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "WITH kr_progress AS (SELECT i.id AS initiative_id, AVG(CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(kh.target, 0) ELSE NULLIF(kh.target, 0) / NULLIF(kh.progress, 0) END) AS avg_progress FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.date >= (CURRENT_DATE - INTERVAL '1 month') GROUP BY i.id) SELECT i.title, kp.avg_progress FROM initiative i JOIN kr_progress kp ON i.id = kp.initiative_id WHERE kp.avg_progress < 1.0 ORDER BY kp.avg_progress;",
+      "executionTimeMs": 4065,
+      "goldSql": "WITH hist AS (SELECT kh.kr_id, (kh.progress / NULLIF(kh.target,0)) AS rel, LAG(kh.progress / NULLIF(kh.target,0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS prev, o.initiative_id FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id), diffs AS (SELECT initiative_id, rel - prev AS diff FROM hist WHERE prev IS NOT NULL) SELECT i.title, AVG(diff) AS avg_regression_change FROM diffs d JOIN initiative i ON d.initiative_id = i.id GROUP BY i.id, i.title HAVING AVG(diff) < 0 ORDER BY avg_regression_change ASC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.4375
+      },
+      "cosineSimilarity": 0.809598045956674,
+      "finalSql": "WITH kr_progress AS ( SELECT i.id AS initiative_id, AVG(CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(kh.target, 0) ELSE NULLIF(kh.target, 0) / NULLIF(kh.progress, 0) END) AS avg_progress FROM initiative i JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.date >= (CURRENT_DATE - INTERVAL '1 month') GROUP BY i.id) SELECT i.title, kp.avg_progress FROM initiative i JOIN kr_progress kp ON i.id = kp.initiative_id WHERE kp.avg_progress < 1.0 ORDER BY kp.avg_progress;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.404799022978337
+    },
+    {
+      "question": "Qual a distribuição de iniciativas por categoria?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT category, COUNT(*) AS initiative_count FROM initiative GROUP BY category ORDER BY category;"
+        }
+      ],
+      "predictedSql": "SELECT category, COUNT(*) AS initiative_count FROM initiative GROUP BY category ORDER BY category;",
+      "executionTimeMs": 1665,
+      "goldSql": "SELECT category, COUNT(id) AS total_initiatives, CAST(COUNT(id) AS FLOAT) * 100 / (SELECT COUNT(*) FROM initiative) AS percentage FROM initiative GROUP BY category ORDER BY total_initiatives DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.875
+      },
+      "cosineSimilarity": 0.7185599424789657,
+      "finalSql": "SELECT category, COUNT(*) AS initiative_count FROM initiative GROUP BY category ORDER BY category;",
+      "executionMatch": false,
+      "tableSimilarity": 0.6666666666666667,
+      "queryAffinityScore": 0.6926133045728162
+    },
+    {
+      "question": "Quais iniciativas têm mais OKRs associados?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.id, i.title, COUNT(o.id) AS okr_count FROM initiative i LEFT JOIN okr o ON i.id = o.initiative_id GROUP BY i.id, i.title ORDER BY okr_count DESC;"
+        }
+      ],
+      "predictedSql": "SELECT i.id, i.title, COUNT(o.id) AS okr_count FROM initiative i LEFT JOIN okr o ON i.id = o.initiative_id GROUP BY i.id, i.title ORDER BY okr_count DESC;",
+      "executionTimeMs": 2303,
+      "goldSql": "SELECT i.title, COUNT(o.id) AS total_okrs FROM initiative i LEFT JOIN okr o ON i.id = o.initiative_id GROUP BY i.id, i.title ORDER BY total_okrs DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.9763072292731433,
+      "finalSql": "SELECT i.id, i.title, COUNT(o.id) AS okr_count FROM initiative i LEFT JOIN okr o ON i.id = o.initiative_id GROUP BY i.id, i.title ORDER BY okr_count DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.6666666666666667,
+      "queryAffinityScore": 0.821486947969905
+    },
+    {
+      "question": "Quantas iniciativas estão em andamento neste trimestre?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT COUNT(*) AS ongoing_initiatives FROM initiative WHERE start_date <= CURRENT_DATE AND end_date >= CURRENT_DATE;"
+        }
+      ],
+      "predictedSql": "SELECT COUNT(*) AS ongoing_initiatives FROM initiative WHERE start_date <= CURRENT_DATE AND end_date >= CURRENT_DATE;",
+      "executionTimeMs": 2189,
+      "goldSql": "SELECT COUNT(id) FROM initiative WHERE start_date <= date_trunc('quarter', CURRENT_DATE) + INTERVAL '3 month' - INTERVAL '1 second' AND (end_date IS NULL OR end_date >= date_trunc('quarter', CURRENT_DATE));",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.7245627871103234,
+      "finalSql": "SELECT COUNT(*) AS ongoing_initiatives FROM initiative WHERE start_date <= CURRENT_DATE AND end_date >= CURRENT_DATE;",
+      "executionMatch": false,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 0.8622813935551616
+    },
+    {
+      "question": "Quais iniciativas estão sem updates há mais de 30 dias?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.id, i.title, i.created_date FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.created_date IS NULL OR iu.created_date < NOW() - INTERVAL '30 days';"
+        }
+      ],
+      "predictedSql": "SELECT i.id, i.title, i.created_date FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.created_date IS NULL OR iu.created_date < NOW() - INTERVAL '30 days';",
+      "executionTimeMs": 2524,
+      "goldSql": "SELECT i.title, MAX(iu.created_date) AS last_update FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id, i.title HAVING MAX(iu.created_date) IS NULL OR MAX(iu.created_date) < NOW() - INTERVAL '30' DAY ORDER BY last_update ASC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.8490092087807303,
+      "finalSql": "SELECT i.id, i.title, i.created_date FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.created_date IS NULL OR iu.created_date < NOW() - INTERVAL '30 days';",
+      "executionMatch": false,
+      "tableSimilarity": 0.013521457965902428,
+      "queryAffinityScore": 0.43126533337331635
+    },
+    {
+      "question": "Quais iniciativas têm prioridade máxima, mas baixo progresso de OKRs?",
+      "status": "ERROR",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.title, i.priority, o.id AS okr_id, SUM(kh.progress) AS total_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 'maximum' GROUP BY i.title, i.priority, o.id HAVING SUM(kh.progress) < (SELECT AVG(SUM(kh.progress)) FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN okr o ON k.okr_id = o.id WHERE o.initiative_id = i.id GROUP BY o.id);",
+          "error": "invalid input syntax for type integer: \"maximum\""
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT i.title, i.priority, o.id AS okr_id, SUM(kh.progress) AS total_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 1 -- Considerando que a prioridade máxima é representada por 1 GROUP BY i.title, i.priority, o.id HAVING SUM(kh.progress) < ( SELECT AVG(total_progress) FROM ( SELECT SUM(kh.progress) AS total_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN okr o ON k.okr_id = o.id WHERE o.initiative_id = i.id GROUP BY o.id ) AS subquery );",
+          "fixed": true,
+          "error": "column \"i.title\" must appear in the GROUP BY clause or be used in an aggregate function"
+        },
+        {
+          "attempt": 3,
+          "sql": "SELECT i.title, i.priority, o.id AS okr_id, SUM(kh.progress) AS total_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 1 GROUP BY i.title, i.priority, o.id HAVING SUM(kh.progress) < ( SELECT AVG(total_progress) FROM ( SELECT SUM(kh.progress) AS total_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN okr o ON k.okr_id = o.id WHERE o.initiative_id = i.id GROUP BY o.id ) AS subquery );",
+          "fixed": true,
+          "error": "subquery uses ungrouped column \"i.id\" from outer query"
+        }
+      ],
+      "predictedSql": "SELECT i.title, i.priority, o.id AS okr_id, SUM(kh.progress) AS total_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 'maximum' GROUP BY i.title, i.priority, o.id HAVING SUM(kh.progress) < (SELECT AVG(SUM(kh.progress)) FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN okr o ON k.okr_id = o.id WHERE o.initiative_id = i.id GROUP BY o.id);",
+      "executionTimeMs": 4171,
+      "goldSql": "SELECT i.title, i.priority, AVG(k.progress / NULLIF(k.target, 0)) AS avg_okr_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE i.priority = 1 GROUP BY i.id, i.title, i.priority HAVING AVG(k.progress / NULLIF(k.target, 0)) < 0.5 ORDER BY avg_okr_progress ASC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.8426025728266157,
+      "finalSql": "SELECT i.title, i.priority, o.id AS okr_id, SUM(kh.progress) AS total_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE i.priority = 1 GROUP BY i.title, i.priority, o.id HAVING SUM(kh.progress) < ( SELECT AVG(total_progress) FROM ( SELECT SUM(kh.progress) AS total_progress FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN okr o ON k.okr_id = o.id WHERE o.initiative_id = i.id GROUP BY o.id ) AS subquery );",
+      "error": "Erro de execução no banco após 3 tentativa(s): subquery uses ungrouped column \"i.id\" from outer query",
+      "executionMatch": false
+    },
+    {
+      "question": "Quantas iniciativas estão planejadas para começar no próximo mês?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT COUNT(*) AS total_iniciativas FROM initiative WHERE start_date >= date_trunc('month', CURRENT_DATE + INTERVAL '1 month') AND start_date < date_trunc('month', CURRENT_DATE + INTERVAL '2 month');"
+        }
+      ],
+      "predictedSql": "SELECT COUNT(*) AS total_iniciativas FROM initiative WHERE start_date >= date_trunc('month', CURRENT_DATE + INTERVAL '1 month') AND start_date < date_trunc('month', CURRENT_DATE + INTERVAL '2 month');",
+      "executionTimeMs": 2241,
+      "goldSql": "SELECT COUNT(id) FROM initiative WHERE start_date >= date_trunc('month', CURRENT_DATE) + INTERVAL '1 month' AND start_date < date_trunc('month', CURRENT_DATE) + INTERVAL '2 month';",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.947957411781093,
+      "finalSql": "SELECT COUNT(*) AS total_iniciativas FROM initiative WHERE start_date >= date_trunc('month', CURRENT_DATE + INTERVAL '1 month') AND start_date < date_trunc('month', CURRENT_DATE + INTERVAL '2 month');",
+      "executionMatch": false,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 0.9739787058905465
+    },
+    {
+      "question": "Quais iniciativas têm fim previsto antes do término de seus OKRs?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.title AS initiative_title, i.end_date AS initiative_end_date, o.deadline AS okr_deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id WHERE i.end_date < o.deadline;"
+        }
+      ],
+      "predictedSql": "SELECT i.title AS initiative_title, i.end_date AS initiative_end_date, o.deadline AS okr_deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id WHERE i.end_date < o.deadline;",
+      "executionTimeMs": 2701,
+      "goldSql": "SELECT i.title, i.end_date, MAX(o.deadline) AS latest_okr_deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id WHERE i.end_date IS NOT NULL GROUP BY i.id, i.title, i.end_date HAVING i.end_date < MAX(o.deadline);",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.8885885696276701,
+      "finalSql": "SELECT i.title AS initiative_title, i.end_date AS initiative_end_date, o.deadline AS okr_deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id WHERE i.end_date < o.deadline;",
+      "executionMatch": true,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 0.944294284813835
+    },
+    {
+      "question": "Quais iniciativas têm mais de três pessoas no time?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.id, i.title, COUNT(im.managers_id) AS team_size FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id GROUP BY i.id, i.title HAVING COUNT(im.managers_id) > 3;"
+        }
+      ],
+      "predictedSql": "SELECT i.id, i.title, COUNT(im.managers_id) AS team_size FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id GROUP BY i.id, i.title HAVING COUNT(im.managers_id) > 3;",
+      "executionTimeMs": 2646,
+      "goldSql": "SELECT i.id, i.title, COUNT(im.managers_id) AS team_size FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id GROUP BY i.id HAVING COUNT(im.managers_id) > 3",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.9908097646555395,
+      "finalSql": "SELECT i.id, i.title, COUNT(im.managers_id) AS team_size FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id GROUP BY i.id, i.title HAVING COUNT(im.managers_id) > 3;",
+      "executionMatch": true,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 0.9954048823277697
+    },
+    {
+      "question": "Qual é a média de duração (em dias) das iniciativas concluídas?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT AVG(EXTRACT(DAY FROM (i.end_date - i.start_date))) AS avg_duration_days FROM initiative i WHERE i.end_date IS NOT NULL AND i.end_date <= NOW();"
+        }
+      ],
+      "predictedSql": "SELECT AVG(EXTRACT(DAY FROM (i.end_date - i.start_date))) AS avg_duration_days FROM initiative i WHERE i.end_date IS NOT NULL AND i.end_date <= NOW();",
+      "executionTimeMs": 2603,
+      "goldSql": "SELECT AVG(EXTRACT(EPOCH FROM (end_date - start_date)) / 86400) AS average_duration_days FROM initiative WHERE end_date IS NOT NULL AND start_date IS NOT NULL;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.875
+      },
+      "cosineSimilarity": 0.8767366386198938,
+      "finalSql": "SELECT AVG(EXTRACT(DAY FROM (i.end_date - i.start_date))) AS avg_duration_days FROM initiative i WHERE i.end_date IS NOT NULL AND i.end_date <= NOW();",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.4383683193099469
+    },
+    {
+      "question": "Qual percentual de iniciativas por categoria está concluído?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.category, COUNT(i.id) AS total_iniciativas, SUM(CASE WHEN (SELECT COUNT(kr.id) FROM kr WHERE kr.okr_id IN (SELECT o.id FROM okr o WHERE o.initiative_id = i.id) AND kr.progress / NULLIF(kr.target, 0) >= 1.0) > 0 THEN 1 ELSE 0 END) AS iniciativas_concluidas, (SUM(CASE WHEN (SELECT COUNT(kr.id) FROM kr WHERE kr.okr_id IN (SELECT o.id FROM okr o WHERE o.initiative_id = i.id) AND kr.progress / NULLIF(kr.target, 0) >= 1.0) > 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(i.id)) AS percentual_conclusao FROM initiative i GROUP BY i.category;"
+        }
+      ],
+      "predictedSql": "SELECT i.category, COUNT(i.id) AS total_iniciativas, SUM(CASE WHEN (SELECT COUNT(kr.id) FROM kr WHERE kr.okr_id IN (SELECT o.id FROM okr o WHERE o.initiative_id = i.id) AND kr.progress / NULLIF(kr.target, 0) >= 1.0) > 0 THEN 1 ELSE 0 END) AS iniciativas_concluidas, (SUM(CASE WHEN (SELECT COUNT(kr.id) FROM kr WHERE kr.okr_id IN (SELECT o.id FROM okr o WHERE o.initiative_id = i.id) AND kr.progress / NULLIF(kr.target, 0) >= 1.0) > 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(i.id)) AS percentual_conclusao FROM initiative i GROUP BY i.category;",
+      "executionTimeMs": 7964,
+      "goldSql": "WITH InitiativeKRStatus AS (SELECT i.id AS initiative_id, i.category, CASE WHEN (k.direction = 'up'   AND k.progress / NULLIF(k.target,0) >= 1) OR (k.direction = 'down' AND k.progress / NULLIF(k.target,0) <= 1) THEN 1 ELSE 0 END AS kr_is_concluded FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id) SELECT category, CAST(SUM(kr_is_concluded) AS FLOAT) * 100 / COUNT(*) AS percent_krs_concluded FROM InitiativeKRStatus GROUP BY category ORDER BY percent_krs_concluded DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.8748331455081582,
+      "finalSql": "SELECT i.category, COUNT(i.id) AS total_iniciativas, SUM(CASE WHEN (SELECT COUNT(kr.id) FROM kr WHERE kr.okr_id IN (SELECT o.id FROM okr o WHERE o.initiative_id = i.id) AND kr.progress / NULLIF(kr.target, 0) >= 1.0) > 0 THEN 1 ELSE 0 END) AS iniciativas_concluidas, (SUM(CASE WHEN (SELECT COUNT(kr.id) FROM kr WHERE kr.okr_id IN (SELECT o.id FROM okr o WHERE o.initiative_id = i.id) AND kr.progress / NULLIF(kr.target, 0) >= 1.0) > 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(i.id)) AS percentual_conclusao FROM initiative i GROUP BY i.category;",
+      "executionMatch": false,
+      "tableSimilarity": 0.25,
+      "queryAffinityScore": 0.5624165727540791
+    },
+    {
+      "question": "Quais iniciativas estão com maior prioridade, mas apresentam baixo progresso ou atualizações atrasadas?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.title, i.priority, COALESCE(SUM(kh.progress / NULLIF(kh.target, 0)), 0) AS total_progress, COUNT(iu.id) AS total_updates FROM initiative i LEFT JOIN kr k ON i.id = k.initiative_id LEFT JOIN kr_history kh ON k.id = kh.kr_id LEFT JOIN initiative_update iu ON i.id = iu.initiative_id WHERE i.priority IS NOT NULL GROUP BY i.id HAVING i.priority = (SELECT MAX(priority) FROM initiative) AND COALESCE(SUM(kh.progress / NULLIF(kh.target, 0)), 0) < 1 AND COUNT(iu.id) = 0 ORDER BY i.priority DESC;",
+          "error": "column k.initiative_id does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT i.title, i.priority, COALESCE(SUM(kh.progress / NULLIF(kh.target, 0)), 0) AS total_progress, COUNT(iu.id) AS total_updates FROM initiative i LEFT JOIN kr k ON i.id = k.okr_id LEFT JOIN kr_history kh ON k.id = kh.kr_id LEFT JOIN initiative_update iu ON i.id = iu.initiative_id WHERE i.priority IS NOT NULL GROUP BY i.id HAVING i.priority = (SELECT MAX(priority) FROM initiative) AND COALESCE(SUM(kh.progress / NULLIF(kh.target, 0)), 0) < 1 AND COUNT(iu.id) = 0 ORDER BY i.priority DESC;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT i.title, i.priority, COALESCE(SUM(kh.progress / NULLIF(kh.target, 0)), 0) AS total_progress, COUNT(iu.id) AS total_updates FROM initiative i LEFT JOIN kr k ON i.id = k.initiative_id LEFT JOIN kr_history kh ON k.id = kh.kr_id LEFT JOIN initiative_update iu ON i.id = iu.initiative_id WHERE i.priority IS NOT NULL GROUP BY i.id HAVING i.priority = (SELECT MAX(priority) FROM initiative) AND COALESCE(SUM(kh.progress / NULLIF(kh.target, 0)), 0) < 1 AND COUNT(iu.id) = 0 ORDER BY i.priority DESC;",
+      "executionTimeMs": 5105,
+      "goldSql": "WITH InitiativePerformance AS (SELECT i.id AS initiative_id, i.title, i.priority, (SELECT AVG(k.progress / NULLIF(k.target,0)) FROM okr o JOIN kr k ON o.id = k.okr_id WHERE o.initiative_id = i.id) AS avg_okr_progress, (SELECT MAX(created_date) FROM initiative_update iu WHERE iu.initiative_id = i.id) AS last_update_date FROM initiative i) SELECT title, priority, avg_okr_progress, last_update_date FROM InitiativePerformance WHERE priority = 1 AND (avg_okr_progress < 0.5 OR last_update_date < NOW() - INTERVAL '30 days' OR last_update_date IS NULL) ORDER BY avg_okr_progress ASC NULLS FIRST, last_update_date ASC NULLS FIRST;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5625
+      },
+      "cosineSimilarity": 0.7693213990353933,
+      "finalSql": "SELECT i.title, i.priority, COALESCE(SUM(kh.progress / NULLIF(kh.target, 0)), 0) AS total_progress, COUNT(iu.id) AS total_updates FROM initiative i LEFT JOIN kr k ON i.id = k.okr_id LEFT JOIN kr_history kh ON k.id = kh.kr_id LEFT JOIN initiative_update iu ON i.id = iu.initiative_id WHERE i.priority IS NOT NULL GROUP BY i.id HAVING i.priority = (SELECT MAX(priority) FROM initiative) AND COALESCE(SUM(kh.progress / NULLIF(kh.target, 0)), 0) < 1 AND COUNT(iu.id) = 0 ORDER BY i.priority DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.38466069951769666
+    },
+    {
+      "question": "Quais KRs estão com direção “NEGATIVA” (indicando desempenho decrescente) e estão abaixo de 50% do target?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT k.* FROM kr k WHERE k.direction = 'down' AND (k.progress / NULLIF(k.target, 0)) < 0.5;"
+        }
+      ],
+      "predictedSql": "SELECT k.* FROM kr k WHERE k.direction = 'down' AND (k.progress / NULLIF(k.target, 0)) < 0.5;",
+      "executionTimeMs": 2749,
+      "goldSql": "SELECT title, progress, target, direction FROM kr WHERE direction = 'down' AND (progress / NULLIF(target,0)) < 0.5;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.8977198108407751,
+      "finalSql": "SELECT k.* FROM kr k WHERE k.direction = 'down' AND (k.progress / NULLIF(k.target, 0)) < 0.5;",
+      "executionMatch": false,
+      "tableSimilarity": 0.3076923076923077,
+      "queryAffinityScore": 0.6027060592665414
+    },
+    {
+      "question": "Quais iniciativas apresentaram maior variação positiva de progresso nos últimos ciclos de atualização?",
+      "status": "ERROR",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.title, MAX(ku.progress) - MIN(ku.progress) AS variation FROM initiative i JOIN initiative_update ku ON i.id = ku.initiative_id GROUP BY i.id, i.title ORDER BY variation DESC;",
+          "error": "column ku.progress does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT i.title, MAX(ku.progress) - MIN(ku.progress) AS variation FROM initiative i JOIN initiative_update ku ON i.id = ku.initiative_id GROUP BY i.id, i.title ORDER BY variation DESC;",
+          "fixed": true,
+          "error": "column ku.progress does not exist"
+        },
+        {
+          "attempt": 3,
+          "sql": "SELECT i.title, MAX(ku.progress) - MIN(ku.progress) AS variation FROM initiative i JOIN initiative_update ku ON i.id = ku.initiative_id GROUP BY i.id, i.title ORDER BY variation DESC;",
+          "fixed": true,
+          "error": "column ku.progress does not exist"
+        }
+      ],
+      "predictedSql": "SELECT i.title, MAX(ku.progress) - MIN(ku.progress) AS variation FROM initiative i JOIN initiative_update ku ON i.id = ku.initiative_id GROUP BY i.id, i.title ORDER BY variation DESC;",
+      "executionTimeMs": 2217,
+      "goldSql": "WITH NormHist AS (SELECT kh.kr_id, kh.date, (kh.progress / NULLIF(kh.target,0)) AS norm_prog FROM kr_history kh), Changes AS (SELECT nh.kr_id, nh.date, nh.norm_prog, nh.norm_prog - LAG(nh.norm_prog) OVER (PARTITION BY nh.kr_id ORDER BY nh.date) AS delta FROM NormHist nh), PosChanges AS (SELECT o.initiative_id, CASE WHEN k.direction = 'up'   AND delta > 0 THEN delta WHEN k.direction = 'down' AND delta < 0 THEN -delta END AS norm_delta FROM Changes c JOIN kr k ON c.kr_id = k.id JOIN okr o ON k.okr_id = o.id WHERE delta IS NOT NULL AND c.date >= NOW() - INTERVAL '6 month' AND ((k.direction='up' AND delta > 0) OR (k.direction='down' AND delta < 0))) SELECT i.title, AVG(pc.norm_delta) AS avg_positive_change FROM initiative i JOIN PosChanges pc ON i.id = pc.initiative_id GROUP BY i.id, i.title ORDER BY avg_positive_change DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5625
+      },
+      "cosineSimilarity": 0.5889244520101854,
+      "finalSql": "SELECT i.title, MAX(ku.progress) - MIN(ku.progress) AS variation FROM initiative i JOIN initiative_update ku ON i.id = ku.initiative_id GROUP BY i.id, i.title ORDER BY variation DESC;",
+      "error": "Erro de execução no banco após 3 tentativa(s): column ku.progress does not exist",
+      "executionMatch": false
+    },
+    {
+      "question": "Quais colaboradores foram responsáveis pelos KRs com melhor taxa de atingimento?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT c.name, k.title, (kh.progress / NULLIF(k.target, 0)) AS achievement_rate FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id ORDER BY achievement_rate DESC LIMIT 10;"
+        }
+      ],
+      "predictedSql": "SELECT c.name, k.title, (kh.progress / NULLIF(k.target, 0)) AS achievement_rate FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id ORDER BY achievement_rate DESC LIMIT 10;",
+      "executionTimeMs": 2746,
+      "goldSql": "SELECT c.name, AVG(k.progress / k.target) AS avg_achievement_rate FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id GROUP BY c.id, c.name HAVING COUNT(DISTINCT k.id) > 1 ORDER BY avg_achievement_rate DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 0,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.8676373441405955,
+      "finalSql": "SELECT c.name, k.title, (kh.progress / NULLIF(k.target, 0)) AS achievement_rate FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id ORDER BY achievement_rate DESC LIMIT 10;",
+      "executionMatch": false,
+      "tableSimilarity": 0.05649717514124297,
+      "queryAffinityScore": 0.4620672596409192
+    },
+    {
+      "question": "Quais colaboradores têm progresso médio de KRs acima da média geral dos colaboradores?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH avg_progress AS (SELECT AVG(progress / NULLIF(target, 0)) AS overall_avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id) SELECT c.id, c.name, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name HAVING AVG(kh.progress / NULLIF(kh.target, 0)) > (SELECT overall_avg_progress FROM avg_progress);",
+          "error": "column reference \"progress\" is ambiguous"
+        },
+        {
+          "attempt": 2,
+          "sql": "WITH avg_progress AS (SELECT AVG(kh.progress / NULLIF(kh.target, 0)) AS overall_avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id) SELECT c.id, c.name, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name HAVING AVG(kh.progress / NULLIF(kh.target, 0)) > (SELECT overall_avg_progress FROM avg_progress);",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "WITH avg_progress AS (SELECT AVG(progress / NULLIF(target, 0)) AS overall_avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id) SELECT c.id, c.name, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name HAVING AVG(kh.progress / NULLIF(kh.target, 0)) > (SELECT overall_avg_progress FROM avg_progress);",
+      "executionTimeMs": 3383,
+      "goldSql": "WITH CollaboratorAvg AS (SELECT kh.collaborator_id, AVG(kh.progress / NULLIF(kh.target,0)) AS collaborator_progress FROM kr_history kh GROUP BY kh.collaborator_id), GlobalAvg AS (SELECT AVG(progress / NULLIF(target,0)) AS global_progress FROM kr_history) SELECT c.name, ca.collaborator_progress FROM collaborator c JOIN CollaboratorAvg ca ON c.id = ca.collaborator_id CROSS JOIN GlobalAvg ga WHERE ca.collaborator_progress > ga.global_progress ORDER BY ca.collaborator_progress DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5625
+      },
+      "cosineSimilarity": 0.8558559692804738,
+      "finalSql": "WITH avg_progress AS (SELECT AVG(kh.progress / NULLIF(kh.target, 0)) AS overall_avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id) SELECT c.id, c.name, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name HAVING AVG(kh.progress / NULLIF(kh.target, 0)) > (SELECT overall_avg_progress FROM avg_progress);",
+      "executionMatch": false,
+      "tableSimilarity": 0.6666666666666667,
+      "queryAffinityScore": 0.7612613179735703
+    },
+    {
+      "question": "Quais colaboradores possuem mais KRs “bookmarked” do que a média geral de bookmarks por colaborador?",
+      "status": "ERROR",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH avg_bookmarks AS (SELECT collaborator_id, COUNT(*) AS total_bookmarks FROM kr WHERE bookmarked = TRUE GROUP BY collaborator_id) SELECT c.* FROM collaborator c JOIN avg_bookmarks ab ON c.id = ab.collaborator_id WHERE ab.total_bookmarks > (SELECT AVG(total_bookmarks) FROM avg_bookmarks);",
+          "error": "column \"collaborator_id\" does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "WITH avg_bookmarks AS (SELECT collaborator_id, COUNT(*) AS total_bookmarks FROM kr WHERE bookmarked = TRUE GROUP BY collaborator_id) SELECT c.* FROM collaborator c JOIN avg_bookmarks ab ON c.id = ab.collaborator_id WHERE ab.total_bookmarks > (SELECT AVG(total_bookmarks) FROM avg_bookmarks);",
+          "fixed": true,
+          "error": "column \"collaborator_id\" does not exist"
+        },
+        {
+          "attempt": 3,
+          "sql": "WITH avg_bookmarks AS (SELECT collaborator_id, COUNT(*) AS total_bookmarks FROM kr WHERE bookmarked = TRUE GROUP BY collaborator_id) SELECT c.* FROM collaborator c JOIN avg_bookmarks ab ON c.id = ab.collaborator_id WHERE ab.total_bookmarks > (SELECT AVG(total_bookmarks) FROM avg_bookmarks);",
+          "fixed": true,
+          "error": "column \"collaborator_id\" does not exist"
+        }
+      ],
+      "predictedSql": "WITH avg_bookmarks AS (SELECT collaborator_id, COUNT(*) AS total_bookmarks FROM kr WHERE bookmarked = TRUE GROUP BY collaborator_id) SELECT c.* FROM collaborator c JOIN avg_bookmarks ab ON c.id = ab.collaborator_id WHERE ab.total_bookmarks > (SELECT AVG(total_bookmarks) FROM avg_bookmarks);",
+      "executionTimeMs": 2839,
+      "goldSql": "WITH BookmarkCount AS ( SELECT bookmarked_by_id, COUNT(id) AS total_bookmarks FROM kr WHERE bookmarked_by_id IS NOT NULL GROUP BY bookmarked_by_id ), AvgBookmarks AS ( SELECT AVG(total_bookmarks) AS global_avg FROM BookmarkCount ) SELECT c.name, bc.total_bookmarks FROM collaborator c JOIN BookmarkCount bc ON c.id = bc.bookmarked_by_id CROSS JOIN AvgBookmarks ab WHERE bc.total_bookmarks > ab.global_avg ORDER BY bc.total_bookmarks DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.921991339402534,
+      "finalSql": "WITH avg_bookmarks AS (SELECT collaborator_id, COUNT(*) AS total_bookmarks FROM kr WHERE bookmarked = TRUE GROUP BY collaborator_id) SELECT c.* FROM collaborator c JOIN avg_bookmarks ab ON c.id = ab.collaborator_id WHERE ab.total_bookmarks > (SELECT AVG(total_bookmarks) FROM avg_bookmarks);",
+      "error": "Erro de execução no banco após 3 tentativa(s): column \"collaborator_id\" does not exist",
+      "executionMatch": false
+    },
+    {
+      "question": "Gerar o ranking de colaboradores com maior média de progresso em KRs dentro de cada categoria de iniciativa.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.category, c.name, AVG(kh.progress / NULLIF(kh.target,0)) AS avg_progress_in_category, RANK() OVER (PARTITION BY i.category ORDER BY AVG(kh.progress / NULLIF(kh.target,0)) DESC) AS rank_in_category FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id JOIN initiative i ON o.initiative_id = i.id GROUP BY i.category, c.id, c.name ORDER BY i.category, rank_in_category;"
+        }
+      ],
+      "predictedSql": "SELECT i.category, c.name, AVG(kh.progress / NULLIF(kh.target,0)) AS avg_progress_in_category, RANK() OVER (PARTITION BY i.category ORDER BY AVG(kh.progress / NULLIF(kh.target,0)) DESC) AS rank_in_category FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id JOIN initiative i ON o.initiative_id = i.id GROUP BY i.category, c.id, c.name ORDER BY i.category, rank_in_category;",
+      "executionTimeMs": 4148,
+      "goldSql": "SELECT i.category, c.name, AVG(kh.progress / NULLIF(kh.target,0)) AS avg_progress_in_category, RANK() OVER (PARTITION BY i.category ORDER BY AVG(kh.progress / NULLIF(kh.target,0)) DESC) AS rank_in_category FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id JOIN initiative i ON o.initiative_id = i.id GROUP BY i.category, c.id, c.name ORDER BY i.category, rank_in_category;",
+      "exactMatch": true,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 1
+      },
+      "cosineSimilarity": 1,
+      "finalSql": "SELECT i.category, c.name, AVG(kh.progress / NULLIF(kh.target,0)) AS avg_progress_in_category, RANK() OVER (PARTITION BY i.category ORDER BY AVG(kh.progress / NULLIF(kh.target,0)) DESC) AS rank_in_category FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id JOIN initiative i ON o.initiative_id = i.id GROUP BY i.category, c.id, c.name ORDER BY i.category, rank_in_category;",
+      "executionMatch": true,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 1
+    },
+    {
+      "question": "Selecionar colaboradores que contribuíram para KRs com progresso superior ao percentil 90 global.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH kr_progress AS (SELECT kh.collaborator_id, (kh.progress / NULLIF(kh.target, 0)) AS progress_ratio FROM kr_history kh JOIN kr k ON kh.kr_id = k.id), percentile_90 AS (SELECT PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY progress_ratio) AS p90 FROM kr_progress) SELECT DISTINCT c.* FROM collaborator c JOIN kr_progress kp ON c.id = kp.collaborator_id WHERE kp.progress_ratio > (SELECT p90 FROM percentile_90);"
+        }
+      ],
+      "predictedSql": "WITH kr_progress AS (SELECT kh.collaborator_id, (kh.progress / NULLIF(kh.target, 0)) AS progress_ratio FROM kr_history kh JOIN kr k ON kh.kr_id = k.id), percentile_90 AS (SELECT PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY progress_ratio) AS p90 FROM kr_progress) SELECT DISTINCT c.* FROM collaborator c JOIN kr_progress kp ON c.id = kp.collaborator_id WHERE kp.progress_ratio > (SELECT p90 FROM percentile_90);",
+      "executionTimeMs": 3661,
+      "goldSql": "WITH GlobalPercentile AS (SELECT PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY (progress / NULLIF(target,0))) AS p90_progress FROM kr_history) SELECT DISTINCT c.name FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id CROSS JOIN GlobalPercentile gp WHERE (kh.progress / NULLIF(kh.target,0)) > gp.p90_progress;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.921309573807297,
+      "finalSql": "WITH kr_progress AS (SELECT kh.collaborator_id, (kh.progress / NULLIF(kh.target, 0)) AS progress_ratio FROM kr_history kh JOIN kr k ON kh.kr_id = k.id), percentile_90 AS (SELECT PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY progress_ratio) AS p90 FROM kr_progress) SELECT DISTINCT c.* FROM collaborator c JOIN kr_progress kp ON c.id = kp.collaborator_id WHERE kp.progress_ratio > (SELECT p90 FROM percentile_90);",
+      "executionMatch": false,
+      "tableSimilarity": 0.07301587301587298,
+      "queryAffinityScore": 0.497162723411585
+    },
+    {
+      "question": "Como evoluiu o progresso médio dos KRs nos últimos 6 meses?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT DATE_TRUNC('month', kh.date) AS month, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= NOW() - INTERVAL '6 months' GROUP BY month ORDER BY month;"
+        }
+      ],
+      "predictedSql": "SELECT DATE_TRUNC('month', kh.date) AS month, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= NOW() - INTERVAL '6 months' GROUP BY month ORDER BY month;",
+      "executionTimeMs": 2560,
+      "goldSql": "SELECT DATE_TRUNC('month', date) AS month_start, AVG(progress / NULLIF(target,0)) AS avg_monthly_progress FROM kr_history WHERE date >= DATE_TRUNC('month', NOW() - INTERVAL '6 month') AND date <= NOW() GROUP BY month_start ORDER BY month_start;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.9531637293259967,
+      "finalSql": "SELECT DATE_TRUNC('month', kh.date) AS month, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= NOW() - INTERVAL '6 months' GROUP BY month ORDER BY month;",
+      "executionMatch": false,
+      "tableSimilarity": 0.6666666666666667,
+      "queryAffinityScore": 0.8099151979963317
+    },
+    {
+      "question": "Qual foi a variação de progresso por colaborador no último trimestre?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT c.name, SUM(kh.progress) AS total_progress, SUM(kh.target) AS total_target, SUM(kh.progress) / NULLIF(SUM(kh.target), 0) AS progress_variation FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= (CURRENT_DATE - INTERVAL '3 months') GROUP BY c.id, c.name ORDER BY progress_variation DESC;"
+        }
+      ],
+      "predictedSql": "SELECT c.name, SUM(kh.progress) AS total_progress, SUM(kh.target) AS total_target, SUM(kh.progress) / NULLIF(SUM(kh.target), 0) AS progress_variation FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= (CURRENT_DATE - INTERVAL '3 months') GROUP BY c.id, c.name ORDER BY progress_variation DESC;",
+      "executionTimeMs": 3409,
+      "goldSql": "WITH Hist AS (SELECT kh.collaborator_id, kh.kr_id, kh.date, (kh.progress / NULLIF(kh.target,0)) AS norm_prog FROM kr_history kh WHERE kh.date >= NOW() - INTERVAL '3 month'), Ranked AS (SELECT collaborator_id, kr_id, norm_prog, ROW_NUMBER() OVER (PARTITION BY collaborator_id, kr_id ORDER BY date ASC) AS rn_first, ROW_NUMBER() OVER (PARTITION BY collaborator_id, kr_id ORDER BY date DESC) AS rn_last FROM Hist), FirstLast AS (SELECT collaborator_id, kr_id, MAX(CASE WHEN rn_first = 1 THEN norm_prog END) AS first_prog, MAX(CASE WHEN rn_last = 1 THEN norm_prog END) AS last_prog FROM Ranked GROUP BY collaborator_id, kr_id) SELECT c.name, AVG(last_prog - first_prog) AS progress_change_qtr FROM collaborator c JOIN FirstLast fl ON c.id = fl.collaborator_id GROUP BY c.id, c.name ORDER BY progress_change_qtr DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5
+      },
+      "cosineSimilarity": 0.7776789818935617,
+      "finalSql": "SELECT c.name, SUM(kh.progress) AS total_progress, SUM(kh.target) AS total_target, SUM(kh.progress) / NULLIF(SUM(kh.target), 0) AS progress_variation FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= (CURRENT_DATE - INTERVAL '3 months') GROUP BY c.id, c.name ORDER BY progress_variation DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.24,
+      "queryAffinityScore": 0.5088394909467808
+    },
+    {
+      "question": "Quantos registros de histórico de KR foram criados no último mês?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT COUNT(*) AS total_kr_history FROM kr_history WHERE created_date >= NOW() - INTERVAL '1 month';",
+          "error": "column \"created_date\" does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT COUNT(*) AS total_kr_history FROM kr_history WHERE date >= NOW() - INTERVAL '1 month';",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT COUNT(*) AS total_kr_history FROM kr_history WHERE created_date >= NOW() - INTERVAL '1 month';",
+      "executionTimeMs": 1687,
+      "goldSql": "SELECT COUNT(id) AS history_count_last_month FROM kr_history WHERE date >= NOW() - INTERVAL '1' MONTH;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.9160613467697369,
+      "finalSql": "SELECT COUNT(*) AS total_kr_history FROM kr_history WHERE date >= NOW() - INTERVAL '1 month';",
+      "executionMatch": false,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 0.9580306733848685
+    },
+    {
+      "question": "Quais KRs apresentaram regressão de progresso em algum momento?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT k.id, k.title, k.direction, kh.date, kh.progress, kh.target FROM kr k JOIN kr_history kh ON k.id = kh.kr_id WHERE (k.direction = 'up' AND kh.progress / NULLIF(kh.target, 0) < 1.0) OR (k.direction = 'down' AND kh.progress / NULLIF(kh.target, 0) > 1.0) ORDER BY k.id, kh.date;"
+        }
+      ],
+      "predictedSql": "SELECT k.id, k.title, k.direction, kh.date, kh.progress, kh.target FROM kr k JOIN kr_history kh ON k.id = kh.kr_id WHERE (k.direction = 'up' AND kh.progress / NULLIF(kh.target, 0) < 1.0) OR (k.direction = 'down' AND kh.progress / NULLIF(kh.target, 0) > 1.0) ORDER BY k.id, kh.date;",
+      "executionTimeMs": 3944,
+      "goldSql": "WITH Regressions AS (SELECT kr_id, (progress / NULLIF(target,0)) AS norm_progress, LAG(progress / NULLIF(target,0)) OVER (PARTITION BY kr_id ORDER BY date) AS prev_norm_progress FROM kr_history) SELECT DISTINCT k.title FROM kr k JOIN Regressions r ON k.id = r.kr_id WHERE r.norm_progress < r.prev_norm_progress;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 0,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5
+      },
+      "cosineSimilarity": 0.6375893286648018,
+      "finalSql": "SELECT k.id, k.title, k.direction, kh.date, kh.progress, kh.target FROM kr k JOIN kr_history kh ON k.id = kh.kr_id WHERE (k.direction = 'up' AND kh.progress / NULLIF(kh.target, 0) < 1.0) OR (k.direction = 'down' AND kh.progress / NULLIF(kh.target, 0) > 1.0) ORDER BY k.id, kh.date;",
+      "executionMatch": false,
+      "tableSimilarity": 0.0031684562577011244,
+      "queryAffinityScore": 0.32037889246125145
+    },
+    {
+      "question": "Qual a média de variação percentual de progresso por métrica (PERC, NUMERIC, YES_NO)?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT k.metric, AVG(CASE WHEN k.direction = 'up' THEN (kh.progress / NULLIF(kh.target, 0)) * 100 ELSE (1 - (kh.progress / NULLIF(kh.target, 0))) * 100 END) AS avg_percentage_variation FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.metric;"
+        }
+      ],
+      "predictedSql": "SELECT k.metric, AVG(CASE WHEN k.direction = 'up' THEN (kh.progress / NULLIF(kh.target, 0)) * 100 ELSE (1 - (kh.progress / NULLIF(kh.target, 0))) * 100 END) AS avg_percentage_variation FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.metric;",
+      "executionTimeMs": 4326,
+      "goldSql": "WITH ranked_history AS (SELECT kh.kr_id, kh.date, (kh.progress / NULLIF(kh.target,0)) AS norm_prog, k.metric, LAG(kh.progress / NULLIF(kh.target,0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS prev_norm_prog FROM kr_history kh JOIN kr k ON kh.kr_id = k.id), progress_changes AS (SELECT metric, ABS(norm_prog - prev_norm_prog) / NULLIF(prev_norm_prog, 0) * 100 AS variation_percent FROM ranked_history WHERE prev_norm_prog IS NOT NULL) SELECT metric, AVG(variation_percent) AS avg_variation_percent FROM progress_changes GROUP BY metric;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5625
+      },
+      "cosineSimilarity": 0.8199942811879283,
+      "finalSql": "SELECT k.metric, AVG(CASE WHEN k.direction = 'up' THEN (kh.progress / NULLIF(kh.target, 0)) * 100 ELSE (1 - (kh.progress / NULLIF(kh.target, 0))) * 100 END) AS avg_percentage_variation FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.metric;",
+      "executionMatch": false,
+      "tableSimilarity": 0.5,
+      "queryAffinityScore": 0.6599971405939642
+    },
+    {
+      "question": "Quantos KRs tiveram histórico de progresso acima de 90% antes do prazo final?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT COUNT(*) AS count_above_90 FROM kr_history kh JOIN kr k ON kh.kr_id = k.id WHERE (CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(k.target, 0) ELSE 1 - (kh.progress / NULLIF(k.target, 0)) END) > 0.9 AND kh.date < k.deadline;",
+          "error": "column k.deadline does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT COUNT(*) AS count_above_90 FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id WHERE (CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(k.target, 0) ELSE 1 - (kh.progress / NULLIF(k.target, 0)) END) > 0.9 AND kh.date < o.deadline;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT COUNT(*) AS count_above_90 FROM kr_history kh JOIN kr k ON kh.kr_id = k.id WHERE (CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(k.target, 0) ELSE 1 - (kh.progress / NULLIF(k.target, 0)) END) > 0.9 AND kh.date < k.deadline;",
+      "executionTimeMs": 2638,
+      "goldSql": "SELECT COUNT(DISTINCT kh.kr_id) as krs_acima_90 FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id WHERE (kh.progress/k.target)*100 >= 90 AND kh.date < o.deadline;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 0,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.75
+      },
+      "cosineSimilarity": 0.8164296766831055,
+      "finalSql": "SELECT COUNT(*) AS count_above_90 FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id WHERE (CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(k.target, 0) ELSE 1 - (kh.progress / NULLIF(k.target, 0)) END) > 0.9 AND kh.date < o.deadline;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.40821483834155275
+    },
+    {
+      "question": "Quais colaboradores atualizaram o maior número de KRs no histórico?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT c.name, COUNT(kh.id) AS total_updates FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name ORDER BY total_updates DESC;"
+        }
+      ],
+      "predictedSql": "SELECT c.name, COUNT(kh.id) AS total_updates FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name ORDER BY total_updates DESC;",
+      "executionTimeMs": 2143,
+      "goldSql": "SELECT c.id, c.name, COUNT(kh.id) as total_atualizacoes FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name ORDER BY total_atualizacoes DESC LIMIT 10;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.875
+      },
+      "cosineSimilarity": 0.8272211827932417,
+      "finalSql": "SELECT c.name, COUNT(kh.id) AS total_updates FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name ORDER BY total_updates DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.11299435028248583,
+      "queryAffinityScore": 0.4701077665378638
+    },
+    {
+      "question": "Quantos updates de iniciativa foram registrados por mês neste ano?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT DATE_TRUNC('month', iu.created_date) AS month, COUNT(*) AS total_updates FROM initiative_update iu WHERE iu.created_date >= DATE_TRUNC('year', CURRENT_DATE) GROUP BY month ORDER BY month;"
+        }
+      ],
+      "predictedSql": "SELECT DATE_TRUNC('month', iu.created_date) AS month, COUNT(*) AS total_updates FROM initiative_update iu WHERE iu.created_date >= DATE_TRUNC('year', CURRENT_DATE) GROUP BY month ORDER BY month;",
+      "executionTimeMs": 1963,
+      "goldSql": "SELECT EXTRACT(YEAR FROM created_date) as ano, EXTRACT(MONTH FROM created_date) as mes, COUNT(*) as total_updates FROM initiative_update WHERE EXTRACT(YEAR FROM created_date) = EXTRACT(YEAR FROM CURRENT_DATE) GROUP BY ano, mes ORDER BY ano, mes;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 1,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.75
+      },
+      "cosineSimilarity": 0.8720948600470464,
+      "finalSql": "SELECT DATE_TRUNC('month', iu.created_date) AS month, COUNT(*) AS total_updates FROM initiative_update iu WHERE iu.created_date >= DATE_TRUNC('year', CURRENT_DATE) GROUP BY month ORDER BY month;",
+      "executionMatch": false,
+      "tableSimilarity": 0.33333333333333337,
+      "queryAffinityScore": 0.6027140966901898
+    },
+    {
+      "question": "Quais iniciativas tiveram maior número de updates em um único mês?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT iu.initiative_id, DATE_TRUNC('month', iu.created_date) AS month, COUNT(*) AS update_count FROM initiative_update iu GROUP BY iu.initiative_id, month ORDER BY update_count DESC LIMIT 1;"
+        }
+      ],
+      "predictedSql": "SELECT iu.initiative_id, DATE_TRUNC('month', iu.created_date) AS month, COUNT(*) AS update_count FROM initiative_update iu GROUP BY iu.initiative_id, month ORDER BY update_count DESC LIMIT 1;",
+      "executionTimeMs": 2270,
+      "goldSql": "SELECT i.id, i.title, EXTRACT(YEAR FROM iu.created_date) as ano, EXTRACT(MONTH FROM iu.created_date) as mes, COUNT(iu.id) as updates_mes FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id, i.title, ano, mes ORDER BY updates_mes DESC LIMIT 10;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.8676589385410501,
+      "finalSql": "SELECT iu.initiative_id, DATE_TRUNC('month', iu.created_date) AS month, COUNT(*) AS update_count FROM initiative_update iu GROUP BY iu.initiative_id, month ORDER BY update_count DESC LIMIT 1;",
+      "executionMatch": false,
+      "tableSimilarity": 0.040000000000000036,
+      "queryAffinityScore": 0.4538294692705251
+    },
+    {
+      "question": "Qual o tempo médio entre updates consecutivos de uma mesma iniciativa?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT iu.initiative_id, AVG(EXTRACT(EPOCH FROM (iu2.created_date - iu.created_date))) / 60 AS avg_time_between_updates FROM initiative_update iu JOIN initiative_update iu2 ON iu.initiative_id = iu2.initiative_id AND iu.created_date < iu2.created_date GROUP BY iu.initiative_id;"
+        }
+      ],
+      "predictedSql": "SELECT iu.initiative_id, AVG(EXTRACT(EPOCH FROM (iu2.created_date - iu.created_date))) / 60 AS avg_time_between_updates FROM initiative_update iu JOIN initiative_update iu2 ON iu.initiative_id = iu2.initiative_id AND iu.created_date < iu2.created_date GROUP BY iu.initiative_id;",
+      "executionTimeMs": 2415,
+      "goldSql": "WITH update_gaps AS (SELECT initiative_id, EXTRACT(EPOCH FROM (created_date - LAG(created_date) OVER (PARTITION BY initiative_id ORDER BY created_date))) / 86400 as dias_entre_updates FROM initiative_update) SELECT AVG(dias_entre_updates) as tempo_medio_dias FROM update_gaps WHERE dias_entre_updates IS NOT NULL;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.8334031523485894,
+      "finalSql": "SELECT iu.initiative_id, AVG(EXTRACT(EPOCH FROM (iu2.created_date - iu.created_date))) / 60 AS avg_time_between_updates FROM initiative_update iu JOIN initiative_update iu2 ON iu.initiative_id = iu2.initiative_id AND iu.created_date < iu2.created_date GROUP BY iu.initiative_id;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.4167015761742947
+    },
+    {
+      "question": "Para cada iniciativa, qual é o KR mais recente e seu progresso atual?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.title AS initiative_title, k.title AS kr_title, kh.progress, kh.date FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.date = (SELECT MAX(date) FROM kr_history WHERE kr_id = k.id) ORDER BY i.title;",
+          "error": "column k.initiative_id does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT i.title AS initiative_title, k.title AS kr_title, kh.progress, kh.date FROM initiative i JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.date = (SELECT MAX(date) FROM kr_history WHERE kr_id = k.id) ORDER BY i.title;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT i.title AS initiative_title, k.title AS kr_title, kh.progress, kh.date FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.date = (SELECT MAX(date) FROM kr_history WHERE kr_id = k.id) ORDER BY i.title;",
+      "executionTimeMs": 2697,
+      "goldSql": "WITH ranked_krs AS (SELECT i.id as iniciativa_id, i.title as iniciativa, k.id as kr_id, k.title as kr, k.progress, k.last_modified_date, ROW_NUMBER() OVER (PARTITION BY i.id ORDER BY k.last_modified_date DESC) as rn FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id) SELECT iniciativa_id, iniciativa, kr_id, kr, progress FROM ranked_krs WHERE rn = 1;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5625
+      },
+      "cosineSimilarity": 0.7702044333142434,
+      "finalSql": "SELECT i.title AS initiative_title, k.title AS kr_title, kh.progress, kh.date FROM initiative i JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.date = (SELECT MAX(date) FROM kr_history WHERE kr_id = k.id) ORDER BY i.title;",
+      "executionMatch": false,
+      "tableSimilarity": 0.14929577464788724,
+      "queryAffinityScore": 0.4597501039810653
+    },
+    {
+      "question": "Analisar a tendência de redução na frequência de updates conforme o deadline dos OKRs se aproxima.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.deadline, COUNT(iu.id) AS update_count FROM initiative_update iu JOIN okr o ON iu.initiative_id = o.initiative_id JOIN initiative i ON o.initiative_id = i.id WHERE i.deadline IS NOT NULL GROUP BY i.deadline ORDER BY i.deadline;",
+          "error": "column i.deadline does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT o.deadline, COUNT(iu.id) AS update_count FROM initiative_update iu JOIN okr o ON iu.initiative_id = o.initiative_id JOIN initiative i ON o.initiative_id = i.id WHERE o.deadline IS NOT NULL GROUP BY o.deadline ORDER BY o.deadline;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT i.deadline, COUNT(iu.id) AS update_count FROM initiative_update iu JOIN okr o ON iu.initiative_id = o.initiative_id JOIN initiative i ON o.initiative_id = i.id WHERE i.deadline IS NOT NULL GROUP BY i.deadline ORDER BY i.deadline;",
+      "executionTimeMs": 2482,
+      "goldSql": "SELECT i.id, i.title, o.deadline, COUNT(iu.id) as total_updates, AVG(EXTRACT(EPOCH FROM (o.deadline - iu.created_date)) / 86400) as dias_antes_prazo_medio FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.created_date <= o.deadline GROUP BY i.id, i.title, o.deadline ORDER BY dias_antes_prazo_medio;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.7968306413287187,
+      "finalSql": "SELECT o.deadline, COUNT(iu.id) AS update_count FROM initiative_update iu JOIN okr o ON iu.initiative_id = o.initiative_id JOIN initiative i ON o.initiative_id = i.id WHERE o.deadline IS NOT NULL GROUP BY o.deadline ORDER BY o.deadline;",
+      "executionMatch": false,
+      "tableSimilarity": 0.1698412698412699,
+      "queryAffinityScore": 0.4833359555849943
+    },
+    {
+      "question": "Listar KRs com lacunas maiores que 30 dias entre atualizações de progresso",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT k.id, k.title, k.metric, k.direction, k.progress, k.target, ku.created_date AS last_update_date FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN initiative_update ku ON kh.date = ku.created_date WHERE ku.created_date < (SELECT MAX(ku2.created_date) FROM initiative_update ku2 WHERE ku2.kr_id = k.id) - INTERVAL '30 days' ORDER BY k.id;",
+          "error": "column ku2.kr_id does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT k.id, k.title, k.metric, k.direction, k.progress, k.target, ku.created_date AS last_update_date FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN initiative_update ku ON kh.date = ku.created_date WHERE ku.created_date < (SELECT MAX(ku2.created_date) FROM initiative_update ku2 WHERE ku2.initiative_id = k.okr_id) - INTERVAL '30 days' ORDER BY k.id;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT k.id, k.title, k.metric, k.direction, k.progress, k.target, ku.created_date AS last_update_date FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN initiative_update ku ON kh.date = ku.created_date WHERE ku.created_date < (SELECT MAX(ku2.created_date) FROM initiative_update ku2 WHERE ku2.kr_id = k.id) - INTERVAL '30 days' ORDER BY k.id;",
+      "executionTimeMs": 3044,
+      "goldSql": "WITH kr_update_gaps AS (SELECT kh.kr_id, k.title as kr_title, kh.date as current_date, LAG(kh.date) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) as previous_date, EXTRACT(EPOCH FROM (kh.date - LAG(kh.date) OVER (PARTITION BY kh.kr_id ORDER BY kh.date))) / 86400 as dias_entre_atualizacoes FROM kr_history kh JOIN kr k ON kh.kr_id = k.id) SELECT kr_id, kr_title, previous_date, current_date, dias_entre_atualizacoes FROM kr_update_gaps WHERE dias_entre_atualizacoes > 30 ORDER BY dias_entre_atualizacoes DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5625
+      },
+      "cosineSimilarity": 0.6751136880605497,
+      "finalSql": "SELECT k.id, k.title, k.metric, k.direction, k.progress, k.target, ku.created_date AS last_update_date FROM kr k JOIN kr_history kh ON k.id = kh.kr_id JOIN initiative_update ku ON kh.date = ku.created_date WHERE ku.created_date < (SELECT MAX(ku2.created_date) FROM initiative_update ku2 WHERE ku2.initiative_id = k.okr_id) - INTERVAL '30 days' ORDER BY k.id;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.33755684403027486
+    },
+    {
+      "question": "Quais OKRs estão com prazo próximo do vencimento?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT o.* FROM okr o WHERE o.deadline < NOW() + INTERVAL '7 days' AND o.deadline IS NOT NULL;"
+        }
+      ],
+      "predictedSql": "SELECT o.* FROM okr o WHERE o.deadline < NOW() + INTERVAL '7 days' AND o.deadline IS NOT NULL;",
+      "executionTimeMs": 1860,
+      "goldSql": "SELECT id, deadline FROM okr WHERE deadline BETWEEN NOW() AND NOW() + INTERVAL '7 days' ORDER BY deadline ASC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.875
+      },
+      "cosineSimilarity": 0.8157220366636334,
+      "finalSql": "SELECT o.* FROM okr o WHERE o.deadline < NOW() + INTERVAL '7 days' AND o.deadline IS NOT NULL;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.4078610183318167
+    },
+    {
+      "question": "Qual é a média de progresso dos KRs em cada OKR?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT o.id AS okr_id, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress FROM okr o JOIN kr k ON o.id = k.okr_id GROUP BY o.id;"
+        }
+      ],
+      "predictedSql": "SELECT o.id AS okr_id, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress FROM okr o JOIN kr k ON o.id = k.okr_id GROUP BY o.id;",
+      "executionTimeMs": 1792,
+      "goldSql": "SELECT okr_id, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY okr_id;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.9277481891349978,
+      "finalSql": "SELECT o.id AS okr_id, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress FROM okr o JOIN kr k ON o.id = k.okr_id GROUP BY o.id;",
+      "executionMatch": true,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 0.9638740945674988
+    },
+    {
+      "question": "Quais OKRs têm menor progresso médio?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT o.id, o.description, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM okr o JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY o.id, o.description ORDER BY avg_progress ASC;"
+        }
+      ],
+      "predictedSql": "SELECT o.id, o.description, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM okr o JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY o.id, o.description ORDER BY avg_progress ASC;",
+      "executionTimeMs": 2598,
+      "goldSql": "SELECT okr_id, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY okr_id ORDER BY avg_progress ASC LIMIT 5;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.873805243923291,
+      "finalSql": "SELECT o.id, o.description, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM okr o JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY o.id, o.description ORDER BY avg_progress ASC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.01990049751243783,
+      "queryAffinityScore": 0.4468528707178644
+    },
+    {
+      "question": "Qual é o percentual de KRs concluídos por iniciativa?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.id AS initiative_id, i.title AS initiative_title, COUNT(k.id) FILTER (WHERE (k.progress / NULLIF(k.target, 0)) >= 1.0) * 100.0 / NULLIF(COUNT(k.id), 0) AS completion_percentage FROM initiative i LEFT JOIN kr k ON i.id = k.okr_id GROUP BY i.id, i.title;"
+        }
+      ],
+      "predictedSql": "SELECT i.id AS initiative_id, i.title AS initiative_title, COUNT(k.id) FILTER (WHERE (k.progress / NULLIF(k.target, 0)) >= 1.0) * 100.0 / NULLIF(COUNT(k.id), 0) AS completion_percentage FROM initiative i LEFT JOIN kr k ON i.id = k.okr_id GROUP BY i.id, i.title;",
+      "executionTimeMs": 3445,
+      "goldSql": "SELECT i.id AS initiative_id, SUM(CASE WHEN (k.direction = 'up'  AND k.progress / NULLIF(k.target,0) >= 1) OR (k.direction = 'down' AND k.progress / NULLIF(k.target,0) <= 1) THEN 1 ELSE 0 END) * 100.0 / COUNT(k.id) AS percent_completed FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id GROUP BY i.id;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.75
+      },
+      "cosineSimilarity": 0.8804942019436433,
+      "finalSql": "SELECT i.id AS initiative_id, i.title AS initiative_title, COUNT(k.id) FILTER (WHERE (k.progress / NULLIF(k.target, 0)) >= 1.0) * 100.0 / NULLIF(COUNT(k.id), 0) AS completion_percentage FROM initiative i LEFT JOIN kr k ON i.id = k.okr_id GROUP BY i.id, i.title;",
+      "executionMatch": false,
+      "tableSimilarity": 0.3840579710144928,
+      "queryAffinityScore": 0.632276086479068
+    },
+    {
+      "question": "Qual o tempo médio restante até o deadline dos OKRs ativos?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT AVG(EXTRACT(EPOCH FROM (o.deadline - CURRENT_TIMESTAMP)) / 3600) AS avg_hours_remaining FROM okr o WHERE o.deadline > CURRENT_TIMESTAMP AND o.active = TRUE;",
+          "error": "column o.active does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT AVG(EXTRACT(EPOCH FROM (o.deadline - CURRENT_TIMESTAMP)) / 3600) AS avg_hours_remaining FROM okr o WHERE o.deadline > CURRENT_TIMESTAMP",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT AVG(EXTRACT(EPOCH FROM (o.deadline - CURRENT_TIMESTAMP)) / 3600) AS avg_hours_remaining FROM okr o WHERE o.deadline > CURRENT_TIMESTAMP AND o.active = TRUE;",
+      "executionTimeMs": 2023,
+      "goldSql": "SELECT AVG(EXTRACT(EPOCH FROM (deadline - NOW())) / 86400) AS avg_days_remaining FROM okr WHERE deadline > NOW();",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.9150984237330048,
+      "finalSql": "SELECT AVG(EXTRACT(EPOCH FROM (o.deadline - CURRENT_TIMESTAMP)) / 3600) AS avg_hours_remaining FROM okr o WHERE o.deadline > CURRENT_TIMESTAMP",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.4575492118665024
+    },
+    {
+      "question": "Quais OKRs estão vinculados a iniciativas que já encerraram?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT o.* FROM okr o JOIN initiative i ON o.initiative_id = i.id WHERE i.end_date < NOW();"
+        }
+      ],
+      "predictedSql": "SELECT o.* FROM okr o JOIN initiative i ON o.initiative_id = i.id WHERE i.end_date < NOW();",
+      "executionTimeMs": 1763,
+      "goldSql": "SELECT o.id AS okr_id, o.initiative_id, i.end_date FROM okr o JOIN initiative i ON o.initiative_id = i.id WHERE i.end_date IS NOT NULL AND i.end_date < NOW();",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.9375
+      },
+      "cosineSimilarity": 0.9201866744816781,
+      "finalSql": "SELECT o.* FROM okr o JOIN initiative i ON o.initiative_id = i.id WHERE i.end_date < NOW();",
+      "executionMatch": false,
+      "tableSimilarity": 0.25,
+      "queryAffinityScore": 0.5850933372408391
+    },
+    {
+      "question": "Quantos KRs estão atrasados em relação à meta planejada?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT COUNT(*) AS atrasados FROM kr WHERE (direction = 'up' AND progress / NULLIF(target, 0) < 1.0) OR (direction = 'down' AND progress / NULLIF(target, 0) > 1.0);"
+        }
+      ],
+      "predictedSql": "SELECT COUNT(*) AS atrasados FROM kr WHERE (direction = 'up' AND progress / NULLIF(target, 0) < 1.0) OR (direction = 'down' AND progress / NULLIF(target, 0) > 1.0);",
+      "executionTimeMs": 2622,
+      "goldSql": "SELECT COUNT(*) AS delayed_kr_count FROM kr k JOIN kr_history kh ON kh.kr_id = k.id AND kh.date = (SELECT MAX(h.date) FROM kr_history h WHERE h.kr_id = k.id) WHERE (k.direction = 'up'  AND k.progress / NULLIF(k.target,0) < 1) OR (k.direction = 'down' AND k.progress / NULLIF(k.target,0) > 1);",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.735078171196457,
+      "finalSql": "SELECT COUNT(*) AS atrasados FROM kr WHERE (direction = 'up' AND progress / NULLIF(target, 0) < 1.0) OR (direction = 'down' AND progress / NULLIF(target, 0) > 1.0);",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.3675390855982285
+    },
+    {
+      "question": "Qual o progresso médio dos KRs de tipo “PERC” em comparação aos de tipo “NUMERIC”?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT metric, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr WHERE metric IN ('PERC', 'NUMERIC') GROUP BY metric;"
+        }
+      ],
+      "predictedSql": "SELECT metric, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr WHERE metric IN ('PERC', 'NUMERIC') GROUP BY metric;",
+      "executionTimeMs": 1817,
+      "goldSql": "SELECT metric, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr WHERE metric IN ('PERC', 'NUMERIC') GROUP BY metric;",
+      "exactMatch": true,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 1
+      },
+      "cosineSimilarity": 1.0000000000000002,
+      "finalSql": "SELECT metric, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr WHERE metric IN ('PERC', 'NUMERIC') GROUP BY metric;",
+      "executionMatch": true,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 1
+    },
+    {
+      "question": "Quais OKRs têm maior número de KRs associados?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT o.id, o.description, COUNT(k.id) AS number_of_krs FROM okr o LEFT JOIN kr k ON o.id = k.okr_id GROUP BY o.id, o.description ORDER BY number_of_krs DESC;"
+        }
+      ],
+      "predictedSql": "SELECT o.id, o.description, COUNT(k.id) AS number_of_krs FROM okr o LEFT JOIN kr k ON o.id = k.okr_id GROUP BY o.id, o.description ORDER BY number_of_krs DESC;",
+      "executionTimeMs": 2351,
+      "goldSql": "SELECT okr_id, COUNT(*) AS kr_count FROM kr GROUP BY okr_id ORDER BY kr_count DESC LIMIT 5;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.7854903001286702,
+      "finalSql": "SELECT o.id, o.description, COUNT(k.id) AS number_of_krs FROM okr o LEFT JOIN kr k ON o.id = k.okr_id GROUP BY o.id, o.description ORDER BY number_of_krs DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.02487562189054726,
+      "queryAffinityScore": 0.4051829610096087
+    },
+    {
+      "question": "Qual o percentual de KRs marcados como “bookmarked” pelos colaboradores?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT (COUNT(*) FILTER (WHERE k.bookmarked) * 100.0 / COUNT(*)) AS percentual_bookmarked FROM kr k;"
+        }
+      ],
+      "predictedSql": "SELECT (COUNT(*) FILTER (WHERE k.bookmarked) * 100.0 / COUNT(*)) AS percentual_bookmarked FROM kr k;",
+      "executionTimeMs": 2491,
+      "goldSql": "SELECT COUNT(*) FILTER (WHERE bookmarked) * 100.0 / COUNT(*) AS percent_bookmarked FROM kr;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.875
+      },
+      "cosineSimilarity": 0.9697281822962639,
+      "finalSql": "SELECT (COUNT(*) FILTER (WHERE k.bookmarked) * 100.0 / COUNT(*)) AS percentual_bookmarked FROM kr k;",
+      "executionMatch": false,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 0.9848640911481319
+    },
+    {
+      "question": "Qual é o percentual médio de progresso dos KRs (Key Results) em relação às metas estabelecidas nos últimos três meses?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT AVG(progress / NULLIF(target, 0)) * 100 AS avg_percentage_progress FROM kr WHERE created_date >= NOW() - INTERVAL '3 months';"
+        }
+      ],
+      "predictedSql": "SELECT AVG(progress / NULLIF(target, 0)) * 100 AS avg_percentage_progress FROM kr WHERE created_date >= NOW() - INTERVAL '3 months';",
+      "executionTimeMs": 1856,
+      "goldSql": "SELECT AVG(kh.progress / NULLIF(k.target, 0)) * 100 AS avg_progress_percent FROM kr k JOIN kr_history kh ON kh.kr_id = k.id WHERE kh.date >= NOW() - INTERVAL '3 months';",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.9432260996152502,
+      "finalSql": "SELECT AVG(progress / NULLIF(target, 0)) * 100 AS avg_percentage_progress FROM kr WHERE created_date >= NOW() - INTERVAL '3 months';",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.4716130498076251
+    },
+    {
+      "question": "Quais colaboradores têm mais KRs marcados como “bookmarked” (favoritos) e demonstram maior engajamento com os objetivos da empresa?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT c.name, COUNT(k.id) AS bookmarked_kr_count FROM collaborator c JOIN kr k ON c.id = k.bookmarked_by_id WHERE k.bookmarked = TRUE GROUP BY c.id, c.name ORDER BY bookmarked_kr_count DESC;"
+        }
+      ],
+      "predictedSql": "SELECT c.name, COUNT(k.id) AS bookmarked_kr_count FROM collaborator c JOIN kr k ON c.id = k.bookmarked_by_id WHERE k.bookmarked = TRUE GROUP BY c.id, c.name ORDER BY bookmarked_kr_count DESC;",
+      "executionTimeMs": 2239,
+      "goldSql": "SELECT c.id, c.name, COUNT(k.id) AS bookmarked_kr_count FROM collaborator c JOIN kr k ON k.bookmarked_by_id = c.id AND k.bookmarked = true GROUP BY c.id, c.name ORDER BY bookmarked_kr_count DESC LIMIT 10;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 1,
+          "WHERE": 0,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.75
+      },
+      "cosineSimilarity": 0.9576955797757822,
+      "finalSql": "SELECT c.name, COUNT(k.id) AS bookmarked_kr_count FROM collaborator c JOIN kr k ON c.id = k.bookmarked_by_id WHERE k.bookmarked = TRUE GROUP BY c.id, c.name ORDER BY bookmarked_kr_count DESC;",
+      "executionMatch": false,
+      "tableSimilarity": 0.17543859649122806,
+      "queryAffinityScore": 0.5665670881335052
+    },
+    {
+      "question": "Qual é o tempo médio entre a criação de um OKR e a primeira atualização de progresso registrada?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT AVG(EXTRACT(EPOCH FROM (iu.created_date - o.created_date)) / 3600) AS avg_time_hours FROM okr o JOIN initiative_update iu ON o.id = iu.initiative_id WHERE iu.created_date IS NOT NULL;"
+        }
+      ],
+      "predictedSql": "SELECT AVG(EXTRACT(EPOCH FROM (iu.created_date - o.created_date)) / 3600) AS avg_time_hours FROM okr o JOIN initiative_update iu ON o.id = iu.initiative_id WHERE iu.created_date IS NOT NULL;",
+      "executionTimeMs": 2036,
+      "goldSql": "SELECT AVG(EXTRACT(EPOCH FROM (kh.first_update - o.created_date)) / 86400) AS avg_days_to_first_update FROM okr o JOIN (SELECT k.okr_id, MIN(kh.date) AS first_update FROM kr k JOIN kr_history kh ON kh.kr_id = k.id GROUP BY k.okr_id) kh ON kh.okr_id = o.id;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.875
+      },
+      "cosineSimilarity": 0.7506175673225943,
+      "finalSql": "SELECT AVG(EXTRACT(EPOCH FROM (iu.created_date - o.created_date)) / 3600) AS avg_time_hours FROM okr o JOIN initiative_update iu ON o.id = iu.initiative_id WHERE iu.created_date IS NOT NULL;",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.37530878366129716
+    },
+    {
+      "question": "Quantos OKRs estão próximos do prazo final (deadline) e ainda não atingiram 80% de progresso?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT COUNT(o.id) AS okr_count FROM okr o JOIN kr k ON o.id = k.okr_id WHERE k.progress / NULLIF(k.target, 0) < 0.8 AND o.deadline < NOW() + INTERVAL '7 days';"
+        }
+      ],
+      "predictedSql": "SELECT COUNT(o.id) AS okr_count FROM okr o JOIN kr k ON o.id = k.okr_id WHERE k.progress / NULLIF(k.target, 0) < 0.8 AND o.deadline < NOW() + INTERVAL '7 days';",
+      "executionTimeMs": 2680,
+      "goldSql": "SELECT COUNT(*) AS okrs_near_deadline_low_progress FROM ( SELECT o.id FROM okr o JOIN kr k ON k.okr_id = o.id WHERE o.deadline BETWEEN NOW() AND NOW() + INTERVAL '7 days' GROUP BY o.id HAVING AVG(k.progress / NULLIF(k.target, 0)) < 0.8 ) sub;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 1,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.75
+      },
+      "cosineSimilarity": 0.8746929060636318,
+      "finalSql": "SELECT COUNT(o.id) AS okr_count FROM okr o JOIN kr k ON o.id = k.okr_id WHERE k.progress / NULLIF(k.target, 0) < 0.8 AND o.deadline < NOW() + INTERVAL '7 days';",
+      "executionMatch": false,
+      "tableSimilarity": 0,
+      "queryAffinityScore": 0.4373464530318159
+    },
+    {
+      "question": "Quais iniciativas possuem OKRs cujo progresso médio supera o progresso médio global de todas as iniciativas da mesma categoria?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH avg_progress_global AS (SELECT i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS global_avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.category) SELECT i.title, i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS initiative_avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id, i.title, i.category HAVING AVG(kh.progress / NULLIF(kh.target, 0)) > (SELECT global_avg_progress FROM avg_progress_global ag WHERE ag.category = i.category);"
+        }
+      ],
+      "predictedSql": "WITH avg_progress_global AS (SELECT i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS global_avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.category) SELECT i.title, i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS initiative_avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id, i.title, i.category HAVING AVG(kh.progress / NULLIF(kh.target, 0)) > (SELECT global_avg_progress FROM avg_progress_global ag WHERE ag.category = i.category);",
+      "executionTimeMs": 4669,
+      "goldSql": "WITH initiative_avg AS (SELECT i.id, i.category, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id GROUP BY i.id, i.category), category_avg AS (SELECT category, AVG(avg_progress) AS category_avg_progress FROM initiative_avg GROUP BY category) SELECT ia.id, ia.category, ia.avg_progress FROM initiative_avg ia JOIN category_avg ca ON ia.category = ca.category WHERE ia.avg_progress > ca.category_avg_progress;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.9145385651496553,
+      "finalSql": "WITH avg_progress_global AS (SELECT i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS global_avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.category) SELECT i.title, i.category, AVG(kh.progress / NULLIF(kh.target, 0)) AS initiative_avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id GROUP BY i.id, i.title, i.category HAVING AVG(kh.progress / NULLIF(kh.target, 0)) > (SELECT global_avg_progress FROM avg_progress_global ag WHERE ag.category = i.category);",
+      "executionMatch": false,
+      "tableSimilarity": 0.25,
+      "queryAffinityScore": 0.5822692825748277
+    },
+    {
+      "question": "Qual colaborador teve o maior aumento percentual de progresso médio de KRs entre o último e o penúltimo mês?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH monthly_progress AS (SELECT kh.collaborator_id, DATE_TRUNC('month', kh.date) AS month, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= NOW() - INTERVAL '2 months' GROUP BY kh.collaborator_id, month), progress_change AS (SELECT mp1.collaborator_id, (mp1.avg_progress - mp2.avg_progress) / NULLIF(mp2.avg_progress, 0) AS progress_increase_percentage FROM monthly_progress mp1 JOIN monthly_progress mp2 ON mp1.collaborator_id = mp2.collaborator_id AND mp1.month = mp2.month + INTERVAL '1 month' WHERE mp1.month = DATE_TRUNC('month', NOW()) GROUP BY mp1.collaborator_id, mp1.avg_progress, mp2.avg_progress) SELECT c.name, pc.progress_increase_percentage FROM progress_change pc JOIN collaborator c ON pc.collaborator_id = c.id ORDER BY pc.progress_increase_percentage DESC LIMIT 1;"
+        }
+      ],
+      "predictedSql": "WITH monthly_progress AS (SELECT kh.collaborator_id, DATE_TRUNC('month', kh.date) AS month, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= NOW() - INTERVAL '2 months' GROUP BY kh.collaborator_id, month), progress_change AS (SELECT mp1.collaborator_id, (mp1.avg_progress - mp2.avg_progress) / NULLIF(mp2.avg_progress, 0) AS progress_increase_percentage FROM monthly_progress mp1 JOIN monthly_progress mp2 ON mp1.collaborator_id = mp2.collaborator_id AND mp1.month = mp2.month + INTERVAL '1 month' WHERE mp1.month = DATE_TRUNC('month', NOW()) GROUP BY mp1.collaborator_id, mp1.avg_progress, mp2.avg_progress) SELECT c.name, pc.progress_increase_percentage FROM progress_change pc JOIN collaborator c ON pc.collaborator_id = c.id ORDER BY pc.progress_increase_percentage DESC LIMIT 1;",
+      "executionTimeMs": 5381,
+      "goldSql": "WITH monthly_progress AS (SELECT collaborator_id, DATE_TRUNC('month', date) AS month, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr_history GROUP BY collaborator_id, month), ranked_progress AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY collaborator_id ORDER BY month DESC) AS rn FROM monthly_progress), last_two_months AS (SELECT p1.collaborator_id, p1.avg_progress AS last_month_progress, p2.avg_progress AS prev_month_progress, CASE WHEN p2.avg_progress = 0 THEN NULL ELSE ((p1.avg_progress - p2.avg_progress) / p2.avg_progress) * 100 END AS pct_increase FROM ranked_progress p1 JOIN ranked_progress p2 ON p1.collaborator_id = p2.collaborator_id WHERE p1.rn = 1 AND p2.rn = 2) SELECT collaborator_id, pct_increase FROM last_two_months ORDER BY pct_increase DESC LIMIT 1;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5625
+      },
+      "cosineSimilarity": 0.9019063951399949,
+      "finalSql": "WITH monthly_progress AS (SELECT kh.collaborator_id, DATE_TRUNC('month', kh.date) AS month, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id WHERE kh.date >= NOW() - INTERVAL '2 months' GROUP BY kh.collaborator_id, month), progress_change AS (SELECT mp1.collaborator_id, (mp1.avg_progress - mp2.avg_progress) / NULLIF(mp2.avg_progress, 0) AS progress_increase_percentage FROM monthly_progress mp1 JOIN monthly_progress mp2 ON mp1.collaborator_id = mp2.collaborator_id AND mp1.month = mp2.month + INTERVAL '1 month' WHERE mp1.month = DATE_TRUNC('month', NOW()) GROUP BY mp1.collaborator_id, mp1.avg_progress, mp2.avg_progress) SELECT c.name, pc.progress_increase_percentage FROM progress_change pc JOIN collaborator c ON pc.collaborator_id = c.id ORDER BY pc.progress_increase_percentage DESC LIMIT 1;",
+      "executionMatch": false,
+      "tableSimilarity": 0.5,
+      "queryAffinityScore": 0.7009531975699974
+    },
+    {
+      "question": "Quais iniciativas tiveram pelo menos um KR com progresso superior a 100% em algum ponto do histórico?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT DISTINCT i.* FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id WHERE (kh.progress / NULLIF(kh.target, 0)) > 1.0;",
+          "error": "column k.initiative_id does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT DISTINCT i.* FROM initiative i JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE (kh.progress / NULLIF(kh.target, 0)) > 1.0;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "SELECT DISTINCT i.* FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id WHERE (kh.progress / NULLIF(kh.target, 0)) > 1.0;",
+      "executionTimeMs": 2392,
+      "goldSql": "SELECT DISTINCT i.id, i.title FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id JOIN kr_history kh ON kh.kr_id = k.id WHERE kh.progress / NULLIF(kh.target, 0) > 1;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.8125
+      },
+      "cosineSimilarity": 0.9372712427704011,
+      "finalSql": "SELECT DISTINCT i.* FROM initiative i JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE (kh.progress / NULLIF(kh.target, 0)) > 1.0;",
+      "executionMatch": false,
+      "tableSimilarity": 0.0493827160493826,
+      "queryAffinityScore": 0.49332697940989184
+    },
+    {
+      "question": "Qual é o tempo médio (em dias) entre atualizações consecutivas de um mesmo KR no histórico?",
+      "status": "ERROR",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT kr_id, AVG(EXTRACT(EPOCH FROM (uh.created_date - lag(uh.created_date) OVER (PARTITION BY uh.kr_id ORDER BY uh.created_date)))/86400) AS avg_days_between_updates FROM kr_history uh GROUP BY kr_id;",
+          "error": "column uh.created_date does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT kr_id, AVG(EXTRACT(EPOCH FROM (kh.created_date - LAG(kh.created_date) OVER (PARTITION BY kh.kr_id ORDER BY kh.created_date)))/86400) AS avg_days_between_updates FROM kr_history kh GROUP BY kr_id;",
+          "fixed": true,
+          "error": "column kh.created_date does not exist"
+        },
+        {
+          "attempt": 3,
+          "sql": "SELECT kr_id, AVG(EXTRACT(EPOCH FROM (kh.date - LAG(kh.date) OVER (PARTITION BY kh.kr_id ORDER BY kh.date)))/86400) AS avg_days_between_updates FROM kr_history kh GROUP BY kr_id;",
+          "fixed": true,
+          "error": "aggregate function calls cannot contain window function calls"
+        }
+      ],
+      "predictedSql": "SELECT kr_id, AVG(EXTRACT(EPOCH FROM (uh.created_date - lag(uh.created_date) OVER (PARTITION BY uh.kr_id ORDER BY uh.created_date)))/86400) AS avg_days_between_updates FROM kr_history uh GROUP BY kr_id;",
+      "executionTimeMs": 2148,
+      "goldSql": "WITH diffs AS (SELECT kr_id, date, LEAD(date) OVER (PARTITION BY kr_id ORDER BY date) AS next_date FROM kr_history) SELECT AVG(EXTRACT(EPOCH FROM (next_date - date)) / 86400) AS avg_days_between_updates FROM diffs WHERE next_date IS NOT NULL;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.6875
+      },
+      "cosineSimilarity": 0.8845422815760136,
+      "finalSql": "SELECT kr_id, AVG(EXTRACT(EPOCH FROM (kh.date - LAG(kh.date) OVER (PARTITION BY kh.kr_id ORDER BY kh.date)))/86400) AS avg_days_between_updates FROM kr_history kh GROUP BY kr_id;",
+      "error": "Erro de execução no banco após 3 tentativa(s): aggregate function calls cannot contain window function calls",
+      "executionMatch": false
+    },
+    {
+      "question": "Quais iniciativas têm pelo menos dois OKRs com deadlines no mesmo mês?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.id, i.title, COUNT(DISTINCT o.id) AS okr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id WHERE DATE_TRUNC('month', o.deadline) = DATE_TRUNC('month', NOW()) GROUP BY i.id, i.title HAVING COUNT(DISTINCT o.id) >= 2;"
+        }
+      ],
+      "predictedSql": "SELECT i.id, i.title, COUNT(DISTINCT o.id) AS okr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id WHERE DATE_TRUNC('month', o.deadline) = DATE_TRUNC('month', NOW()) GROUP BY i.id, i.title HAVING COUNT(DISTINCT o.id) >= 2;",
+      "executionTimeMs": 2743,
+      "goldSql": "SELECT initiative_id FROM okr GROUP BY initiative_id, DATE_TRUNC('month', deadline) HAVING COUNT(*) >= 2;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 0,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.8867095726547767,
+      "finalSql": "SELECT i.id, i.title, COUNT(DISTINCT o.id) AS okr_count FROM initiative i JOIN okr o ON i.id = o.initiative_id WHERE DATE_TRUNC('month', o.deadline) = DATE_TRUNC('month', NOW()) GROUP BY i.id, i.title HAVING COUNT(DISTINCT o.id) >= 2;",
+      "executionMatch": false,
+      "tableSimilarity": 0.030303030303030276,
+      "queryAffinityScore": 0.4585063014789035
+    },
+    {
+      "question": "Qual é a distribuição percentual de KRs por tipo de métrica dentro de cada iniciativa?",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.title AS initiative_title, k.metric, COUNT(k.id) * 100.0 / SUM(COUNT(k.id)) OVER (PARTITION BY i.id) AS percentage FROM initiative i JOIN kr k ON i.id = k.okr_id GROUP BY i.id, i.title, k.metric ORDER BY i.title, k.metric;"
+        }
+      ],
+      "predictedSql": "SELECT i.title AS initiative_title, k.metric, COUNT(k.id) * 100.0 / SUM(COUNT(k.id)) OVER (PARTITION BY i.id) AS percentage FROM initiative i JOIN kr k ON i.id = k.okr_id GROUP BY i.id, i.title, k.metric ORDER BY i.title, k.metric;",
+      "executionTimeMs": 2298,
+      "goldSql": "WITH kr_counts AS (SELECT i.id AS initiative_id, k.metric, COUNT(*) AS count FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id GROUP BY i.id, k.metric), initiative_totals AS (SELECT initiative_id, SUM(count) AS total FROM kr_counts GROUP BY initiative_id) SELECT kc.initiative_id, kc.metric, (kc.count::float / it.total) * 100 AS percent FROM kr_counts kc JOIN initiative_totals it ON kc.initiative_id = it.initiative_id ORDER BY kc.initiative_id, percent DESC;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.625
+      },
+      "cosineSimilarity": 0.8453649498159737,
+      "finalSql": "SELECT i.title AS initiative_title, k.metric, COUNT(k.id) * 100.0 / SUM(COUNT(k.id)) OVER (PARTITION BY i.id) AS percentage FROM initiative i JOIN kr k ON i.id = k.okr_id GROUP BY i.id, i.title, k.metric ORDER BY i.title, k.metric;",
+      "executionMatch": false,
+      "tableSimilarity": 0.23383084577114432,
+      "queryAffinityScore": 0.5395978977935589
+    },
+    {
+      "question": "Listar os KRs cujo progresso atual está abaixo da média dos KRs do mesmo tipo e direção.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH avg_progress AS (SELECT metric, direction, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY metric, direction) SELECT k.* FROM kr k JOIN avg_progress ap ON k.metric = ap.metric AND k.direction = ap.direction WHERE (k.progress / NULLIF(k.target, 0)) < ap.avg_progress;"
+        }
+      ],
+      "predictedSql": "WITH avg_progress AS (SELECT metric, direction, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY metric, direction) SELECT k.* FROM kr k JOIN avg_progress ap ON k.metric = ap.metric AND k.direction = ap.direction WHERE (k.progress / NULLIF(k.target, 0)) < ap.avg_progress;",
+      "executionTimeMs": 2865,
+      "goldSql": "WITH avg_progress AS (SELECT metric, direction, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY metric, direction) SELECT k.* FROM kr k JOIN avg_progress ap ON k.metric = ap.metric AND k.direction = ap.direction WHERE (k.progress / NULLIF(k.target, 0)) < ap.avg_progress;",
+      "exactMatch": true,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 1,
+          "DISTINCT": 1,
+          "FROM": 1,
+          "JOIN": 1,
+          "WHERE": 1,
+          "GROUP_BY": 1,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 1
+      },
+      "cosineSimilarity": 1,
+      "finalSql": "WITH avg_progress AS (SELECT metric, direction, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY metric, direction) SELECT k.* FROM kr k JOIN avg_progress ap ON k.metric = ap.metric AND k.direction = ap.direction WHERE (k.progress / NULLIF(k.target, 0)) < ap.avg_progress;",
+      "executionMatch": true,
+      "tableSimilarity": 1,
+      "queryAffinityScore": 1
+    },
+    {
+      "question": "Identificar iniciativas que mantêm registros de atualização em meses consecutivos, sem interrupções.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.id, i.title, COUNT(DISTINCT iu.year_month) AS consecutive_months FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id, i.title HAVING COUNT(DISTINCT iu.year_month) = (SELECT COUNT(DISTINCT year_month) FROM initiative_update WHERE initiative_id = i.id);"
+        }
+      ],
+      "predictedSql": "SELECT i.id, i.title, COUNT(DISTINCT iu.year_month) AS consecutive_months FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id, i.title HAVING COUNT(DISTINCT iu.year_month) = (SELECT COUNT(DISTINCT year_month) FROM initiative_update WHERE initiative_id = i.id);",
+      "executionTimeMs": 2468,
+      "goldSql": "WITH updates_months AS (SELECT initiative_id, DATE_TRUNC('month', created_date) AS month FROM initiative_update GROUP BY initiative_id, month), consecutive AS (SELECT initiative_id, month, LAG(month) OVER (PARTITION BY initiative_id ORDER BY month) AS prev_month FROM updates_months), gaps AS (SELECT initiative_id, COUNT(*) FILTER (WHERE prev_month IS NOT NULL AND month - INTERVAL '1 month' <> prev_month) AS gap_count, COUNT(month) AS total_months FROM consecutive GROUP BY initiative_id) SELECT initiative_id FROM gaps WHERE gap_count = 0 AND total_months > 1;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 0,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.375
+      },
+      "cosineSimilarity": 0.789690769672669,
+      "finalSql": "SELECT i.id, i.title, COUNT(DISTINCT iu.year_month) AS consecutive_months FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id, i.title HAVING COUNT(DISTINCT iu.year_month) = (SELECT COUNT(DISTINCT year_month) FROM initiative_update WHERE initiative_id = i.id);",
+      "executionMatch": false,
+      "tableSimilarity": 0.33333333333333337,
+      "queryAffinityScore": 0.5615120515030012
+    },
+    {
+      "question": "Calcular a taxa média de crescimento mensal do progresso dos KRs, segmentada por tipo de métrica.",
+      "status": "ERROR",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT k.metric, AVG((kh.progress / NULLIF(kh.target, 0)) - LAG(kh.progress / NULLIF(kh.target, 0)) OVER (PARTITION BY k.metric ORDER BY kh.date)) AS avg_monthly_growth FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.metric;",
+          "error": "aggregate function calls cannot contain window function calls"
+        },
+        {
+          "attempt": 2,
+          "sql": "SELECT k.metric, AVG(monthly_growth) AS avg_monthly_growth FROM ( SELECT kh.kr_id, k.metric, (kh.progress / NULLIF(kh.target, 0)) - LAG(kh.progress / NULLIF(kh.target, 0)) OVER (PARTITION BY k.metric ORDER BY kh.date) AS monthly_growth FROM kr k JOIN kr_history kh ON k.id = kh.kr_id ) AS growth_data WHERE monthly_growth IS NOT NULL GROUP BY k.metric;",
+          "fixed": true,
+          "error": "missing FROM-clause entry for table \"k\""
+        },
+        {
+          "attempt": 3,
+          "sql": "SELECT k.metric, AVG(monthly_growth) AS avg_monthly_growth FROM ( SELECT kh.kr_id, k.metric, (kh.progress / NULLIF(kh.target, 0)) - LAG(kh.progress / NULLIF(kh.target, 0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS monthly_growth FROM kr k JOIN kr_history kh ON k.id = kh.kr_id ) AS growth_data WHERE monthly_growth IS NOT NULL GROUP BY k.metric;",
+          "fixed": true,
+          "error": "missing FROM-clause entry for table \"k\""
+        }
+      ],
+      "predictedSql": "SELECT k.metric, AVG((kh.progress / NULLIF(kh.target, 0)) - LAG(kh.progress / NULLIF(kh.target, 0)) OVER (PARTITION BY k.metric ORDER BY kh.date)) AS avg_monthly_growth FROM kr k JOIN kr_history kh ON k.id = kh.kr_id GROUP BY k.metric;",
+      "executionTimeMs": 3112,
+      "goldSql": "WITH monthly_kr_progress AS (SELECT kr_id, metric, DATE_TRUNC('month', date) AS month, AVG(progress / NULLIF(target,0)) AS avg_progress FROM kr_history GROUP BY kr_id, metric, month), monthly_growth AS (SELECT kr_id, metric, month, avg_progress, LAG(avg_progress) OVER (PARTITION BY kr_id ORDER BY month) AS prev_avg_progress FROM monthly_kr_progress), growth_rate AS (SELECT metric, AVG(CASE WHEN prev_avg_progress IS NOT NULL THEN (avg_progress - prev_avg_progress) / NULLIF(prev_avg_progress,0) ELSE NULL END) AS avg_monthly_growth_rate FROM monthly_growth GROUP BY metric) SELECT metric, avg_monthly_growth_rate FROM growth_rate;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5625
+      },
+      "cosineSimilarity": 0.847606752213531,
+      "finalSql": "SELECT k.metric, AVG(monthly_growth) AS avg_monthly_growth FROM ( SELECT kh.kr_id, k.metric, (kh.progress / NULLIF(kh.target, 0)) - LAG(kh.progress / NULLIF(kh.target, 0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS monthly_growth FROM kr k JOIN kr_history kh ON k.id = kh.kr_id ) AS growth_data WHERE monthly_growth IS NOT NULL GROUP BY k.metric;",
+      "error": "Erro de execução no banco após 3 tentativa(s): missing FROM-clause entry for table \"k\"",
+      "executionMatch": false
+    },
+    {
+      "question": "Detectar iniciativas que apresentaram regressão média no progresso de seus KRs durante o último ciclo de atualização.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "WITH kr_progress AS (SELECT i.id AS initiative_id, AVG(CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(kh.target, 0) ELSE NULLIF(kh.target, 0) / NULLIF(kh.progress, 0) END) AS avg_progress FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id JOIN initiative_update iu ON iu.initiative_id = i.id WHERE iu.created_date = (SELECT MAX(created_date) FROM initiative_update) GROUP BY i.id) SELECT initiative_id FROM kr_progress WHERE avg_progress < 1.0;",
+          "error": "column k.initiative_id does not exist"
+        },
+        {
+          "attempt": 2,
+          "sql": "WITH kr_progress AS ( SELECT i.id AS initiative_id, AVG(CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(kh.target, 0) ELSE NULLIF(kh.target, 0) / NULLIF(kh.progress, 0) END) AS avg_progress FROM initiative i JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id JOIN initiative_update iu ON iu.initiative_id = i.id WHERE iu.created_date = (SELECT MAX(created_date) FROM initiative_update) GROUP BY i.id) SELECT initiative_id FROM kr_progress WHERE avg_progress < 1.0;",
+          "fixed": true
+        }
+      ],
+      "predictedSql": "WITH kr_progress AS (SELECT i.id AS initiative_id, AVG(CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(kh.target, 0) ELSE NULLIF(kh.target, 0) / NULLIF(kh.progress, 0) END) AS avg_progress FROM initiative i JOIN kr k ON i.id = k.initiative_id JOIN kr_history kh ON k.id = kh.kr_id JOIN initiative_update iu ON iu.initiative_id = i.id WHERE iu.created_date = (SELECT MAX(created_date) FROM initiative_update) GROUP BY i.id) SELECT initiative_id FROM kr_progress WHERE avg_progress < 1.0;",
+      "executionTimeMs": 3850,
+      "goldSql": "WITH last_two_updates AS (SELECT kh.kr_id, i.id AS initiative_id, kh.date, ROW_NUMBER() OVER (PARTITION BY kh.kr_id ORDER BY kh.date DESC) AS rn, kh.progress / NULLIF(k.target, 0) AS relative_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id JOIN initiative i ON o.initiative_id = i.id), progress_diff AS (SELECT a.initiative_id, AVG(a.relative_progress - b.relative_progress) AS avg_progress_change FROM last_two_updates a JOIN last_two_updates b ON a.kr_id = b.kr_id AND a.rn = 1 AND b.rn = 2 GROUP BY a.initiative_id) SELECT initiative_id FROM progress_diff WHERE avg_progress_change < 0;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.5
+      },
+      "cosineSimilarity": 0.85425056794984,
+      "finalSql": "WITH kr_progress AS ( SELECT i.id AS initiative_id, AVG(CASE WHEN k.direction = 'up' THEN kh.progress / NULLIF(kh.target, 0) ELSE NULLIF(kh.target, 0) / NULLIF(kh.progress, 0) END) AS avg_progress FROM initiative i JOIN kr k ON i.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id JOIN initiative_update iu ON iu.initiative_id = i.id WHERE iu.created_date = (SELECT MAX(created_date) FROM initiative_update) GROUP BY i.id) SELECT initiative_id FROM kr_progress WHERE avg_progress < 1.0;",
+      "executionMatch": false,
+      "tableSimilarity": 0.28,
+      "queryAffinityScore": 0.56712528397492
+    },
+    {
+      "question": "Apontar iniciativas cujos OKRs estão vencidos, mas cujo progresso médio permanece abaixo de 80%.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT i.title, o.id AS okr_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE o.deadline < NOW() GROUP BY i.title, o.id HAVING AVG(kh.progress / NULLIF(kh.target, 0)) < 0.8;"
+        }
+      ],
+      "predictedSql": "SELECT i.title, o.id AS okr_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE o.deadline < NOW() GROUP BY i.title, o.id HAVING AVG(kh.progress / NULLIF(kh.target, 0)) < 0.8;",
+      "executionTimeMs": 3657,
+      "goldSql": "SELECT i.id AS initiative_id FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id WHERE o.deadline < NOW() GROUP BY i.id HAVING AVG(k.progress / NULLIF(k.target, 0)) < 0.8;",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 1,
+          "SELECT": 0,
+          "DISTINCT": 1,
+          "FROM": 0,
+          "JOIN": 0,
+          "WHERE": 1,
+          "GROUP_BY": 0,
+          "HAVING": 1,
+          "ORDER_BY": 1,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 1,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.75
+      },
+      "cosineSimilarity": 0.9300264072349473,
+      "finalSql": "SELECT i.title, o.id AS okr_id, AVG(kh.progress / NULLIF(kh.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id JOIN kr_history kh ON k.id = kh.kr_id WHERE o.deadline < NOW() GROUP BY i.title, o.id HAVING AVG(kh.progress / NULLIF(kh.target, 0)) < 0.8;",
+      "executionMatch": false,
+      "tableSimilarity": 0.08611111111111114,
+      "queryAffinityScore": 0.5080687591730293
+    },
+    {
+      "question": "Identificar KRs com direção “NEGATIVA” que mantêm melhora contínua e atingem o target definido.",
+      "status": "SUCCESS",
+      "retries": [
+        {
+          "attempt": 1,
+          "sql": "SELECT k.* FROM kr k WHERE k.direction = 'down' AND k.progress <= k.target AND (SELECT COUNT(*) FROM kr_history kh WHERE kh.kr_id = k.id AND kh.progress < k.progress) > 0;"
+        }
+      ],
+      "predictedSql": "SELECT k.* FROM kr k WHERE k.direction = 'down' AND k.progress <= k.target AND (SELECT COUNT(*) FROM kr_history kh WHERE kh.kr_id = k.id AND kh.progress < k.progress) > 0;",
+      "executionTimeMs": 2873,
+      "goldSql": "WITH kr_direction AS (SELECT k.id AS kr_id, k.target, k.direction FROM kr k WHERE k.direction = 'down'), history AS (SELECT kh.kr_id, kh.date, (kh.progress / NULLIF(kd.target, 0)) AS relative_progress, LAG(kh.progress / NULLIF(kd.target, 0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS prev_progress FROM kr_history kh JOIN kr_direction kd ON kd.kr_id = kh.kr_id), fully_improving AS (SELECT kr_id FROM history GROUP BY kr_id HAVING COUNT(*) FILTER (WHERE prev_progress IS NOT NULL AND relative_progress >= prev_progress) = COUNT(*) - 1), achieved AS (SELECT kr_id FROM (SELECT kh.kr_id, (kh.progress / NULLIF(k.target,0)) AS relative_progress, ROW_NUMBER() OVER (PARTITION BY kh.kr_id ORDER BY kh.date DESC) AS rn FROM kr_history kh JOIN kr k ON k.id = kh.kr_id WHERE k.direction = 'down') last_value WHERE rn = 1 AND relative_progress <= 1) SELECT DISTINCT kr_id FROM fully_improving JOIN achieved USING(kr_id);",
+      "exactMatch": false,
+      "componentMatch": {
+        "componentMatches": {
+          "WITH": 0,
+          "SELECT": 0,
+          "DISTINCT": 0,
+          "FROM": 1,
+          "JOIN": 0,
+          "WHERE": 0,
+          "GROUP_BY": 0,
+          "HAVING": 0,
+          "ORDER_BY": 0,
+          "LIMIT": 1,
+          "OFFSET": 1,
+          "WINDOW": 0,
+          "UNION": 1,
+          "INTERSECT": 1,
+          "EXCEPT": 1,
+          "RETURNING": 1
+        },
+        "CM": 0.4375
+      },
+      "cosineSimilarity": 0.8106459761055448,
+      "finalSql": "SELECT k.* FROM kr k WHERE k.direction = 'down' AND k.progress <= k.target AND (SELECT COUNT(*) FROM kr_history kh WHERE kh.kr_id = k.id AND kh.progress < k.progress) > 0;",
+      "executionMatch": false,
+      "tableSimilarity": 0.03076923076923077,
+      "queryAffinityScore": 0.4207076034373878
+    }
+  ]
+}

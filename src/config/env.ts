@@ -28,7 +28,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 
   // LLM Provider
-  LLM_PROVIDER: z.enum(['openai', 'gemini']).default('openai'),
+  LLM_PROVIDER: z.enum(['openai', 'gemini', 'openrouter']).default('openai'),
 
   // OpenAI
   OPENAI_API_KEY: z.string().optional(),
@@ -38,6 +38,12 @@ const envSchema = z.object({
   // Google Gemini
   GEMINI_API_KEY: z.string().optional(),
   GEMINI_MODEL: z.string().default('gemini-1.5-pro'),
+
+  // OpenRouter
+  OPENROUTER_API_KEY: z.string().optional(),
+  OPENROUTER_MODEL: z.string().default('openai/gpt-4-turbo'),
+  OPENROUTER_APP_NAME: z.string().optional(),
+  OPENROUTER_SITE_URL: z.string().optional(),
 
   // LLM Settings
   LLM_TEMPERATURE: z.string().default('0.2'),
@@ -77,6 +83,13 @@ export const config = {
     gemini: {
       apiKey: env.GEMINI_API_KEY,
       model: env.GEMINI_MODEL,
+    },
+
+    openrouter: {
+      apiKey: env.OPENROUTER_API_KEY,
+      model: env.OPENROUTER_MODEL,
+      appName: env.OPENROUTER_APP_NAME,
+      siteUrl: env.OPENROUTER_SITE_URL,
     },
   },
 };

@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { LLMFactory } from './llm/LLMFactory';
 import { LLMRequest } from './llm/types';
-import { schemaLinker } from './schemaLinking';
+// import { schemaLinker } from './schemaLinking';
 
 // Lê o schema do banco de dados a partir do arquivo SQL
 const loadDatabaseSchema = (): string => {
@@ -70,27 +70,21 @@ export class TextToSqlService {
    */
   async convertToSql(request: TextToSqlRequest): Promise<TextToSqlResponse> {
     const startTime = Date.now();
-    const linkedSchema = await schemaLinker(request.question);
+    // const linkedSchema = await schemaLinker(request.question);
     const hints = readFileSync(join(__dirname, '../prompts/hints.txt'), 'utf-8');
     const chainOfThought = readFileSync(join(__dirname, '../prompts/CoT.txt'), 'utf-8');
-    const fewShot = readFileSync(join(__dirname, '../prompts/few-shot.txt'), 'utf-8');
+    // const fewShot = readFileSync(join(__dirname, '../prompts/few-shot.txt'), 'utf-8');
 
     const systemPrompt = `
     Você é um especialista em SQL que converte perguntas em linguagem natural para queries SQL válidas.
 
     ${DATABASE_SCHEMA}
 
-    ## RECOMENDAÇÃO DO SCHEMA LINKING:
-    ${JSON.stringify(linkedSchema)}
-
     ## DICAS PARA INFORMAÇÕES DO SISTEMA:
     ${hints}
 
     ## CHAIN-OF-THOUGHT:
     ${chainOfThought}
-
-    ## EXEMPLOS
-    ${fewShot}
 
     FORMATO DE RESPOSTA (JSON):
     {

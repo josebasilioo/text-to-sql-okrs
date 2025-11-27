@@ -1,7 +1,8 @@
 import { config } from '../../config/env';
+import { GeminiProvider } from './GeminiProvider';
 import { LLMProvider } from './LLMProvider';
 import { OpenAIProvider } from './OpenAIProvider';
-import { GeminiProvider } from './GeminiProvider';
+import { OpenRouterProvider } from './OpenRouterProvider';
 
 /**
  * Factory para criar instâncias de provedores de LLM
@@ -52,6 +53,21 @@ export class LLMFactory {
         );
         break;
 
+      case 'openrouter':
+        if (!config.llm.openrouter.apiKey) {
+          throw new Error('OPENROUTER_API_KEY não configurada');
+        }
+        this.instance = new OpenRouterProvider(
+          {
+            apiKey: config.llm.openrouter.apiKey,
+            model: config.llm.openrouter.model,
+            appName: config.llm.openrouter.appName,
+            siteUrl: config.llm.openrouter.siteUrl,
+          },
+          providerConfig
+        );
+        break;
+
       default:
         throw new Error(`Provedor LLM desconhecido: ${config.llm.provider}`);
     }
@@ -71,4 +87,3 @@ export class LLMFactory {
     this.instance = null;
   }
 }
-

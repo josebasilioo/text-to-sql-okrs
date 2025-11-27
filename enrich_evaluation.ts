@@ -69,7 +69,7 @@ for (const line of datasetLines) {
 console.log(`📊 Carregadas ${questionMap.size} perguntas do dataset TCC`);
 
 // Ler o arquivo evaluation-report.csv
-const evalPath = path.join(__dirname, 'results', 'gpt', '1-shot-4O-mini.csv');
+const evalPath = path.join(__dirname, 'results', 'gpt', '0-shot-no-linking-4O-mini.csv');
 const evalContent = fs.readFileSync(evalPath, 'utf-8');
 const evalLines = evalContent.split('\n');
 
