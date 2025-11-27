@@ -1,0 +1,6 @@
+1. Faça a leitura do schema da tabela
+2. Identifique as tabelas necessária para a pergunta com base no schema-linking proposto
+3. Avalie cuidadosamente o contexto do SQL. Identifique os dados necessários dado o objetivo da pergunta
+4. Gere o SQL necessário para responder a pergunta do usuário
+5. Com o SQL gerado, faça uma revisão conceitual da pergunta vs. resposta gerada
+6. Caso não faça sentido, volte para etapa 1

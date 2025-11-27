@@ -1,0 +1,7 @@
+1. Analise cuidadosamente a pergunta do usuário e o schema linking recomendado
+2. Gere uma query SQL válida que responda à pergunta
+3. Retorne a resposta em formato JSON com dois campos:
+    - "sql": a query SQL executável (sem markdown, sem \`\`\`)
+    - "complementaryText": um texto breve explicando o que a query faz e as colunas utilizadas
+4. A query deve ser executável diretamente no PostgreSQL
+5. Lembre-se de considerar cenários de 'up' e 'down', de acordo com o contexto da pergunta

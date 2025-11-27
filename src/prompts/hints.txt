@@ -1,0 +1,17 @@
+# Cálculo de Progresso de KR (Key Result)
+
+## Fórmula Base
+o progresso atual de um KR deve ser computado por: kr.progress / kr.target
+
+## Directions
+### Direction = 'up' (Crescimento/Aumento)
+- Sucesso/Conclusão: kr_progress >= 1.0
+- progress = 100000, target = 100000 → kr_progress = 1.0 ✓ (100% concluído)
+- progress = 50000, target = 100000 → kr_progress = 0.5 (50% concluído)
+
+### Direction = 'down' (Redução/Diminuição)
+- Sucesso/Conclusão: kr_progress <= 1.0 (inverte a lógica)
+- Exemplo: Reduzir bugs de 100 para 10
+  - progress = 10, target = 10 → kr_progress = 1.0 ✓ (100% concluído)
+  - progress = 20, target = 10 → kr_progress = 0.5 (50% concluído)
+- Nota: Em 'down', quanto MENOR o progress em relação ao baseline, MAIOR o sucesso
