@@ -1,0 +1,1337 @@
+================================================================================
+📊 RELATÓRIO DE AVALIAÇÃO
+================================================================================
+Timestamp: 2025-11-28T00:38:09.018Z
+Total de perguntas: 76
+✅ Sucessos: 59
+❌ Erros: 17
+
+--- Retries ---
+Total de perguntas com retries: 45
+Total de tentativas de correção: 69
+Média de retries por pergunta (com retries): 1.53
+Máximo de retries em uma pergunta: 2
+✅ Sucessos após retry: 28
+❌ Falhas após retry: 17
+
+--- Métricas ---
+
+Exact Match (EM):
+  Total avaliado: 59
+  Matches: 0
+  Acurácia: 0.00%
+
+Component Match (CM):
+  Total avaliado: 59
+  CM médio: 0.7129
+
+Execution Match (EX):
+  Total avaliado: 59
+  Matches: 2
+  Acurácia: 3.39%
+
+Cosine Similarity (CS - Semantic Similarity):
+  Total avaliado: 59
+  CS médio: 0.7901
+
+Table Similarity (TS):
+  Total avaliado: 59
+  TS médio: 0.1692
+
+Query Affinity Score (QAS):
+  Total avaliado: 59
+  QAS médio: 0.4796
+
+================================================================================
+
+📋 Detalhes por pergunta:
+
+1. Existe correlação entre a prioridade da iniciativa e o progresso médio de seus OKRs?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1743ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.9361
+   Table Similarity: 0.5000
+   Query Affinity Score: 0.7181
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column okr.initiative_update_id does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.priority, AVG(kr.progress) AS avg_progress FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN okr okr ON iu.id = okr.initiative_update_id JOIN kr kr ON okr.id = kr.okr_id GROUP BY i.priority ORDER BY avg_progress DESC;
+
+   SQL Corrigida (final):
+   SELECT i.priority, AVG(kr.progress) AS avg_progress FROM initiative i JOIN okr okr ON i.id = okr.initiative_id JOIN kr kr ON okr.id = kr.okr_id GROUP BY i.priority ORDER BY avg_progress DESC;
+
+   SQL Esperada (Gold):
+   SELECT i.priority, AVG(kr.progress / NULLIF(kr.target, 0)) AS avg_progress FROM initiative i JOIN okr ON okr.initiative_id = i.id JOIN kr ON kr.okr_id = okr.id GROUP BY i.priority ORDER BY i.priority;
+
+2. Iniciativas com maior prioridade tendem a ter maior progresso médio nos OKRs?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2455ms
+   Exact Match: ✗
+   Component Match: 0.7500
+   Execution Match: ✗
+   Cosine Similarity: 0.9133
+   Table Similarity: 0.5000
+   Query Affinity Score: 0.7066
+
+   SQL Gerada:
+   SELECT i.priority, AVG(kr.progress) AS avg_progress FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN kr kr ON iu.id = kr.okr_id GROUP BY i.priority ORDER BY avg_progress DESC LIMIT 10
+
+   SQL Esperada (Gold):
+   SELECT i.priority, AVG(kr.progress / NULLIF(kr.target, 0)) AS avg_progress FROM initiative i JOIN okr ON okr.initiative_id = i.id JOIN kr ON kr.okr_id = okr.id GROUP BY i.priority ORDER BY i.priority;
+
+3. Qual é a relação entre prioridade da iniciativa e o desempenho médio dos seus OKRs?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2249ms
+   Exact Match: ✗
+   Component Match: 0.7500
+   Execution Match: ✗
+   Cosine Similarity: 0.9051
+   Table Similarity: 0.5000
+   Query Affinity Score: 0.7026
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column o.progress does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.priority, AVG(o.progress) FROM initiative i JOIN initiative_update o ON i.id = o.initiative_id GROUP BY i.priority
+
+   SQL Corrigida (final):
+   SELECT i.priority, AVG(k.progress) FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.priority
+
+   SQL Esperada (Gold):
+   SELECT i.priority, AVG(kr.progress / NULLIF(kr.target, 0)) AS avg_progress FROM initiative i JOIN okr ON okr.initiative_id = i.id JOIN kr ON kr.okr_id = okr.id GROUP BY i.priority ORDER BY i.priority;
+
+4. Iniciativas de qual categoria têm maior taxa de conclusão de KRs?
+   Status: ✅ SUCCESS
+   Tempo de execução: 3707ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.8079
+   Table Similarity: 0.0417
+   Query Affinity Score: 0.4248
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column k.collaborator_id does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.category, COUNT(DISTINCT k.id) AS kr_count, SUM(CASE WHEN k.direction = 'up' THEN 1 ELSE 0 END) AS up_kr_count, SUM(CASE WHEN k.direction = 'down' THEN 1 ELSE 0 END) AS down_kr_count, SUM(CASE WHEN k.progress >= 1.0 THEN 1 ELSE 0 END) AS up_success_count, SUM(CASE WHEN k.progress <= 1.0 THEN 1 ELSE 0 END) AS down_success_count FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id JOIN kr k ON im.managers_id = k.collaborator_id GROUP BY i.category ORDER BY up_success_count DESC LIMIT 1
+
+   SQL Corrigida (final):
+   SELECT i.category, COUNT(DISTINCT k.id) AS kr_count, SUM(CASE WHEN k.direction = 'up' THEN 1 ELSE 0 END) AS up_kr_count, SUM(CASE WHEN k.direction = 'down' THEN 1 ELSE 0 END) AS down_kr_count, SUM(CASE WHEN k.progress >= 1.0 THEN 1 ELSE 0 END) AS up_success_count, SUM(CASE WHEN k.progress <= 1.0 THEN 1 ELSE 0 END) AS down_success_count FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id JOIN kr k ON i.id = k.okr_id GROUP BY i.category ORDER BY up_success_count DESC LIMIT 1
+
+   SQL Esperada (Gold):
+   SELECT i.category, CAST(SUM(CASE WHEN (k.direction = 'up'   AND k.progress / NULLIF(k.target,0) >= 1) OR (k.direction = 'down' AND k.progress / NULLIF(k.target,0) <= 1) THEN 1 ELSE 0 END) AS FLOAT) / COUNT(k.id) AS completion_rate FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category ORDER BY completion_rate DESC;
+
+5. Qual categoria de iniciativa apresenta menor frequência de updates?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1101ms
+   Exact Match: ✗
+   Component Match: 0.7500
+   Execution Match: ✗
+   Cosine Similarity: 0.8445
+   Table Similarity: 0.1250
+   Query Affinity Score: 0.4848
+
+   SQL Gerada:
+   SELECT i.category, COUNT(iu.id) AS update_frequency FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.category ORDER BY update_frequency ASC LIMIT 1
+
+   SQL Esperada (Gold):
+   SELECT i.category, CAST(COUNT(iu.id) AS FLOAT) / COUNT(DISTINCT i.id) AS avg_updates_per_initiative FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.category ORDER BY avg_updates_per_initiative ASC;
+
+6. Colaboradores com mais KRs favoritos têm desempenho melhor nos OKRs?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column kr.initiative_id does not exist
+
+   SQL Gerada (com erro):
+   SELECT c.name, COUNT(kr.bookmarked_by_id) AS num_krs_favoritos, AVG(kr.progress / kr.target) AS media_progresso FROM collaborator c JOIN initiative_update iu ON c.id = iu.collaborator_id JOIN kr ON iu.id = kr.initiative_update_id JOIN okr o ON kr.okr_id = o.id WHERE kr.bookmarked = TRUE GROUP BY c.name ORDER BY num_krs_favoritos DESC LIMIT 10
+
+   SQL Esperada (Gold):
+   SELECT c.name, COUNT(k.id) AS total_bookmarked_krs, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress_of_bookmarked_krs FROM collaborator c JOIN kr k ON c.id = k.bookmarked_by_id GROUP BY c.id, c.name ORDER BY total_bookmarked_krs DESC;
+
+7. Há diferença de progresso médio entre KRs do tipo “YES_NO” e “NUMERIC”?
+   Status: ✅ SUCCESS
+   Tempo de execução: 3619ms
+   Exact Match: ✗
+   Component Match: 0.8750
+   Execution Match: ✗
+   Cosine Similarity: 0.8665
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4332
+
+   SQL Gerada:
+   SELECT AVG(kr.progress) AS avg_progress_yes_no, AVG(kr.target) AS avg_target_yes_no, AVG(kr.progress) AS avg_progress_numeric, AVG(kr.target) AS avg_target_numeric FROM kr WHERE metric = 'YES_NO' OR metric = 'NUMERIC'
+
+   SQL Esperada (Gold):
+   SELECT k.metric, AVG(k.progress / NULLIF(k.target, 0)) AS average_progress FROM kr k WHERE k.metric IN ('YES_NO', 'NUMERIC') GROUP BY k.metric;
+
+8. Quais iniciativas concentram mais KRs com métrica percentual?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1841ms
+   Exact Match: ✗
+   Component Match: 0.6250
+   Execution Match: ✗
+   Cosine Similarity: 0.8358
+   Table Similarity: 0.1047
+   Query Affinity Score: 0.4702
+
+   SQL Gerada:
+   SELECT i.title, COUNT(kr.id) AS num_krs FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN kr kr ON iu.id = kr.okr_id WHERE kr.metric = 'PERC' GROUP BY i.title ORDER BY num_krs DESC LIMIT 10;
+
+   SQL Esperada (Gold):
+   SELECT i.title, COUNT(k.id) AS total_percentage_krs FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE k.metric = 'PERC' GROUP BY i.id, i.title ORDER BY total_percentage_krs DESC;
+
+9. Qual a média de progresso dos OKRs de iniciativas de alta prioridade?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1655ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.8627
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4314
+   Tentativas de correção: 3
+     Tentativa 1: ❌ column kr.initiative_id does not exist
+     Tentativa 2: ❌ invalid input syntax for type integer: "high"
+     Tentativa 3: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT AVG(kr.progress) FROM kr AS kr INNER JOIN initiative AS i ON kr.initiative_id = i.id WHERE i.priority = 'high' AND kr.direction = 'up'
+
+   SQL Corrigida (final):
+   SELECT AVG(kr.progress) FROM kr AS kr INNER JOIN okr AS o ON kr.okr_id = o.id INNER JOIN initiative AS i ON o.initiative_id = i.id WHERE i.priority = 1 AND kr.direction = 'up'
+
+   SQL Esperada (Gold):
+   SELECT AVG(k.progress / NULLIF(k.target, 0)) AS average_okr_progress_high_priority FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE i.priority = 1;
+
+10. Qual o impacto dos updates de iniciativa no progresso dos KRs associados?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2730ms
+   Exact Match: ✗
+   Component Match: 0.4375
+   Execution Match: ✗
+   Cosine Similarity: 0.7475
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3738
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column kr.initiative_id does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT iu.id, iu.initiative_id, iu.brutal_facts, iu.highlights, iu.next_steps, iu.year_month, iu.created_date, iu.last_modified_date, iu.created_by, iu.last_modified_by, SUM(kr.progress) / COUNT(kr.id) AS kr_progress FROM initiative_update iu JOIN kr ON iu.initiative_id = kr.initiative_id GROUP BY iu.id, iu.initiative_id, iu.brutal_facts, iu.highlights, iu.next_steps, iu.year_month, iu.created_date, iu.last_modified_date, iu.created_by, iu.last_modified_by ORDER BY iu.id DESC
+
+   SQL Corrigida (final):
+   SELECT iu.id, iu.initiative_id, iu.brutal_facts, iu.highlights, iu.next_steps, iu.year_month, iu.created_date, iu.last_modified_date, iu.created_by, iu.last_modified_by, SUM(kr.progress) / COUNT(kr.id) AS kr_progress FROM initiative_update iu JOIN kr ON iu.initiative_id = kr.okr_id GROUP BY iu.id, iu.initiative_id, iu.brutal_facts, iu.highlights, iu.next_steps, iu.year_month, iu.created_date, iu.last_modified_date, iu.created_by, iu.last_modified_by ORDER BY iu.id DESC
+
+   SQL Esperada (Gold):
+   WITH normalized_history AS (SELECT kh.kr_id, kh.date, (kh.progress / NULLIF(k.target,0)) AS rel_progress, LAG(kh.progress / NULLIF(k.target,0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS rel_before FROM kr_history kh JOIN kr k ON k.id = kh.kr_id), updates AS (SELECT initiative_id, created_date FROM initiative_update), link AS (SELECT nh.kr_id, nh.rel_progress, nh.rel_before, nh.date AS progress_date, (SELECT iu.created_date FROM initiative_update iu JOIN kr k ON iu.initiative_id = k.okr_id JOIN okr o ON k.okr_id = o.id WHERE iu.initiative_id = o.initiative_id AND iu.created_date < nh.date ORDER BY iu.created_date DESC LIMIT 1) AS last_update FROM normalized_history nh JOIN kr k ON nh.kr_id = k.id JOIN okr o ON k.okr_id = o.id) SELECT AVG(rel_progress - rel_before) AS avg_progress_change_after_update FROM link WHERE rel_before IS NOT NULL AND last_update IS NOT NULL;
+
+11. Há aumento no ritmo de updates próximo aos deadlines dos OKRs?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1909ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.6265
+   Table Similarity: 0.0082
+   Query Affinity Score: 0.3174
+
+   SQL Gerada:
+   SELECT * FROM initiative_update WHERE last_modified_date > NOW() - INTERVAL '30 days' AND last_modified_date > (SELECT MAX(last_modified_date) FROM initiative WHERE end_date < NOW() + INTERVAL '30 days')
+
+   SQL Esperada (Gold):
+   SELECT o.id AS okr_id, o.deadline, SUM(CASE WHEN iu.created_date BETWEEN o.deadline - INTERVAL '30 days' AND o.deadline THEN 1 ELSE 0 END) AS updates_last_30_days, SUM(CASE WHEN iu.created_date < o.deadline - INTERVAL '30 days' THEN 1 ELSE 0 END) AS updates_before_30_days FROM okr o LEFT JOIN initiative_update iu ON iu.initiative_id = o.initiative_id AND iu.created_date <= o.deadline GROUP BY o.id, o.deadline ORDER BY o.deadline;
+
+12. Qual é o alinhamento entre as datas de fim de iniciativa e deadlines de OKRs?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1642ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.6952
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3476
+
+   SQL Gerada:
+   SELECT i.end_date, o.deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id
+
+   SQL Esperada (Gold):
+   SELECT CASE WHEN o.deadline < i.end_date THEN 'OKR ANTES da Iniciativa' WHEN o.deadline = i.end_date THEN 'OKR e Iniciativa na MESMA DATA' WHEN o.deadline > i.end_date THEN 'OKR DEPOIS da Iniciativa' ELSE 'Sem data de fim para Iniciativa' END AS alinhamento, COUNT(o.id) AS total_okrs FROM okr o JOIN initiative i ON o.initiative_id = i.id GROUP BY alinhamento;
+
+13. Quantos OKRs estão diretamente vinculados a iniciativas prioritárias (por categoria) e quantos ainda não possuem ligação clara com uma iniciativa?
+   Status: ✅ SUCCESS
+   Tempo de execução: 718ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.8445
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4222
+   Tentativas de correção: 2
+     Tentativa 1: ❌ invalid input syntax for type integer: "high"
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT COUNT(CASE WHEN i.category IS NOT NULL THEN 1 END) AS okrs_com_iniciativa, COUNT(CASE WHEN i.category IS NULL THEN 1 END) AS okrs_sem_iniciativa FROM okr o LEFT JOIN initiative i ON o.id = i.id WHERE i.priority = 'high'
+
+   SQL Corrigida (final):
+   SELECT COUNT(CASE WHEN i.category IS NOT NULL THEN 1 END) AS okrs_com_iniciativa, COUNT(CASE WHEN i.category IS NULL THEN 1 END) AS okrs_sem_iniciativa FROM okr o LEFT JOIN initiative i ON o.initiative_id = i.id WHERE i.priority = 1
+
+   SQL Esperada (Gold):
+   SELECT COALESCE(i.category, 'SEM INICIATIVA') AS category, COALESCE(i.priority, -1) AS priority, COUNT(o.id) AS okrs_count FROM okr o LEFT JOIN initiative i ON o.initiative_id = i.id GROUP BY category, priority ORDER BY category, priority;
+
+14. Quantas atualizações de iniciativas foram registradas neste trimestre e quais são os principais temas dos “highlights” e “brutal facts”?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2896ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.8416
+   Table Similarity: 0.3333
+   Query Affinity Score: 0.5875
+
+   SQL Gerada:
+   SELECT COUNT(*) as count, string_agg(DISTINCT highlights, ', ') as highlights, string_agg(DISTINCT brutal_facts, ', ') as brutal_facts FROM initiative_update WHERE EXTRACT(QUARTER FROM last_modified_date) = EXTRACT(QUARTER FROM CURRENT_DATE) AND EXTRACT(YEAR FROM last_modified_date) = EXTRACT(YEAR FROM CURRENT_DATE)
+
+   SQL Esperada (Gold):
+   SELECT COUNT(iu.id) AS total_updates_trimestre, STRING_AGG(iu.highlights, ' | ') AS todos_highlights, STRING_AGG(iu.brutal_facts, ' | ') AS todos_brutal_facts FROM initiative_update iu WHERE iu.created_date >= date_trunc('quarter', CURRENT_DATE) AND iu.created_date < date_trunc('quarter', CURRENT_DATE) + interval '3 month';
+
+15. Apresentar os KRs com maior desvio padrão de progresso ao longo do histórico, indicando instabilidade.
+   Status: ✅ SUCCESS
+   Tempo de execução: 5533ms
+   Exact Match: ✗
+   Component Match: 0.6250
+   Execution Match: ✗
+   Cosine Similarity: 0.7166
+   Table Similarity: 0.0020
+   Query Affinity Score: 0.3593
+   Tentativas de correção: 2
+     Tentativa 1: ❌ missing FROM-clause entry for table "kr"
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT kr.id, kr.title, kr.metric, kr.direction, STDDEV(kr.progress) AS std_dev FROM kr_history GROUP BY kr.id, kr.title, kr.metric, kr.direction ORDER BY std_dev DESC LIMIT 10
+
+   SQL Corrigida (final):
+   SELECT kr.id, kr.title, kr.metric, kr.direction, STDDEV(kr_history.progress) AS std_dev FROM kr_history JOIN kr ON kr_history.kr_id = kr.id GROUP BY kr.id, kr.title, kr.metric, kr.direction ORDER BY std_dev DESC LIMIT 10
+
+   SQL Esperada (Gold):
+   SELECT k.title, o.description AS okr_description, STDDEV(kh.progress / NULLIF(kh.target, 0)) AS desvio_padrao_progresso FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id GROUP BY kh.kr_id, k.title, o.description HAVING COUNT(kh.id) > 1 ORDER BY desvio_padrao_progresso DESC;
+
+16. Comparar o progresso médio dos KRs com o progresso médio das iniciativas às quais estão vinculados, destacando as maiores variações.
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): operator does not exist: double precision - timestamp without time zone
+
+   SQL Gerada (com erro):
+   SELECT krs.progress, i.progress, krs.id, i.id, abs(krs.progress - i.progress) as variação FROM kr krs INNER JOIN initiative i ON krs.okr_id = i.id GROUP BY krs.id, i.id ORDER BY variação DESC LIMIT 10
+
+   SQL Esperada (Gold):
+   WITH InitiativeProgress AS (SELECT i.id AS initiative_id, AVG(k.progress / NULLIF(k.target, 0)) AS avg_initiative_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.id), CalculatedVariance AS (SELECT k.title AS kr_title, (k.progress / NULLIF(k.target, 0)) AS kr_current_progress, ip.avg_initiative_progress, (k.progress / NULLIF(k.target, 0)) - ip.avg_initiative_progress AS progress_variance FROM kr k JOIN okr o ON k.okr_id = o.id JOIN InitiativeProgress ip ON o.initiative_id = ip.initiative_id) SELECT kr_title, kr_current_progress, avg_initiative_progress, progress_variance FROM CalculatedVariance ORDER BY ABS(progress_variance) DESC;
+
+17. Construir o ranking das categorias de iniciativa com base no progresso médio ponderado pelo número de KRs associados.
+   Status: ✅ SUCCESS
+   Tempo de execução: 2456ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.8617
+   Table Similarity: 0.3333
+   Query Affinity Score: 0.5975
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column kr.collaborator_id does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.category, AVG(kr.progress) AS avg_progress, COUNT(kr.id) AS num_krs FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id JOIN kr ON im.managers_id = kr.collaborator_id GROUP BY i.category ORDER BY avg_progress DESC
+
+   SQL Corrigida (final):
+   SELECT i.category, AVG(kr.progress) AS avg_progress, COUNT(kr.id) AS num_krs FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id JOIN kr ON i.id = kr.okr_id GROUP BY i.category ORDER BY avg_progress DESC
+
+   SQL Esperada (Gold):
+   SELECT i.category, AVG(k.progress / NULLIF(k.target, 0)) AS weighted_average_progress, COUNT(k.id) AS total_krs FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id GROUP BY i.category ORDER BY weighted_average_progress DESC;
+
+18. Avaliar a correlação entre o número de updates registrados em cada iniciativa e o progresso médio de seus KRs.
+   Status: ✅ SUCCESS
+   Tempo de execução: 1729ms
+   Exact Match: ✗
+   Component Match: 0.6250
+   Execution Match: ✗
+   Cosine Similarity: 0.7918
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3959
+   Tentativas de correção: 2
+     Tentativa 1: ❌ relation "okr_update" does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.id, i.title, COUNT(iu.id) AS num_updates, AVG(kr.progress / kr.target) AS avg_kr_progress FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id LEFT JOIN okr_update ou ON i.id = ou.initiative_id LEFT JOIN kr kr ON ou.kr_id = kr.id GROUP BY i.id, i.title ORDER BY avg_kr_progress DESC
+
+   SQL Corrigida (final):
+   SELECT i.id, i.title, COUNT(iu.id) AS num_updates, AVG(kr.progress / kr.target) AS avg_kr_progress FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id LEFT JOIN kr kr ON i.id = kr.okr_id GROUP BY i.id, i.title ORDER BY avg_kr_progress DESC
+
+   SQL Esperada (Gold):
+   WITH InitiativeMetrics AS (SELECT i.id AS initiative_id, COUNT(iu.id) AS total_updates, (SELECT AVG(k.progress / NULLIF(k.target,0)) FROM okr o JOIN kr k ON o.id = k.okr_id WHERE o.initiative_id = i.id) AS average_kr_progress FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id) SELECT CORR(im.total_updates, im.average_kr_progress) AS correlation_updates_vs_progress FROM InitiativeMetrics im;
+
+19. Detectar iniciativas que apresentaram regressão média no progresso de KRs durante o último ciclo.
+   Status: ✅ SUCCESS
+   Tempo de execução: 13328ms
+   Exact Match: ✗
+   Component Match: 0.5000
+   Execution Match: ✗
+   Cosine Similarity: 0.7537
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3768
+   Tentativas de correção: 3
+     Tentativa 1: ❌ column kr.initiative_update_id does not exist
+     Tentativa 2: ❌ column kr.initiative_id does not exist
+     Tentativa 3: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.id, i.title, AVG(kr.progress - kr.target) AS regressao_media FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN kr ON iu.id = kr.initiative_update_id JOIN kr_history kh ON kr.id = kh.kr_id WHERE iu.year_month = (SELECT MAX(year_month) FROM initiative_update) GROUP BY i.id, i.title HAVING AVG(kr.progress - kr.target) < 0 ORDER BY regressao_media DESC
+
+   SQL Corrigida (final):
+   SELECT i.id, i.title, AVG(kh.progress - kh.target) AS regressao_media FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN kr ON iu.initiative_id = kr.okr_id JOIN kr_history kh ON kr.id = kh.kr_id WHERE iu.year_month = (SELECT MAX(year_month) FROM initiative_update) GROUP BY i.id, i.title HAVING AVG(kh.progress - kh.target) < 0 ORDER BY regressao_media DESC
+
+   SQL Esperada (Gold):
+   WITH hist AS (SELECT kh.kr_id, (kh.progress / NULLIF(kh.target,0)) AS rel, LAG(kh.progress / NULLIF(kh.target,0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS prev, o.initiative_id FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id), diffs AS (SELECT initiative_id, rel - prev AS diff FROM hist WHERE prev IS NOT NULL) SELECT i.title, AVG(diff) AS avg_regression_change FROM diffs d JOIN initiative i ON d.initiative_id = i.id GROUP BY i.id, i.title HAVING AVG(diff) < 0 ORDER BY avg_regression_change ASC;
+
+20. Qual a distribuição de iniciativas por categoria?
+   Status: ✅ SUCCESS
+   Tempo de execução: 857ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.6873
+   Table Similarity: 0.6667
+   Query Affinity Score: 0.6770
+
+   SQL Gerada:
+   SELECT category, COUNT(*) as count FROM initiative GROUP BY category
+
+   SQL Esperada (Gold):
+   SELECT category, COUNT(id) AS total_initiatives, CAST(COUNT(id) AS FLOAT) * 100 / (SELECT COUNT(*) FROM initiative) AS percentage FROM initiative GROUP BY category ORDER BY total_initiatives DESC;
+
+21. Quais iniciativas têm mais OKRs associados?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): invalid reference to FROM-clause entry for table "kr"
+
+   SQL Gerada (com erro):
+   SELECT i.id, i.title, COUNT(kr.id) AS num_okrs FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN okr o ON iu.id = o.initiative_update_id JOIN kr k ON o.id = k.okr_id GROUP BY i.id, i.title ORDER BY num_okrs DESC LIMIT 1
+
+   SQL Esperada (Gold):
+   SELECT i.title, COUNT(o.id) AS total_okrs FROM initiative i LEFT JOIN okr o ON i.id = o.initiative_id GROUP BY i.id, i.title ORDER BY total_okrs DESC;
+
+22. Quantas iniciativas estão em andamento neste trimestre?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1291ms
+   Exact Match: ✗
+   Component Match: 0.9375
+   Execution Match: ✗
+   Cosine Similarity: 0.8655
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4327
+
+   SQL Gerada:
+   SELECT COUNT(*) FROM initiative WHERE start_date >= NOW() - INTERVAL '3 month' AND end_date >= NOW() - INTERVAL '3 month'
+
+   SQL Esperada (Gold):
+   SELECT COUNT(id) FROM initiative WHERE start_date <= date_trunc('quarter', CURRENT_DATE) + INTERVAL '3 month' - INTERVAL '1 second' AND (end_date IS NULL OR end_date >= date_trunc('quarter', CURRENT_DATE));
+
+23. Quais iniciativas estão sem updates há mais de 30 dias?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2379ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.7996
+   Table Similarity: 0.0034
+   Query Affinity Score: 0.4015
+
+   SQL Gerada:
+   SELECT i.* FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.initiative_id IS NULL OR iu.created_date < NOW() - INTERVAL '30 days'
+
+   SQL Esperada (Gold):
+   SELECT i.title, MAX(iu.created_date) AS last_update FROM initiative i LEFT JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id, i.title HAVING MAX(iu.created_date) IS NULL OR MAX(iu.created_date) < NOW() - INTERVAL '30' DAY ORDER BY last_update ASC;
+
+24. Quais iniciativas têm prioridade máxima, mas baixo progresso de OKRs?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): operator does not exist: character varying < numeric
+
+   SQL Gerada (com erro):
+   SELECT i.id, i.title, i.priority, i.end_date, i.start_date, i.category, i.owner_id, i.description, i.created_by, i.last_modified_by, i.last_modified_date FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN okr o ON iu.initiative_id = o.initiative_id WHERE iu.progress < 0.5 AND i.priority = 1 ORDER BY iu.progress ASC LIMIT 10;
+
+   SQL Esperada (Gold):
+   SELECT i.title, i.priority, AVG(k.progress / NULLIF(k.target, 0)) AS avg_okr_progress FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id WHERE i.priority = 1 GROUP BY i.id, i.title, i.priority HAVING AVG(k.progress / NULLIF(k.target, 0)) < 0.5 ORDER BY avg_okr_progress ASC;
+
+25. Quantas iniciativas estão planejadas para começar no próximo mês?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1468ms
+   Exact Match: ✗
+   Component Match: 0.9375
+   Execution Match: ✓
+   Cosine Similarity: 0.9344
+   Table Similarity: 1.0000
+   Query Affinity Score: 0.9672
+
+   SQL Gerada:
+   SELECT COUNT(*) FROM initiative WHERE start_date >= CURRENT_DATE + INTERVAL '1 month' AND start_date <= CURRENT_DATE + INTERVAL '2 months'
+
+   SQL Esperada (Gold):
+   SELECT COUNT(id) FROM initiative WHERE start_date >= date_trunc('month', CURRENT_DATE) + INTERVAL '1 month' AND start_date < date_trunc('month', CURRENT_DATE) + INTERVAL '2 month';
+
+26. Quais iniciativas têm fim previsto antes do término de seus OKRs?
+   Status: ✅ SUCCESS
+   Tempo de execução: 3188ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.7298
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3649
+
+   SQL Gerada:
+   SELECT i.id, i.title, i.end_date FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.year_month < (SELECT MAX(year_month) FROM initiative_update WHERE initiative_id = i.id) AND iu.brutal_facts IS NOT NULL
+
+   SQL Esperada (Gold):
+   SELECT i.title, i.end_date, MAX(o.deadline) AS latest_okr_deadline FROM initiative i JOIN okr o ON i.id = o.initiative_id WHERE i.end_date IS NOT NULL GROUP BY i.id, i.title, i.end_date HAVING i.end_date < MAX(o.deadline);
+
+27. Quais iniciativas têm mais de três pessoas no time?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2678ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✓
+   Cosine Similarity: 0.9187
+   Table Similarity: 1.0000
+   Query Affinity Score: 0.9593
+
+   SQL Gerada:
+   SELECT i.id, i.title, COUNT(DISTINCT im.managers_id) AS num_managers FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id GROUP BY i.id, i.title HAVING COUNT(DISTINCT im.managers_id) > 3
+
+   SQL Esperada (Gold):
+   SELECT i.id, i.title, COUNT(im.managers_id) AS team_size FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id GROUP BY i.id HAVING COUNT(im.managers_id) > 3
+
+28. Qual é a média de duração (em dias) das iniciativas concluídas?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1706ms
+   Exact Match: ✗
+   Component Match: 0.8750
+   Execution Match: ✗
+   Cosine Similarity: 0.6883
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3442
+
+   SQL Gerada:
+   SELECT AVG(EXTRACT(DAY FROM (last_modified_date - created_date))) AS media_duracao FROM initiative WHERE end_date IS NOT NULL
+
+   SQL Esperada (Gold):
+   SELECT AVG(EXTRACT(EPOCH FROM (end_date - start_date)) / 86400) AS average_duration_days FROM initiative WHERE end_date IS NOT NULL AND start_date IS NOT NULL;
+
+29. Qual percentual de iniciativas por categoria está concluído?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1244ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.7593
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3796
+
+   SQL Gerada:
+   SELECT CAST(COUNT(CASE WHEN i.category = 'categoria' THEN 1 ELSE NULL END) AS FLOAT) * 100 / COUNT(*) FROM initiative i
+
+   SQL Esperada (Gold):
+   WITH InitiativeKRStatus AS (SELECT i.id AS initiative_id, i.category, CASE WHEN (k.direction = 'up'   AND k.progress / NULLIF(k.target,0) >= 1) OR (k.direction = 'down' AND k.progress / NULLIF(k.target,0) <= 1) THEN 1 ELSE 0 END AS kr_is_concluded FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id) SELECT category, CAST(SUM(kr_is_concluded) AS FLOAT) * 100 / COUNT(*) AS percent_krs_concluded FROM InitiativeKRStatus GROUP BY category ORDER BY percent_krs_concluded DESC;
+
+30. Quais iniciativas estão com maior prioridade, mas apresentam baixo progresso ou atualizações atrasadas?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2717ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.7432
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3716
+   Tentativas de correção: 2
+     Tentativa 1: ❌ operator does not exist: character varying < date
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.id, i.title, i.priority, i.created_date, i.end_date, i.start_date, i.category, i.owner_id, i.description FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.brutal_facts IS NOT NULL AND iu.highlights IS NULL AND iu.next_steps IS NULL AND iu.year_month < CURRENT_DATE ORDER BY i.priority DESC
+
+   SQL Corrigida (final):
+   SELECT i.id, i.title, i.priority, i.created_date, i.end_date, i.start_date, i.category, i.owner_id, i.description FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.brutal_facts IS NOT NULL AND iu.highlights IS NULL AND iu.next_steps IS NULL AND TO_DATE(iu.year_month, 'YYYY-MM') < CURRENT_DATE ORDER BY i.priority DESC
+
+   SQL Esperada (Gold):
+   WITH InitiativePerformance AS (SELECT i.id AS initiative_id, i.title, i.priority, (SELECT AVG(k.progress / NULLIF(k.target,0)) FROM okr o JOIN kr k ON o.id = k.okr_id WHERE o.initiative_id = i.id) AS avg_okr_progress, (SELECT MAX(created_date) FROM initiative_update iu WHERE iu.initiative_id = i.id) AS last_update_date FROM initiative i) SELECT title, priority, avg_okr_progress, last_update_date FROM InitiativePerformance WHERE priority = 1 AND (avg_okr_progress < 0.5 OR last_update_date < NOW() - INTERVAL '30 days' OR last_update_date IS NULL) ORDER BY avg_okr_progress ASC NULLS FIRST, last_update_date ASC NULLS FIRST;
+
+31. Quais KRs estão com direção “NEGATIVA” (indicando desempenho decrescente) e estão abaixo de 50% do target?
+   Status: ✅ SUCCESS
+   Tempo de execução: 3598ms
+   Exact Match: ✗
+   Component Match: 0.9375
+   Execution Match: ✗
+   Cosine Similarity: 0.8842
+   Table Similarity: 0.7500
+   Query Affinity Score: 0.8171
+
+   SQL Gerada:
+   SELECT kr.id, kr.progress, kr.target, kr.direction FROM kr WHERE kr.direction = 'down' AND kr.progress < (kr.target * 0.5)
+
+   SQL Esperada (Gold):
+   SELECT title, progress, target, direction FROM kr WHERE direction = 'down' AND (progress / NULLIF(target,0)) < 0.5;
+
+32. Quais iniciativas apresentaram maior variação positiva de progresso nos últimos ciclos de atualização?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column kh.initiative_id does not exist
+
+   SQL Gerada (com erro):
+   SELECT i.title, SUM(kr.progress - kr.target) AS variação_positiva FROM initiative i JOIN initiative_update u ON i.id = u.initiative_id JOIN kr_history kh ON u.id = kh.initiative_update_id JOIN kr k ON kh.kr_id = k.id WHERE u.last_modified_date >= NOW() - INTERVAL '1 month' GROUP BY i.title ORDER BY variação_positiva DESC LIMIT 10
+
+   SQL Esperada (Gold):
+   WITH NormHist AS (SELECT kh.kr_id, kh.date, (kh.progress / NULLIF(kh.target,0)) AS norm_prog FROM kr_history kh), Changes AS (SELECT nh.kr_id, nh.date, nh.norm_prog, nh.norm_prog - LAG(nh.norm_prog) OVER (PARTITION BY nh.kr_id ORDER BY nh.date) AS delta FROM NormHist nh), PosChanges AS (SELECT o.initiative_id, CASE WHEN k.direction = 'up'   AND delta > 0 THEN delta WHEN k.direction = 'down' AND delta < 0 THEN -delta END AS norm_delta FROM Changes c JOIN kr k ON c.kr_id = k.id JOIN okr o ON k.okr_id = o.id WHERE delta IS NOT NULL AND c.date >= NOW() - INTERVAL '6 month' AND ((k.direction='up' AND delta > 0) OR (k.direction='down' AND delta < 0))) SELECT i.title, AVG(pc.norm_delta) AS avg_positive_change FROM initiative i JOIN PosChanges pc ON i.id = pc.initiative_id GROUP BY i.id, i.title ORDER BY avg_positive_change DESC;
+
+33. Quais colaboradores foram responsáveis pelos KRs com melhor taxa de atingimento?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2175ms
+   Exact Match: ✗
+   Component Match: 0.6250
+   Execution Match: ✗
+   Cosine Similarity: 0.7156
+   Table Similarity: 0.0847
+   Query Affinity Score: 0.4002
+   Tentativas de correção: 3
+     Tentativa 1: ❌ column k.collaborator_id does not exist
+     Tentativa 2: ❌ missing FROM-clause entry for table "k"
+     Tentativa 3: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT c.name, COUNT(DISTINCT k.id) AS num_krs FROM collaborator c JOIN kr k ON c.id = k.collaborator_id JOIN kr_history kh ON k.id = kh.kr_id WHERE kh.direction = 'up' AND kh.progress >= 1.0 GROUP BY c.name ORDER BY num_krs DESC LIMIT 10
+
+   SQL Corrigida (final):
+   SELECT c.name, COUNT(DISTINCT kh.id) AS num_krs FROM collaborator c JOIN kr h ON c.id = h.bookmarked_by_id JOIN kr_history kh ON h.id = kh.kr_id WHERE kh.direction = 'up' AND kh.progress >= 1.0 GROUP BY c.name ORDER BY num_krs DESC LIMIT 10
+
+   SQL Esperada (Gold):
+   SELECT c.name, AVG(k.progress / k.target) AS avg_achievement_rate FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id GROUP BY c.id, c.name HAVING COUNT(DISTINCT k.id) > 1 ORDER BY avg_achievement_rate DESC;
+
+34. Quais colaboradores têm progresso médio de KRs acima da média geral dos colaboradores?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): relation "collaborador" does not exist
+
+   SQL Gerada (com erro):
+   WITH colaborador_progresso AS (SELECT c.id, AVG(kr.progress / kr.target) AS progresso_medio FROM colaborador c JOIN initiative_managers im ON c.id = im.managers_id JOIN initiative i ON im.initiative_id = i.id JOIN kr_history kh ON i.id = kh.initiative_id JOIN kr k ON kh.kr_id = k.id GROUP BY c.id), media_progresso AS (SELECT AVG(progresso_medio) AS media FROM colaborador_progresso) SELECT * FROM colaborador_progresso WHERE progresso_medio > (SELECT media FROM media_progresso)
+
+   SQL Esperada (Gold):
+   WITH CollaboratorAvg AS (SELECT kh.collaborator_id, AVG(kh.progress / NULLIF(kh.target,0)) AS collaborator_progress FROM kr_history kh GROUP BY kh.collaborator_id), GlobalAvg AS (SELECT AVG(progress / NULLIF(target,0)) AS global_progress FROM kr_history) SELECT c.name, ca.collaborator_progress FROM collaborator c JOIN CollaboratorAvg ca ON c.id = ca.collaborator_id CROSS JOIN GlobalAvg ga WHERE ca.collaborator_progress > ga.global_progress ORDER BY ca.collaborator_progress DESC;
+
+35. Quais colaboradores possuem mais KRs “bookmarked” do que a média geral de bookmarks por colaborador?
+   Status: ✅ SUCCESS
+   Tempo de execução: 3057ms
+   Exact Match: ✗
+   Component Match: 0.5625
+   Execution Match: ✗
+   Cosine Similarity: 0.8306
+   Table Similarity: 0.0882
+   Query Affinity Score: 0.4594
+   Tentativas de correção: 3
+     Tentativa 1: ❌ column iu.collaborator_id does not exist
+     Tentativa 2: ❌ column "collaborator_id" does not exist
+     Tentativa 3: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT c.name, COUNT(kr.id) AS total_bookmarks FROM collaborator c LEFT JOIN initiative_update iu ON c.id = iu.collaborator_id LEFT JOIN kr ON iu.id = kr.initiative_update_id WHERE kr.bookmarked = TRUE GROUP BY c.name HAVING COUNT(kr.id) > (SELECT AVG(total_bookmarks) FROM (SELECT collaborator_id, COUNT(id) AS total_bookmarks FROM kr GROUP BY collaborator_id) AS subquery)
+
+   SQL Corrigida (final):
+   SELECT c.name, COUNT(kr.id) AS total_bookmarks FROM collaborator c LEFT JOIN kr ON c.id = kr.bookmarked_by_id WHERE kr.bookmarked = TRUE GROUP BY c.name HAVING COUNT(kr.id) > (SELECT AVG(total_bookmarks) FROM (SELECT bookmarked_by_id, COUNT(id) AS total_bookmarks FROM kr GROUP BY bookmarked_by_id) AS subquery)
+
+   SQL Esperada (Gold):
+   WITH BookmarkCount AS ( SELECT bookmarked_by_id, COUNT(id) AS total_bookmarks FROM kr WHERE bookmarked_by_id IS NOT NULL GROUP BY bookmarked_by_id ), AvgBookmarks AS ( SELECT AVG(total_bookmarks) AS global_avg FROM BookmarkCount ) SELECT c.name, bc.total_bookmarks FROM collaborator c JOIN BookmarkCount bc ON c.id = bc.bookmarked_by_id CROSS JOIN AvgBookmarks ab WHERE bc.total_bookmarks > ab.global_avg ORDER BY bc.total_bookmarks DESC;
+
+36. Gerar o ranking de colaboradores com maior média de progresso em KRs dentro de cada categoria de iniciativa.
+   Status: ✅ SUCCESS
+   Tempo de execução: 1208ms
+   Exact Match: ✗
+   Component Match: 0.6250
+   Execution Match: ✗
+   Cosine Similarity: 0.8587
+   Table Similarity: 0.0885
+   Query Affinity Score: 0.4736
+
+   SQL Gerada:
+   SELECT c.name, i.category, AVG(kr.progress) AS media_progresso FROM collaborator c JOIN initiative_managers im ON c.id = im.managers_id JOIN initiative i ON im.initiative_id = i.id JOIN initiative_update iu ON i.id = iu.initiative_id JOIN kr kr ON iu.id = kr.okr_id GROUP BY c.name, i.category ORDER BY media_progresso DESC
+
+   SQL Esperada (Gold):
+   SELECT i.category, c.name, AVG(kh.progress / NULLIF(kh.target,0)) AS avg_progress_in_category, RANK() OVER (PARTITION BY i.category ORDER BY AVG(kh.progress / NULLIF(kh.target,0)) DESC) AS rank_in_category FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id JOIN initiative i ON o.initiative_id = i.id GROUP BY i.category, c.id, c.name ORDER BY i.category, rank_in_category;
+
+37. Selecionar colaboradores que contribuíram para KRs com progresso superior ao percentil 90 global.
+   Status: ✅ SUCCESS
+   Tempo de execução: 1224ms
+   Exact Match: ✗
+   Component Match: 0.5625
+   Execution Match: ✗
+   Cosine Similarity: 0.8149
+   Table Similarity: 0.0007
+   Query Affinity Score: 0.4078
+
+   SQL Gerada:
+   SELECT c.* FROM collaborator c JOIN initiative i ON c.id = i.owner_id JOIN initiative_update iu ON i.id = iu.initiative_id JOIN kr kr ON iu.id = kr.okr_id JOIN kr_history kh ON kr.id = kh.kr_id WHERE kh.progress > (SELECT PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY kh.progress) FROM kr_history kh)
+
+   SQL Esperada (Gold):
+   WITH GlobalPercentile AS (SELECT PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY (progress / NULLIF(target,0))) AS p90_progress FROM kr_history) SELECT DISTINCT c.name FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id CROSS JOIN GlobalPercentile gp WHERE (kh.progress / NULLIF(kh.target,0)) > gp.p90_progress;
+
+38. Como evoluiu o progresso médio dos KRs nos últimos 6 meses?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column "kr.created_date" must appear in the GROUP BY clause or be used in an aggregate function
+
+   SQL Gerada (com erro):
+   SELECT AVG(kr.progress) AS progresso_medio, EXTRACT(YEAR FROM kr.created_date) AS ano, EXTRACT(MONTH FROM kr.created_date) AS mes FROM kr WHERE kr.created_date >= NOW() - INTERVAL '6 months' GROUP BY EXTRACT(YEAR FROM kr.created_date), EXTRACT(MONTH FROM kr.created_date) ORDER BY kr.created_date DESC;
+
+   SQL Esperada (Gold):
+   SELECT DATE_TRUNC('month', date) AS month_start, AVG(progress / NULLIF(target,0)) AS avg_monthly_progress FROM kr_history WHERE date >= DATE_TRUNC('month', NOW() - INTERVAL '6 month') AND date <= NOW() GROUP BY month_start ORDER BY month_start;
+
+39. Qual foi a variação de progresso por colaborador no último trimestre?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): missing FROM-clause entry for table "k"
+
+   SQL Gerada (com erro):
+   SELECT c.name, SUM(CASE WHEN k.direction = 'up' THEN (k.progress / k.target) ELSE (1 - (k.progress / k.target)) END) AS progress_variation FROM collaborator c JOIN kr k ON c.id = k.collaborator_id WHERE k.date >= NOW() - INTERVAL '3 month' AND k.date <= NOW() GROUP BY c.name
+
+   SQL Esperada (Gold):
+   WITH Hist AS (SELECT kh.collaborator_id, kh.kr_id, kh.date, (kh.progress / NULLIF(kh.target,0)) AS norm_prog FROM kr_history kh WHERE kh.date >= NOW() - INTERVAL '3 month'), Ranked AS (SELECT collaborator_id, kr_id, norm_prog, ROW_NUMBER() OVER (PARTITION BY collaborator_id, kr_id ORDER BY date ASC) AS rn_first, ROW_NUMBER() OVER (PARTITION BY collaborator_id, kr_id ORDER BY date DESC) AS rn_last FROM Hist), FirstLast AS (SELECT collaborator_id, kr_id, MAX(CASE WHEN rn_first = 1 THEN norm_prog END) AS first_prog, MAX(CASE WHEN rn_last = 1 THEN norm_prog END) AS last_prog FROM Ranked GROUP BY collaborator_id, kr_id) SELECT c.name, AVG(last_prog - first_prog) AS progress_change_qtr FROM collaborator c JOIN FirstLast fl ON c.id = fl.collaborator_id GROUP BY c.id, c.name ORDER BY progress_change_qtr DESC;
+
+40. Quantos registros de histórico de KR foram criados no último mês?
+   Status: ✅ SUCCESS
+   Tempo de execução: 4375ms
+   Exact Match: ✗
+   Component Match: 0.9375
+   Execution Match: ✗
+   Cosine Similarity: 0.8862
+   Table Similarity: 1.0000
+   Query Affinity Score: 0.9431
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column "created_date" does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT COUNT(*) FROM kr_history WHERE created_date >= NOW() - INTERVAL '1 month'
+
+   SQL Corrigida (final):
+   SELECT COUNT(*) FROM kr_history WHERE date >= NOW() - INTERVAL '1 month'
+
+   SQL Esperada (Gold):
+   SELECT COUNT(id) AS history_count_last_month FROM kr_history WHERE date >= NOW() - INTERVAL '1' MONTH;
+
+41. Quais KRs apresentaram regressão de progresso em algum momento?
+   Status: ✅ SUCCESS
+   Tempo de execução: 798ms
+   Exact Match: ✗
+   Component Match: 0.5625
+   Execution Match: ✗
+   Cosine Similarity: 0.6296
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3148
+
+   SQL Gerada:
+   SELECT kr.id, kr.progress, kr.target, kr.direction, kr_history.date FROM kr JOIN kr_history ON kr.id = kr_history.kr_id WHERE kr_history.progress < kr_history.target AND kr.direction = 'down'
+
+   SQL Esperada (Gold):
+   WITH Regressions AS (SELECT kr_id, (progress / NULLIF(target,0)) AS norm_progress, LAG(progress / NULLIF(target,0)) OVER (PARTITION BY kr_id ORDER BY date) AS prev_norm_progress FROM kr_history) SELECT DISTINCT k.title FROM kr k JOIN Regressions r ON k.id = r.kr_id WHERE r.norm_progress < r.prev_norm_progress;
+
+42. Qual a média de variação percentual de progresso por métrica (PERC, NUMERIC, YES_NO)?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1462ms
+   Exact Match: ✗
+   Component Match: 0.5625
+   Execution Match: ✗
+   Cosine Similarity: 0.6010
+   Table Similarity: 0.5000
+   Query Affinity Score: 0.5505
+
+   SQL Gerada:
+   SELECT metric, AVG(progress) AS media_progress FROM kr GROUP BY metric
+
+   SQL Esperada (Gold):
+   WITH ranked_history AS (SELECT kh.kr_id, kh.date, (kh.progress / NULLIF(kh.target,0)) AS norm_prog, k.metric, LAG(kh.progress / NULLIF(kh.target,0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS prev_norm_prog FROM kr_history kh JOIN kr k ON kh.kr_id = k.id), progress_changes AS (SELECT metric, ABS(norm_prog - prev_norm_prog) / NULLIF(prev_norm_prog, 0) * 100 AS variation_percent FROM ranked_history WHERE prev_norm_prog IS NOT NULL) SELECT metric, AVG(variation_percent) AS avg_variation_percent FROM progress_changes GROUP BY metric;
+
+43. Quantos KRs tiveram histórico de progresso acima de 90% antes do prazo final?
+   Status: ✅ SUCCESS
+   Tempo de execução: 979ms
+   Exact Match: ✗
+   Component Match: 0.7500
+   Execution Match: ✗
+   Cosine Similarity: 0.7529
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3764
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column kh.initiative_id does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT COUNT(*) FROM kr_history AS kh JOIN initiative AS i ON kh.initiative_id = i.id JOIN okr AS o ON i.id = o.initiative_id JOIN initiative_update AS iu ON o.id = iu.initiative_id WHERE kh.progress > 0.9 AND kh.date < i.end_date
+
+   SQL Corrigida (final):
+   SELECT COUNT(*) FROM kr_history AS kh JOIN kr AS k ON kh.kr_id = k.id JOIN initiative AS i ON k.okr_id = i.id JOIN okr AS o ON i.id = o.initiative_id WHERE kh.progress > 0.9 AND kh.date < i.end_date
+
+   SQL Esperada (Gold):
+   SELECT COUNT(DISTINCT kh.kr_id) as krs_acima_90 FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id WHERE (kh.progress/k.target)*100 >= 90 AND kh.date < o.deadline;
+
+44. Quais colaboradores atualizaram o maior número de KRs no histórico?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): operator does not exist: bigint = character varying
+
+   SQL Gerada (com erro):
+   SELECT c.name, COUNT(kr.id) AS total_krs FROM collaborator c JOIN initiative_update iu ON c.id = iu.created_by JOIN kr_history kh ON iu.id = kh.initiative_update_id GROUP BY c.name ORDER BY total_krs DESC LIMIT 10
+
+   SQL Esperada (Gold):
+   SELECT c.id, c.name, COUNT(kh.id) as total_atualizacoes FROM collaborator c JOIN kr_history kh ON c.id = kh.collaborator_id GROUP BY c.id, c.name ORDER BY total_atualizacoes DESC LIMIT 10;
+
+45. Quantos updates de iniciativa foram registrados por mês neste ano?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2345ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.8548
+   Table Similarity: 0.5000
+   Query Affinity Score: 0.6774
+
+   SQL Gerada:
+   SELECT EXTRACT(YEAR FROM i.last_modified_date) AS year, EXTRACT(MONTH FROM i.last_modified_date) AS month, COUNT(*) AS updates FROM initiative_update i GROUP BY EXTRACT(YEAR FROM i.last_modified_date), EXTRACT(MONTH FROM i.last_modified_date)
+
+   SQL Esperada (Gold):
+   SELECT EXTRACT(YEAR FROM created_date) as ano, EXTRACT(MONTH FROM created_date) as mes, COUNT(*) as total_updates FROM initiative_update WHERE EXTRACT(YEAR FROM created_date) = EXTRACT(YEAR FROM CURRENT_DATE) GROUP BY ano, mes ORDER BY ano, mes;
+
+46. Quais iniciativas tiveram maior número de updates em um único mês?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1952ms
+   Exact Match: ✗
+   Component Match: 0.7500
+   Execution Match: ✗
+   Cosine Similarity: 0.8752
+   Table Similarity: 0.0200
+   Query Affinity Score: 0.4476
+
+   SQL Gerada:
+   SELECT i.title, COUNT(iu.id) AS num_updates FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.title ORDER BY num_updates DESC LIMIT 1
+
+   SQL Esperada (Gold):
+   SELECT i.id, i.title, EXTRACT(YEAR FROM iu.created_date) as ano, EXTRACT(MONTH FROM iu.created_date) as mes, COUNT(iu.id) as updates_mes FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id, i.title, ano, mes ORDER BY updates_mes DESC LIMIT 10;
+
+47. Qual o tempo médio entre updates consecutivos de uma mesma iniciativa?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2265ms
+   Exact Match: ✗
+   Component Match: 0.6250
+   Execution Match: ✗
+   Cosine Similarity: 0.8379
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4189
+
+   SQL Gerada:
+   SELECT AVG(EXTRACT(EPOCH FROM (t2.last_modified_date - t1.last_modified_date))) AS avg_time_between_updates FROM initiative_update t1 INNER JOIN initiative_update t2 ON t1.initiative_id = t2.initiative_id AND t1.id < t2.id
+
+   SQL Esperada (Gold):
+   WITH update_gaps AS (SELECT initiative_id, EXTRACT(EPOCH FROM (created_date - LAG(created_date) OVER (PARTITION BY initiative_id ORDER BY created_date))) / 86400 as dias_entre_updates FROM initiative_update) SELECT AVG(dias_entre_updates) as tempo_medio_dias FROM update_gaps WHERE dias_entre_updates IS NOT NULL;
+
+48. Para cada iniciativa, qual é o KR mais recente e seu progresso atual?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column kr.date does not exist
+
+   SQL Gerada (com erro):
+   SELECT i.title, kr.progress, kr.target, kr.direction, kr.id AS kr_id, kr.date AS kr_date FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN kr kr ON iu.id = kr.initiative_update_id ORDER BY iu.created_date DESC LIMIT 1
+
+   SQL Esperada (Gold):
+   WITH ranked_krs AS (SELECT i.id as iniciativa_id, i.title as iniciativa, k.id as kr_id, k.title as kr, k.progress, k.last_modified_date, ROW_NUMBER() OVER (PARTITION BY i.id ORDER BY k.last_modified_date DESC) as rn FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN kr k ON o.id = k.okr_id) SELECT iniciativa_id, iniciativa, kr_id, kr, progress FROM ranked_krs WHERE rn = 1;
+
+49. Analisar a tendência de redução na frequência de updates conforme o deadline dos OKRs se aproxima.
+   Status: ✅ SUCCESS
+   Tempo de execução: 1933ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.6857
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3429
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column "deadline" does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT EXTRACT(MONTH FROM deadline) AS deadline_month, COUNT(*) AS update_frequency FROM initiative_update WHERE deadline > CURRENT_TIMESTAMP GROUP BY deadline_month ORDER BY deadline_month ASC
+
+   SQL Corrigida (final):
+   SELECT EXTRACT(MONTH FROM o.deadline) AS deadline_month, COUNT(iu.id) AS update_frequency FROM initiative_update iu JOIN okr o ON iu.initiative_id = o.id WHERE o.deadline > CURRENT_TIMESTAMP GROUP BY deadline_month ORDER BY deadline_month ASC
+
+   SQL Esperada (Gold):
+   SELECT i.id, i.title, o.deadline, COUNT(iu.id) as total_updates, AVG(EXTRACT(EPOCH FROM (o.deadline - iu.created_date)) / 86400) as dias_antes_prazo_medio FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.created_date <= o.deadline GROUP BY i.id, i.title, o.deadline ORDER BY dias_antes_prazo_medio;
+
+50. Listar KRs com lacunas maiores que 30 dias entre atualizações de progresso
+   Status: ✅ SUCCESS
+   Tempo de execução: 1719ms
+   Exact Match: ✗
+   Component Match: 0.5625
+   Execution Match: ✗
+   Cosine Similarity: 0.7049
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3524
+
+   SQL Gerada:
+   SELECT kr.id, kr.progress, kr.target, kr.direction, kr_history.date AS last_update FROM kr_history JOIN kr ON kr_history.kr_id = kr.id WHERE kr_history.date - kr.last_modified_date > INTERVAL '30 days' GROUP BY kr.id, kr.progress, kr.target, kr.direction, kr_history.date ORDER BY kr.id;
+
+   SQL Esperada (Gold):
+   WITH kr_update_gaps AS (SELECT kh.kr_id, k.title as kr_title, kh.date as current_date, LAG(kh.date) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) as previous_date, EXTRACT(EPOCH FROM (kh.date - LAG(kh.date) OVER (PARTITION BY kh.kr_id ORDER BY kh.date))) / 86400 as dias_entre_atualizacoes FROM kr_history kh JOIN kr k ON kh.kr_id = k.id) SELECT kr_id, kr_title, previous_date, current_date, dias_entre_atualizacoes FROM kr_update_gaps WHERE dias_entre_atualizacoes > 30 ORDER BY dias_entre_atualizacoes DESC;
+
+51. Quais OKRs estão com prazo próximo do vencimento?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1518ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.6458
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3229
+
+   SQL Gerada:
+   SELECT i.id, i.title, i.end_date FROM initiative i WHERE i.end_date <= CURRENT_DATE + INTERVAL '30 days' ORDER BY i.end_date ASC;
+
+   SQL Esperada (Gold):
+   SELECT id, deadline FROM okr WHERE deadline BETWEEN NOW() AND NOW() + INTERVAL '7 days' ORDER BY deadline ASC;
+
+52. Qual é a média de progresso dos KRs em cada OKR?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column kh.okr_id does not exist
+
+   SQL Gerada (com erro):
+   SELECT o.id, AVG(kr.progress) AS media_progresso FROM okr o JOIN kr_history kh ON o.id = kh.okr_id JOIN kr k ON kh.kr_id = k.id GROUP BY o.id
+
+   SQL Esperada (Gold):
+   SELECT okr_id, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY okr_id;
+
+53. Quais OKRs têm menor progresso médio?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1018ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.8007
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4004
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column o.title does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT o.id, o.title, AVG(kr.progress / kr.target) AS progresso_medio FROM okr o JOIN initiative_update iu ON o.id = iu.initiative_id JOIN kr kr ON iu.id = kr.okr_id GROUP BY o.id, o.title ORDER BY progresso_medio ASC LIMIT 1
+
+   SQL Corrigida (final):
+   SELECT o.id, o.description, AVG(kr.progress / kr.target) AS progresso_medio FROM okr o JOIN initiative_update iu ON o.id = iu.initiative_id JOIN kr kr ON iu.id = kr.okr_id GROUP BY o.id, o.description ORDER BY progresso_medio ASC LIMIT 1
+
+   SQL Esperada (Gold):
+   SELECT okr_id, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY okr_id ORDER BY avg_progress ASC LIMIT 5;
+
+54. Qual é o percentual de KRs concluídos por iniciativa?
+   Status: ✅ SUCCESS
+   Tempo de execução: 772ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.8937
+   Table Similarity: 0.3333
+   Query Affinity Score: 0.6135
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column kr.collaborator_id does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.id, i.title, SUM(CASE WHEN kr.progress >= 1.0 THEN 1 ELSE 0 END) / COUNT(kr.id) * 100 AS percent_concluido FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id JOIN kr ON im.managers_id = kr.collaborator_id GROUP BY i.id, i.title
+
+   SQL Corrigida (final):
+   SELECT i.id, i.title, SUM(CASE WHEN kr.progress >= 1.0 THEN 1 ELSE 0 END) / COUNT(kr.id) * 100 AS percent_concluido FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id JOIN kr ON i.id = kr.okr_id GROUP BY i.id, i.title
+
+   SQL Esperada (Gold):
+   SELECT i.id AS initiative_id, SUM(CASE WHEN (k.direction = 'up'  AND k.progress / NULLIF(k.target,0) >= 1) OR (k.direction = 'down' AND k.progress / NULLIF(k.target,0) <= 1) THEN 1 ELSE 0 END) * 100.0 / COUNT(k.id) AS percent_completed FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id GROUP BY i.id;
+
+55. Qual o tempo médio restante até o deadline dos OKRs ativos?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column "active" does not exist
+
+   SQL Gerada (com erro):
+   SELECT AVG(EXTRACT(EPOCH FROM (deadline - CURRENT_TIMESTAMP))) AS tempo_medio_restante FROM okr WHERE active = true
+
+   SQL Esperada (Gold):
+   SELECT AVG(EXTRACT(EPOCH FROM (deadline - NOW())) / 86400) AS avg_days_remaining FROM okr WHERE deadline > NOW();
+
+56. Quais OKRs estão vinculados a iniciativas que já encerraram?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1986ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.7687
+   Table Similarity: 0.0472
+   Query Affinity Score: 0.4079
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column iu.end_date does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.id, i.title FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.end_date IS NOT NULL
+
+   SQL Corrigida (final):
+   SELECT i.id, i.title FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.year_month IS NOT NULL
+
+   SQL Esperada (Gold):
+   SELECT o.id AS okr_id, o.initiative_id, i.end_date FROM okr o JOIN initiative i ON o.initiative_id = i.id WHERE i.end_date IS NOT NULL AND i.end_date < NOW();
+
+57. Quantos KRs estão atrasados em relação à meta planejada?
+   Status: ✅ SUCCESS
+   Tempo de execução: 928ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.6202
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3101
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column "deadline" does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT COUNT(*) FROM kr WHERE deadline < CURRENT_TIMESTAMP
+
+   SQL Corrigida (final):
+   SELECT COUNT(*) FROM kr WHERE target < progress
+
+   SQL Esperada (Gold):
+   SELECT COUNT(*) AS delayed_kr_count FROM kr k JOIN kr_history kh ON kh.kr_id = k.id AND kh.date = (SELECT MAX(h.date) FROM kr_history h WHERE h.kr_id = k.id) WHERE (k.direction = 'up'  AND k.progress / NULLIF(k.target,0) < 1) OR (k.direction = 'down' AND k.progress / NULLIF(k.target,0) > 1);
+
+58. Qual o progresso médio dos KRs de tipo “PERC” em comparação aos de tipo “NUMERIC”?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1782ms
+   Exact Match: ✗
+   Component Match: 0.7500
+   Execution Match: ✗
+   Cosine Similarity: 0.8444
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4222
+
+   SQL Gerada:
+   SELECT AVG(kr.progress) AS perc_avg, AVG(kr2.progress) AS numeric_avg FROM kr AS kr JOIN kr AS kr2 ON kr.id = kr2.id WHERE kr.metric = 'PERC' AND kr2.metric = 'NUMERIC'
+
+   SQL Esperada (Gold):
+   SELECT metric, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr WHERE metric IN ('PERC', 'NUMERIC') GROUP BY metric;
+
+59. Quais OKRs têm maior número de KRs associados?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2386ms
+   Exact Match: ✗
+   Component Match: 0.7500
+   Execution Match: ✗
+   Cosine Similarity: 0.6888
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3444
+   Tentativas de correção: 2
+     Tentativa 1: ❌ relation "initiative_kr" does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.id, i.title, COUNT(kr.id) AS kr_count FROM initiative i JOIN initiative_kr ik ON i.id = ik.initiative_id JOIN kr ON ik.kr_id = kr.id GROUP BY i.id, i.title ORDER BY kr_count DESC LIMIT 1
+
+   SQL Corrigida (final):
+   SELECT i.id, i.title, COUNT(kr.id) AS kr_count FROM initiative i JOIN initiative_managers im ON i.id = im.initiative_id JOIN kr ON im.managers_id = kr.bookmarked_by_id GROUP BY i.id, i.title ORDER BY kr_count DESC LIMIT 1
+
+   SQL Esperada (Gold):
+   SELECT okr_id, COUNT(*) AS kr_count FROM kr GROUP BY okr_id ORDER BY kr_count DESC LIMIT 5;
+
+60. Qual o percentual de KRs marcados como “bookmarked” pelos colaboradores?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2341ms
+   Exact Match: ✗
+   Component Match: 0.7500
+   Execution Match: ✗
+   Cosine Similarity: 0.5423
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.2712
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column t2.bookmarked does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT CAST(SUM(CASE WHEN t2.bookmarked THEN 1 ELSE 0 END) AS float) * 100 / COUNT(*) FROM initiative AS t1 INNER JOIN initiative_update AS t2 ON t1.id = t2.initiative_id INNER JOIN okr AS t3 ON t1.id = t3.initiative_id INNER JOIN kr AS t4 ON t3.id = t4.okr_id INNER JOIN kr_history AS t5 ON t4.id = t5.kr_id WHERE t2.bookmarked IS NOT NULL
+
+   SQL Corrigida (final):
+   SELECT CAST(SUM(CASE WHEN t4.bookmarked THEN 1 ELSE 0 END) AS float) * 100 / COUNT(*) FROM initiative AS t1 INNER JOIN initiative_update AS t2 ON t1.id = t2.initiative_id INNER JOIN okr AS t3 ON t1.id = t3.initiative_id INNER JOIN kr AS t4 ON t3.id = t4.okr_id INNER JOIN kr_history AS t5 ON t4.id = t5.kr_id WHERE t4.bookmarked IS NOT NULL
+
+   SQL Esperada (Gold):
+   SELECT COUNT(*) FILTER (WHERE bookmarked) * 100.0 / COUNT(*) AS percent_bookmarked FROM kr;
+
+61. Qual é o percentual médio de progresso dos KRs (Key Results) em relação às metas estabelecidas nos últimos três meses?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2892ms
+   Exact Match: ✗
+   Component Match: 0.8125
+   Execution Match: ✗
+   Cosine Similarity: 0.8667
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4334
+   Tentativas de correção: 3
+     Tentativa 1: ❌ missing FROM-clause entry for table "kr"
+     Tentativa 2: ❌ invalid reference to FROM-clause entry for table "kr"
+     Tentativa 3: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT AVG(kr.progress / kr.target) AS progresso_medio FROM kr_history WHERE date >= NOW() - INTERVAL '3 month' AND metric IN ('PERC', 'NUMERIC')
+
+   SQL Corrigida (final):
+   SELECT AVG(kr.progress / kr.target) AS progresso_medio FROM kr_history AS kh JOIN kr ON kh.kr_id = kr.id WHERE kh.date >= NOW() - INTERVAL '3 month' AND kr.metric IN ('PERC', 'NUMERIC')
+
+   SQL Esperada (Gold):
+   SELECT AVG(kh.progress / NULLIF(k.target, 0)) * 100 AS avg_progress_percent FROM kr k JOIN kr_history kh ON kh.kr_id = k.id WHERE kh.date >= NOW() - INTERVAL '3 months';
+
+62. Quais colaboradores têm mais KRs marcados como “bookmarked” (favoritos) e demonstram maior engajamento com os objetivos da empresa?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1416ms
+   Exact Match: ✗
+   Component Match: 0.6250
+   Execution Match: ✗
+   Cosine Similarity: 0.8983
+   Table Similarity: 0.1333
+   Query Affinity Score: 0.5158
+   Tentativas de correção: 2
+     Tentativa 1: ❌ column iu.collaborator_id does not exist
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT c.name, COUNT(kr.id) AS bookmarked_krs FROM collaborator c JOIN initiative_update iu ON c.id = iu.collaborator_id JOIN kr kr ON iu.id = kr.initiative_update_id WHERE kr.bookmarked = TRUE GROUP BY c.name ORDER BY COUNT(kr.id) DESC LIMIT 10
+
+   SQL Corrigida (final):
+   SELECT c.name, COUNT(kr.id) AS bookmarked_krs FROM collaborator c JOIN kr ON c.id = kr.bookmarked_by_id JOIN okr o ON kr.okr_id = o.id JOIN initiative i ON o.initiative_id = i.id JOIN initiative_update iu ON i.id = iu.initiative_id WHERE kr.bookmarked = TRUE GROUP BY c.name ORDER BY COUNT(kr.id) DESC LIMIT 10
+
+   SQL Esperada (Gold):
+   SELECT c.id, c.name, COUNT(k.id) AS bookmarked_kr_count FROM collaborator c JOIN kr k ON k.bookmarked_by_id = c.id AND k.bookmarked = true GROUP BY c.id, c.name ORDER BY bookmarked_kr_count DESC LIMIT 10;
+
+63. Qual é o tempo médio entre a criação de um OKR e a primeira atualização de progresso registrada?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1133ms
+   Exact Match: ✗
+   Component Match: 0.8750
+   Execution Match: ✗
+   Cosine Similarity: 0.7744
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.3872
+
+   SQL Gerada:
+   SELECT AVG(EXTRACT(EPOCH FROM (iu.last_modified_date - o.created_date))) AS tempo_medio FROM okr o JOIN initiative_update iu ON o.id = iu.initiative_id WHERE iu.last_modified_date IS NOT NULL AND o.created_date IS NOT NULL
+
+   SQL Esperada (Gold):
+   SELECT AVG(EXTRACT(EPOCH FROM (kh.first_update - o.created_date)) / 86400) AS avg_days_to_first_update FROM okr o JOIN (SELECT k.okr_id, MIN(kh.date) AS first_update FROM kr k JOIN kr_history kh ON kh.kr_id = k.id GROUP BY k.okr_id) kh ON kh.okr_id = o.id;
+
+64. Quantos OKRs estão próximos do prazo final (deadline) e ainda não atingiram 80% de progresso?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): operator does not exist: character varying < date
+
+   SQL Gerada (com erro):
+   SELECT COUNT(*) FROM initiative WHERE id IN (SELECT initiative_id FROM initiative_update WHERE deadline < CURRENT_TIMESTAMP AND progress < 0.8)
+
+   SQL Esperada (Gold):
+   SELECT COUNT(*) AS okrs_near_deadline_low_progress FROM ( SELECT o.id FROM okr o JOIN kr k ON k.okr_id = o.id WHERE o.deadline BETWEEN NOW() AND NOW() + INTERVAL '7 days' GROUP BY o.id HAVING AVG(k.progress / NULLIF(k.target, 0)) < 0.8 ) sub;
+
+65. Quais iniciativas possuem OKRs cujo progresso médio supera o progresso médio global de todas as iniciativas da mesma categoria?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): table name "kr" specified more than once
+
+   SQL Gerada (com erro):
+   SELECT i.* FROM initiative i JOIN (SELECT category, AVG(kr.progress / kr.target) AS avg_progress FROM initiative i JOIN kr ON i.id = i.owner_id JOIN kr_history kh ON kr.id = kh.kr_id GROUP BY i.category) AS avg_progress_by_category ON i.category = avg_progress_by_category.category WHERE i.category IS NOT NULL AND (i.category, kr.progress / kr.target) IN (SELECT category, AVG(progress / target) AS avg_progress FROM initiative i JOIN kr ON i.id = i.owner_id JOIN kr_history kh ON kr.id = kh.kr_id GROUP BY i.category, kr.progress / kr.target) GROUP BY i.category, kr.progress / kr.target HAVING AVG(kr.progress / kr.target) > (SELECT AVG(avg_progress) FROM (SELECT category, AVG(kr.progress / kr.target) AS avg_progress FROM initiative i JOIN kr ON i.id = i.owner_id JOIN kr_history kh ON kr.id = kh.kr_id GROUP BY i.category) AS subquery)
+
+   SQL Esperada (Gold):
+   WITH initiative_avg AS (SELECT i.id, i.category, AVG(k.progress / NULLIF(k.target, 0)) AS avg_progress FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id GROUP BY i.id, i.category), category_avg AS (SELECT category, AVG(avg_progress) AS category_avg_progress FROM initiative_avg GROUP BY category) SELECT ia.id, ia.category, ia.avg_progress FROM initiative_avg ia JOIN category_avg ca ON ia.category = ca.category WHERE ia.avg_progress > ca.category_avg_progress;
+
+66. Qual colaborador teve o maior aumento percentual de progresso médio de KRs entre o último e o penúltimo mês?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2562ms
+   Exact Match: ✗
+   Component Match: 0.5000
+   Execution Match: ✗
+   Cosine Similarity: 0.8160
+   Table Similarity: 0.0000
+   Query Affinity Score: 0.4080
+   Tentativas de correção: 2
+     Tentativa 1: ❌ division by zero
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT c.name, AVG((kr2.progress - kr1.progress) / kr1.progress) AS progresso_aumento FROM collaborator c JOIN kr_history kr1 ON c.id = kr1.collaborator_id JOIN kr_history kr2 ON c.id = kr2.collaborator_id AND kr2.date = (SELECT MAX(date) FROM kr_history WHERE collaborator_id = c.id AND date < (SELECT MAX(date) FROM kr_history WHERE collaborator_id = c.id)) WHERE kr1.date = (SELECT MAX(date) FROM kr_history WHERE collaborator_id = c.id AND date < (SELECT MAX(date) FROM kr_history WHERE collaborator_id = c.id)) AND kr1.direction = 'up' AND kr2.direction = 'up' GROUP BY c.name ORDER BY progresso_aumento DESC LIMIT 1
+
+   SQL Corrigida (final):
+   SELECT c.name, AVG(CASE WHEN kr1.progress = 0 THEN NULL ELSE (kr2.progress - kr1.progress) / kr1.progress END) AS progresso_aumento FROM collaborator c JOIN kr_history kr1 ON c.id = kr1.collaborator_id JOIN kr_history kr2 ON c.id = kr2.collaborator_id AND kr2.date = (SELECT MAX(date) FROM kr_history WHERE collaborator_id = c.id AND date < (SELECT MAX(date) FROM kr_history WHERE collaborator_id = c.id)) WHERE kr1.date = (SELECT MAX(date) FROM kr_history WHERE collaborator_id = c.id AND date < (SELECT MAX(date) FROM kr_history WHERE collaborator_id = c.id)) AND kr1.direction = 'up' AND kr2.direction = 'up' GROUP BY c.name HAVING AVG(CASE WHEN kr1.progress = 0 THEN NULL ELSE (kr2.progress - kr1.progress) / kr1.progress END) IS NOT NULL ORDER BY AVG(CASE WHEN kr1.progress = 0 THEN NULL ELSE (kr2.progress - kr1.progress) / kr1.progress END) DESC LIMIT 1
+
+   SQL Esperada (Gold):
+   WITH monthly_progress AS (SELECT collaborator_id, DATE_TRUNC('month', date) AS month, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr_history GROUP BY collaborator_id, month), ranked_progress AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY collaborator_id ORDER BY month DESC) AS rn FROM monthly_progress), last_two_months AS (SELECT p1.collaborator_id, p1.avg_progress AS last_month_progress, p2.avg_progress AS prev_month_progress, CASE WHEN p2.avg_progress = 0 THEN NULL ELSE ((p1.avg_progress - p2.avg_progress) / p2.avg_progress) * 100 END AS pct_increase FROM ranked_progress p1 JOIN ranked_progress p2 ON p1.collaborator_id = p2.collaborator_id WHERE p1.rn = 1 AND p2.rn = 2) SELECT collaborator_id, pct_increase FROM last_two_months ORDER BY pct_increase DESC LIMIT 1;
+
+67. Quais iniciativas tiveram pelo menos um KR com progresso superior a 100% em algum ponto do histórico?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1729ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.8318
+   Table Similarity: 0.3333
+   Query Affinity Score: 0.5825
+
+   SQL Gerada:
+   SELECT i.id, i.title FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id JOIN kr k ON iu.id = k.okr_id WHERE k.progress > 100 ORDER BY i.id;
+
+   SQL Esperada (Gold):
+   SELECT DISTINCT i.id, i.title FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id JOIN kr_history kh ON kh.kr_id = k.id WHERE kh.progress / NULLIF(kh.target, 0) > 1;
+
+68. Qual é o tempo médio (em dias) entre atualizações consecutivas de um mesmo KR no histórico?
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column h2.created_date does not exist
+
+   SQL Gerada (com erro):
+   SELECT AVG(EXTRACT(DAY FROM (h2.created_date - h1.created_date))) AS avg_days FROM kr_history h1 JOIN kr_history h2 ON h1.id = h2.id AND h1.id < h2.id
+
+   SQL Esperada (Gold):
+   WITH diffs AS (SELECT kr_id, date, LEAD(date) OVER (PARTITION BY kr_id ORDER BY date) AS next_date FROM kr_history) SELECT AVG(EXTRACT(EPOCH FROM (next_date - date)) / 86400) AS avg_days_between_updates FROM diffs WHERE next_date IS NOT NULL;
+
+69. Quais iniciativas têm pelo menos dois OKRs com deadlines no mesmo mês?
+   Status: ✅ SUCCESS
+   Tempo de execução: 2748ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.7403
+   Table Similarity: 0.0938
+   Query Affinity Score: 0.4170
+   Tentativas de correção: 3
+     Tentativa 1: ❌ column iu.deadline does not exist
+     Tentativa 2: ❌ function pg_catalog.extract(unknown, character varying) does not exist
+     Tentativa 3: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT i.id, i.title FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id WHERE iu.deadline = (SELECT MAX(deadline) FROM initiative_update WHERE EXTRACT(MONTH FROM deadline) = EXTRACT(MONTH FROM iu.deadline)) GROUP BY i.id, i.title HAVING COUNT(iu.id) >= 2
+
+   SQL Corrigida (final):
+   SELECT i.id, i.title FROM initiative i JOIN okr o ON i.id = o.initiative_id JOIN initiative_update iu ON o.id = iu.initiative_id WHERE EXTRACT(MONTH FROM o.deadline) = EXTRACT(MONTH FROM TO_DATE(iu.year_month::text, 'YYYY-MM')) GROUP BY i.id, i.title HAVING COUNT(DISTINCT o.id) >= 2
+
+   SQL Esperada (Gold):
+   SELECT initiative_id FROM okr GROUP BY initiative_id, DATE_TRUNC('month', deadline) HAVING COUNT(*) >= 2;
+
+70. Qual é a distribuição percentual de KRs por tipo de métrica dentro de cada iniciativa?
+   Status: ✅ SUCCESS
+   Tempo de execução: 1685ms
+   Exact Match: ✗
+   Component Match: 0.6875
+   Execution Match: ✗
+   Cosine Similarity: 0.7874
+   Table Similarity: 0.0623
+   Query Affinity Score: 0.4248
+
+   SQL Gerada:
+   SELECT i.id, i.title, k.metric, k.progress, k.target, k.direction, COUNT(k.id) as total_krs, ROUND(COUNT(k.id) * 100.0 / (SELECT COUNT(*) FROM kr), 2) as percent FROM initiative i JOIN initiative_update u ON i.id = u.initiative_id JOIN kr k ON u.id = k.okr_id GROUP BY i.id, i.title, k.metric, k.progress, k.target, k.direction
+
+   SQL Esperada (Gold):
+   WITH kr_counts AS (SELECT i.id AS initiative_id, k.metric, COUNT(*) AS count FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id GROUP BY i.id, k.metric), initiative_totals AS (SELECT initiative_id, SUM(count) AS total FROM kr_counts GROUP BY initiative_id) SELECT kc.initiative_id, kc.metric, (kc.count::float / it.total) * 100 AS percent FROM kr_counts kc JOIN initiative_totals it ON kc.initiative_id = it.initiative_id ORDER BY kc.initiative_id, percent DESC;
+
+71. Listar os KRs cujo progresso atual está abaixo da média dos KRs do mesmo tipo e direção.
+   Status: ✅ SUCCESS
+   Tempo de execução: 2357ms
+   Exact Match: ✗
+   Component Match: 0.6250
+   Execution Match: ✗
+   Cosine Similarity: 0.8737
+   Table Similarity: 0.5035
+   Query Affinity Score: 0.6886
+   Tentativas de correção: 3
+     Tentativa 1: ❌ column "kr_id" does not exist
+     Tentativa 2: ❌ column "avg_krs.avg_progress" must appear in the GROUP BY clause or be used in an aggregate function
+     Tentativa 3: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT krs.* FROM kr AS krs JOIN ( SELECT kr_id, metric, direction, AVG(progress / target) AS avg_progress FROM kr GROUP BY kr_id, metric, direction ) AS avg_krs ON krs.id = avg_krs.kr_id WHERE (krs.direction = 'up' AND krs.progress / krs.target < avg_krs.avg_progress) OR (krs.direction = 'down' AND krs.progress / krs.target > avg_krs.avg_progress) GROUP BY krs.id, krs.progress, krs.target, krs.direction, krs.metric HAVING AVG(krs.progress / krs.target) < avg_krs.avg_progress
+
+   SQL Corrigida (final):
+   SELECT krs.* FROM kr AS krs JOIN ( SELECT okr_id, metric, direction, AVG(progress / target) AS avg_progress FROM kr GROUP BY okr_id, metric, direction ) AS avg_krs ON krs.okr_id = avg_krs.okr_id WHERE (krs.direction = 'up' AND krs.progress / krs.target < avg_krs.avg_progress) OR (krs.direction = 'down' AND krs.progress / krs.target > avg_krs.avg_progress) GROUP BY krs.id, krs.progress, krs.target, krs.direction, krs.metric, avg_krs.avg_progress HAVING AVG(krs.progress / krs.target) < avg_krs.avg_progress
+
+   SQL Esperada (Gold):
+   WITH avg_progress AS (SELECT metric, direction, AVG(progress / NULLIF(target, 0)) AS avg_progress FROM kr GROUP BY metric, direction) SELECT k.* FROM kr k JOIN avg_progress ap ON k.metric = ap.metric AND k.direction = ap.direction WHERE (k.progress / NULLIF(k.target, 0)) < ap.avg_progress;
+
+72. Identificar iniciativas que mantêm registros de atualização em meses consecutivos, sem interrupções.
+   Status: ✅ SUCCESS
+   Tempo de execução: 1179ms
+   Exact Match: ✗
+   Component Match: 0.3750
+   Execution Match: ✗
+   Cosine Similarity: 0.7149
+   Table Similarity: 0.2500
+   Query Affinity Score: 0.4825
+
+   SQL Gerada:
+   SELECT i.id, i.title, i.start_date, i.end_date FROM initiative i JOIN initiative_update iu ON i.id = iu.initiative_id GROUP BY i.id, i.title, i.start_date, i.end_date HAVING COUNT(DISTINCT EXTRACT(YEAR FROM iu.created_date) * 100 + EXTRACT(MONTH FROM iu.created_date)) = COUNT(DISTINCT iu.created_date)
+
+   SQL Esperada (Gold):
+   WITH updates_months AS (SELECT initiative_id, DATE_TRUNC('month', created_date) AS month FROM initiative_update GROUP BY initiative_id, month), consecutive AS (SELECT initiative_id, month, LAG(month) OVER (PARTITION BY initiative_id ORDER BY month) AS prev_month FROM updates_months), gaps AS (SELECT initiative_id, COUNT(*) FILTER (WHERE prev_month IS NOT NULL AND month - INTERVAL '1 month' <> prev_month) AS gap_count, COUNT(month) AS total_months FROM consecutive GROUP BY initiative_id) SELECT initiative_id FROM gaps WHERE gap_count = 0 AND total_months > 1;
+
+73. Calcular a taxa média de crescimento mensal do progresso dos KRs, segmentada por tipo de métrica.
+   Status: ✅ SUCCESS
+   Tempo de execução: 2427ms
+   Exact Match: ✗
+   Component Match: 0.5625
+   Execution Match: ✗
+   Cosine Similarity: 0.8181
+   Table Similarity: 0.0133
+   Query Affinity Score: 0.4157
+   Tentativas de correção: 2
+     Tentativa 1: ❌ unit "year_month" not recognized for type timestamp without time zone
+     Tentativa 2: ✅ Corrigido
+
+   SQL Gerada (original):
+   SELECT EXTRACT(YEAR_MONTH FROM kr_history.date) AS year_month, kr.metric, AVG(kr_history.progress / kr.target) AS avg_growth_rate FROM kr_history JOIN kr ON kr_history.kr_id = kr.id GROUP BY EXTRACT(YEAR_MONTH FROM kr_history.date), kr.metric
+
+   SQL Corrigida (final):
+   SELECT EXTRACT(YEAR FROM kr_history.date) AS year, EXTRACT(MONTH FROM kr_history.date) AS month, kr.metric, AVG(kr_history.progress / kr.target) AS avg_growth_rate FROM kr_history JOIN kr ON kr_history.kr_id = kr.id GROUP BY year, month, kr.metric
+
+   SQL Esperada (Gold):
+   WITH monthly_kr_progress AS (SELECT kr_id, metric, DATE_TRUNC('month', date) AS month, AVG(progress / NULLIF(target,0)) AS avg_progress FROM kr_history GROUP BY kr_id, metric, month), monthly_growth AS (SELECT kr_id, metric, month, avg_progress, LAG(avg_progress) OVER (PARTITION BY kr_id ORDER BY month) AS prev_avg_progress FROM monthly_kr_progress), growth_rate AS (SELECT metric, AVG(CASE WHEN prev_avg_progress IS NOT NULL THEN (avg_progress - prev_avg_progress) / NULLIF(prev_avg_progress,0) ELSE NULL END) AS avg_monthly_growth_rate FROM monthly_growth GROUP BY metric) SELECT metric, avg_monthly_growth_rate FROM growth_rate;
+
+74. Detectar iniciativas que apresentaram regressão média no progresso de seus KRs durante o último ciclo de atualização.
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column "initiative_id" does not exist
+
+   SQL Gerada (com erro):
+   WITH kr_progress AS (SELECT kr_id, initiative_id, AVG(progress / target) AS avg_progress FROM kr GROUP BY kr_id, initiative_id), initiative_updates AS (SELECT initiative_id, created_date, initiative_id AS id FROM initiative_update WHERE created_date >= NOW() - INTERVAL '1 month' AND initiative_id IN (SELECT initiative_id FROM kr_progress)) SELECT initiative_id, AVG(avg_progress) AS avg_regression FROM kr_progress JOIN initiative_updates ON kr_progress.initiative_id = initiative_updates.initiative_id GROUP BY initiative_id HAVING AVG(avg_progress) < (SELECT AVG(avg_progress) FROM kr_progress JOIN initiative_updates ON kr_progress.initiative_id = initiative_updates.initive_id WHERE initiative_updates.created_date >= NOW() - INTERVAL '1 month')
+
+   SQL Esperada (Gold):
+   WITH last_two_updates AS (SELECT kh.kr_id, i.id AS initiative_id, kh.date, ROW_NUMBER() OVER (PARTITION BY kh.kr_id ORDER BY kh.date DESC) AS rn, kh.progress / NULLIF(k.target, 0) AS relative_progress FROM kr_history kh JOIN kr k ON kh.kr_id = k.id JOIN okr o ON k.okr_id = o.id JOIN initiative i ON o.initiative_id = i.id), progress_diff AS (SELECT a.initiative_id, AVG(a.relative_progress - b.relative_progress) AS avg_progress_change FROM last_two_updates a JOIN last_two_updates b ON a.kr_id = b.kr_id AND a.rn = 1 AND b.rn = 2 GROUP BY a.initiative_id) SELECT initiative_id FROM progress_diff WHERE avg_progress_change < 0;
+
+75. Apontar iniciativas cujos OKRs estão vencidos, mas cujo progresso médio permanece abaixo de 80%.
+   Status: ❌ ERROR
+   Erro: Erro de execução no banco após 3 tentativa(s): column u.deadline does not exist
+
+   SQL Gerada (com erro):
+   SELECT i.id, i.title, AVG(kr.progress) AS avg_progress FROM initiative i JOIN initiative_update u ON i.id = u.initiative_id JOIN kr k ON u.id = k.okr_id WHERE u.deadline < CURRENT_TIMESTAMP AND k.direction = 'up' GROUP BY i.id, i.title HAVING AVG(kr.progress) < 0.8
+
+   SQL Esperada (Gold):
+   SELECT i.id AS initiative_id FROM initiative i JOIN okr o ON o.initiative_id = i.id JOIN kr k ON k.okr_id = o.id WHERE o.deadline < NOW() GROUP BY i.id HAVING AVG(k.progress / NULLIF(k.target, 0)) < 0.8;
+
+76. Identificar KRs com direção “NEGATIVA” que mantêm melhora contínua e atingem o target definido.
+   Status: ✅ SUCCESS
+   Tempo de execução: 1180ms
+   Exact Match: ✗
+   Component Match: 0.4375
+   Execution Match: ✗
+   Cosine Similarity: 0.7797
+   Table Similarity: 0.0595
+   Query Affinity Score: 0.4196
+
+   SQL Gerada:
+   SELECT kr.id, kr.progress, kr.target, kr.direction FROM kr WHERE kr.direction = 'down' AND kr.progress = kr.target AND kr.progress / kr.target = 1.0
+
+   SQL Esperada (Gold):
+   WITH kr_direction AS (SELECT k.id AS kr_id, k.target, k.direction FROM kr k WHERE k.direction = 'down'), history AS (SELECT kh.kr_id, kh.date, (kh.progress / NULLIF(kd.target, 0)) AS relative_progress, LAG(kh.progress / NULLIF(kd.target, 0)) OVER (PARTITION BY kh.kr_id ORDER BY kh.date) AS prev_progress FROM kr_history kh JOIN kr_direction kd ON kd.kr_id = kh.kr_id), fully_improving AS (SELECT kr_id FROM history GROUP BY kr_id HAVING COUNT(*) FILTER (WHERE prev_progress IS NOT NULL AND relative_progress >= prev_progress) = COUNT(*) - 1), achieved AS (SELECT kr_id FROM (SELECT kh.kr_id, (kh.progress / NULLIF(k.target,0)) AS relative_progress, ROW_NUMBER() OVER (PARTITION BY kh.kr_id ORDER BY kh.date DESC) AS rn FROM kr_history kh JOIN kr k ON k.id = kh.kr_id WHERE k.direction = 'down') last_value WHERE rn = 1 AND relative_progress <= 1) SELECT DISTINCT kr_id FROM fully_improving JOIN achieved USING(kr_id);
+

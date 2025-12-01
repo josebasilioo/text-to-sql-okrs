@@ -17,10 +17,10 @@ import { TextToSqlService } from '../services/textToSqlService';
 // 🔧 CONFIGURAÇÃO DO PROVIDER
 // ========================================
 // Opções: 'gpt', 'gemini', 'llama'
-const PROVIDER: 'gpt' | 'gemini' | 'llama' = 'gpt';
+const PROVIDER: 'gpt' | 'gemini' | 'llama' = 'llama';
 
 // Nome do arquivo de resultado (sem extensão)
-const OUTPUT_FILENAME = '0-shot-no-linking-gpt-5-mini';
+const OUTPUT_FILENAME = '2-shot-llama-3.1-8b';
 // ========================================
 
 interface GoldEntry {

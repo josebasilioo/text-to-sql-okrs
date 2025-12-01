@@ -22,6 +22,9 @@ import path from 'path';
 //   complexidade?: string;
 // }
 
+const fileInput = '2-shot-llama-3.1-8b';
+const fileOutput = 'llama-2shot';
+
 // Função para fazer parse de CSV respeitando aspas
 function parseCSVLine(line: string): string[] {
   const parts: string[] = [];
@@ -69,7 +72,7 @@ for (const line of datasetLines) {
 console.log(`📊 Carregadas ${questionMap.size} perguntas do dataset TCC`);
 
 // Ler o arquivo evaluation-report.csv
-const evalPath = path.join(__dirname, 'results', 'gpt', '0-shot-no-linking-4O-mini.csv');
+const evalPath = path.join(__dirname, 'results', 'llama', `${fileInput}.csv`);
 const evalContent = fs.readFileSync(evalPath, 'utf-8');
 const evalLines = evalContent.split('\n');
 
@@ -105,7 +108,7 @@ for (let i = 1; i < evalLines.length; i++) {
 }
 
 // Escrever o arquivo enriquecido
-const outputPath = path.join(__dirname, 'results', 'evaluation-report.csv');
+const outputPath = path.join(__dirname, 'results', `${fileOutput}.csv`);
 fs.writeFileSync(outputPath, enrichedLines.join('\n'), 'utf-8');
 
 console.log(`\n✅ Arquivo evaluation-report.csv enriquecido com sucesso!`);
