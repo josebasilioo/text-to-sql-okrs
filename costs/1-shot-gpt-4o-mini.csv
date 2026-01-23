@@ -1,0 +1,77 @@
+pergunta,prompt_tokens,completion_tokens,total_tokens,custo,tempo_ms,categoria,complexidade
+Existe correlação entre a prioridade da iniciativa e o progresso médio de seus OKRs?,1860,123,1983,0.00035280,3197,Alinhamento Estratégico,Média
+Iniciativas com maior prioridade tendem a ter maior progresso médio nos OKRs?,1857,119,1976,0.00034995,6938,Alinhamento Estratégico,Média
+Qual é a relação entre prioridade da iniciativa e o desempenho médio dos seus OKRs?,1860,115,1975,0.00034800,1665,Alinhamento Estratégico,Média
+Iniciativas de qual categoria têm maior taxa de conclusão de KRs?,1842,166,2008,0.00037590,1448,Alinhamento Estratégico,Baixa
+Qual categoria de iniciativa apresenta menor frequência de updates?,1836,80,1916,0.00032340,4053,Alinhamento Estratégico,Baixa
+Colaboradores com mais KRs favoritos têm desempenho melhor nos OKRs?,1865,176,2041,0.00038535,3482,Alinhamento Estratégico,Baixa
+Há diferença de progresso médio entre KRs do tipo “YES_NO” e “NUMERIC”?,1856,112,1968,0.00034560,4980,Alinhamento Estratégico,Baixa
+Quais iniciativas concentram mais KRs com métrica percentual?,1843,108,1951,0.00034125,3912,Alinhamento Estratégico,Baixa
+Qual a média de progresso dos OKRs de iniciativas de alta prioridade?,1869,122,1991,0.00035355,2849,Alinhamento Estratégico,Baixa
+Qual o impacto dos updates de iniciativa no progresso dos KRs associados?,1845,216,2061,0.00040635,14453,Alinhamento Estratégico,Alta
+Há aumento no ritmo de updates próximo aos deadlines dos OKRs?,1844,153,1997,0.00036840,2935,Alinhamento Estratégico,Média
+Qual é o alinhamento entre as datas de fim de iniciativa e deadlines de OKRs?,1857,96,1953,0.00033615,1157,Alinhamento Estratégico,Média
+Quantos OKRs estão diretamente vinculados a iniciativas prioritárias (por categoria) e quantos ainda não possuem ligação clara com uma iniciativa?,1869,87,1956,0.00033255,2033,Alinhamento Estratégico,Média
+Quantas atualizações de iniciativas foram registradas neste trimestre e quais são os principais temas dos “highlights” e “brutal facts”?,1871,150,2021,0.00037065,8398,Alinhamento Estratégico,Média
+"Apresentar os KRs com maior desvio padrão de progresso ao longo do histórico, indicando instabilidade.",1853,160,2013,0.00037395,6927,Alinhamento Estratégico,Média
+"Comparar o progresso médio dos KRs com o progresso médio das iniciativas às quais estão vinculados, destacando as maiores variações.",1868,207,2075,0.00040440,9155,Alinhamento Estratégico,Alta
+Construir o ranking das categorias de iniciativa com base no progresso médio ponderado pelo número de KRs associados.,1859,188,2047,0.00039165,7741,Alinhamento Estratégico,Baixa
+Avaliar a correlação entre o número de updates registrados em cada iniciativa e o progresso médio de seus KRs.,1855,139,1994,0.00036165,3204,Alinhamento Estratégico,Alta
+Detectar iniciativas que apresentaram regressão média no progresso de KRs durante o último ciclo.,1843,203,2046,0.00039825,2029,Alinhamento Estratégico,Alta
+Qual a distribuição de iniciativas por categoria?,1849,58,1907,0.00031215,2360,Execução,Baixa
+Quais iniciativas têm mais OKRs associados?,1848,83,1931,0.00032700,1077,Execução,Baixa
+Quantas iniciativas estão em andamento neste trimestre?,1844,77,1921,0.00032280,5845,Execução,Baixa
+Quais iniciativas estão sem updates há mais de 30 dias?,1837,99,1936,0.00033495,6317,Execução,Média
+"Quais iniciativas têm prioridade máxima, mas baixo progresso de OKRs?",1851,117,1968,0.00034785,1193,Execução,Média
+Quantas iniciativas estão planejadas para começar no próximo mês?,1846,72,1918,0.00032010,1764,Execução,Baixa
+Quais iniciativas têm fim previsto antes do término de seus OKRs?,1855,115,1970,0.00034725,2521,Execução,Média
+Quais iniciativas têm mais de três pessoas no time?,1871,183,2054,0.00039045,1018,Execução,Média
+Qual é a média de duração (em dias) das iniciativas concluídas?,1864,123,1987,0.00035340,2782,Execução,Baixa
+Qual percentual de iniciativas por categoria está concluído?,1851,170,2021,0.00037965,6490,Execução,Média
+"Quais iniciativas estão com maior prioridade, mas apresentam baixo progresso ou atualizações atrasadas?",1849,218,2067,0.00040815,4217,Execução,Alta
+Quais KRs estão com direção “NEGATIVA” (indicando desempenho decrescente) e estão abaixo de 50% do target?,1861,78,1939,0.00032595,1883,Execução,Baixa
+Quais iniciativas apresentaram maior variação positiva de progresso nos últimos ciclos de atualização?,1854,199,2053,0.00039750,12760,Execução,Alta
+Quais colaboradores foram responsáveis pelos KRs com melhor taxa de atingimento?,1870,170,2040,0.00038250,3301,Execução,Média
+Quais colaboradores têm progresso médio de KRs acima da média geral dos colaboradores?,1855,120,1975,0.00035025,2493,Execução,Média
+Quais colaboradores possuem mais KRs “bookmarked” do que a média geral de bookmarks por colaborador?,1852,182,2034,0.00038700,1464,Execução,Média
+Gerar o ranking de colaboradores com maior média de progresso em KRs dentro de cada categoria de iniciativa.,1857,218,2075,0.00040935,18606,Execução,Alta
+Selecionar colaboradores que contribuíram para KRs com progresso superior ao percentil 90 global.,1844,126,1970,0.00035220,1403,Execução,Média
+Como evoluiu o progresso médio dos KRs nos últimos 6 meses?,1876,147,2023,0.00036960,4449,Histórico e Tendências,Alta
+Qual foi a variação de progresso por colaborador no último trimestre?,1879,180,2059,0.00038985,3287,Histórico e Tendências,Alta
+Quantos registros de histórico de KR foram criados no último mês?,1838,59,1897,0.00031110,1623,Histórico e Tendências,Baixa
+Quais KRs apresentaram regressão de progresso em algum momento?,1841,129,1970,0.00035355,11522,Histórico e Tendências,Média
+"Qual a média de variação percentual de progresso por métrica (PERC, NUMERIC, YES_NO)?",1864,105,1969,0.00034260,2054,Histórico e Tendências,Alta
+Quantos KRs tiveram histórico de progresso acima de 90% antes do prazo final?,1861,95,1956,0.00033615,5029,Histórico e Tendências,Média
+Quais colaboradores atualizaram o maior número de KRs no histórico?,1838,96,1934,0.00033330,4969,Histórico e Tendências,Baixa
+Quantos updates de iniciativa foram registrados por mês neste ano?,1858,146,2004,0.00036630,1997,Histórico e Tendências,Baixa
+Quais iniciativas tiveram maior número de updates em um único mês?,1836,120,1956,0.00034740,2412,Histórico e Tendências,Média
+Qual o tempo médio entre updates consecutivos de uma mesma iniciativa?,1835,146,1981,0.00036285,2779,Histórico e Tendências,Média
+"Para cada iniciativa, qual é o KR mais recente e seu progresso atual?",1862,130,1992,0.00035730,1179,Histórico e Tendências,Baixa
+Analisar a tendência de redução na frequência de updates conforme o deadline dos OKRs se aproxima.,1852,154,2006,0.00037020,4610,Histórico e Tendências,Média
+Listar KRs com lacunas maiores que 30 dias entre atualizações de progresso,1857,98,1955,0.00033735,14246,Histórico e Tendências,Média
+Quais OKRs estão com prazo próximo do vencimento?,1846,82,1928,0.00032610,3588,Monitoramento / Desempenho,Baixa
+Qual é a média de progresso dos KRs em cada OKR?,1843,109,1952,0.00034185,2216,Monitoramento / Desempenho,Baixa
+Quais OKRs têm menor progresso médio?,1844,179,2023,0.00038400,3704,Monitoramento / Desempenho,Baixa
+Qual é o percentual de KRs concluídos por iniciativa?,1841,171,2012,0.00037875,8576,Monitoramento / Desempenho,Média
+Qual o tempo médio restante até o deadline dos OKRs ativos?,1864,81,1945,0.00032820,2560,Monitoramento / Desempenho,Baixa
+Quais OKRs estão vinculados a iniciativas que já encerraram?,1855,93,1948,0.00033405,2532,Monitoramento / Desempenho,Baixa
+Quantos KRs estão atrasados em relação à meta planejada?,1843,105,1948,0.00033945,2181,Monitoramento / Desempenho,Média
+Qual o progresso médio dos KRs de tipo “PERC” em comparação aos de tipo “NUMERIC”?,1859,141,2000,0.00036345,2693,Monitoramento / Desempenho,Baixa
+Quais OKRs têm maior número de KRs associados?,1859,218,2077,0.00040965,994,Monitoramento / Desempenho,Baixa
+Qual o percentual de KRs marcados como “bookmarked” pelos colaboradores?,1840,97,1937,0.00033420,2217,Monitoramento / Desempenho,Baixa
+Qual é o percentual médio de progresso dos KRs (Key Results) em relação às metas estabelecidas nos últimos três meses?,1852,116,1968,0.00034740,1324,Monitoramento / Desempenho,Média
+Quais colaboradores têm mais KRs marcados como “bookmarked” (favoritos) e demonstram maior engajamento com os objetivos da empresa?,1861,263,2124,0.00043695,4578,Monitoramento / Desempenho,Média
+Qual é o tempo médio entre a criação de um OKR e a primeira atualização de progresso registrada?,1856,160,2016,0.00037440,15581,Monitoramento / Desempenho,Média
+Quantos OKRs estão próximos do prazo final (deadline) e ainda não atingiram 80% de progresso?,1871,123,1994,0.00035445,18084,Monitoramento / Desempenho,Média
+Quais iniciativas possuem OKRs cujo progresso médio supera o progresso médio global de todas as iniciativas da mesma categoria?,1863,159,2022,0.00037485,8065,Monitoramento / Desempenho,Alta
+Qual colaborador teve o maior aumento percentual de progresso médio de KRs entre o último e o penúltimo mês?,1856,218,2074,0.00040920,9402,Monitoramento / Desempenho,Alta
+Quais iniciativas tiveram pelo menos um KR com progresso superior a 100% em algum ponto do histórico?,1858,124,1982,0.00035310,6750,Monitoramento / Desempenho,Baixa
+Qual é o tempo médio (em dias) entre atualizações consecutivas de um mesmo KR no histórico?,1857,114,1971,0.00034695,5048,Monitoramento / Desempenho,Alta
+Quais iniciativas têm pelo menos dois OKRs com deadlines no mesmo mês?,1845,145,1990,0.00036375,21712,Monitoramento / Desempenho,Média
+Qual é a distribuição percentual de KRs por tipo de métrica dentro de cada iniciativa?,1848,146,1994,0.00036480,1277,Monitoramento / Desempenho,Média
+Listar os KRs cujo progresso atual está abaixo da média dos KRs do mesmo tipo e direção.,1851,145,1996,0.00036465,1703,Monitoramento / Desempenho,Média
+"Identificar iniciativas que mantêm registros de atualização em meses consecutivos, sem interrupções.",1875,285,2160,0.00045225,2296,Monitoramento / Desempenho,Alta
+"Calcular a taxa média de crescimento mensal do progresso dos KRs, segmentada por tipo de métrica.",1849,209,2058,0.00040275,3771,Monitoramento / Desempenho,Alta
+Detectar iniciativas que apresentaram regressão média no progresso de seus KRs durante o último ciclo de atualização.,1848,318,2166,0.00046800,5057,Monitoramento / Desempenho,Alta
+"Apontar iniciativas cujos OKRs estão vencidos, mas cujo progresso médio permanece abaixo de 80%.",1871,168,2039,0.00038145,7421,Monitoramento / Desempenho,Média
+Identificar KRs com direção “NEGATIVA” que mantêm melhora contínua e atingem o target definido.,1866,111,1977,0.00034650,5171,Monitoramento / Desempenho,Alta

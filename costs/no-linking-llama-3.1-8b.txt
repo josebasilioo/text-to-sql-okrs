@@ -1,0 +1,34 @@
+
+================================================================================
+💰 RELATÓRIO DE CUSTOS
+================================================================================
+Timestamp: 2026-01-14T00:39:32.058Z
+Modelo: llama-3.1-8b (meta-llama/llama-3.1-8b-instruct)
+Tipo de execução: no-linking
+Provider: openrouter
+Total de perguntas: 76
+
+--- CUSTOS ---
+Custo total: $0.007483
+Custo médio por prompt: $0.000098
+Custo mínimo: $0.000093
+Custo máximo: $0.000112
+
+--- TOKENS ---
+Tokens de entrada (prompt):
+  Total: 125.952
+  Média por prompt: 1657.26
+
+Tokens de saída (completion):
+  Total: 10.109
+  Média por prompt: 133.01
+
+Tokens totais:
+  Total: 136.061
+  Média por prompt: 1790.28
+
+--- TEMPO DE EXECUÇÃO ---
+Tempo total: 412.15s
+Tempo médio por prompt: 5422.99ms
+
+================================================================================

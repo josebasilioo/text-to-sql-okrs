@@ -1,0 +1,946 @@
+{
+  "timestamp": "2026-01-14T00:39:32.058Z",
+  "model": "llama-3.1-8b",
+  "modelName": "meta-llama/llama-3.1-8b-instruct",
+  "executionType": "no-linking",
+  "provider": "openrouter",
+  "totalQuestions": 76,
+  "costs": {
+    "total": 0.007483355000000001,
+    "average": 0.00009846519736842107,
+    "min": 0.00009328,
+    "max": 0.00011247500000000001
+  },
+  "tokens": {
+    "prompt": {
+      "total": 125952,
+      "average": 1657.2631578947369
+    },
+    "completion": {
+      "total": 10109,
+      "average": 133.01315789473685
+    },
+    "total": {
+      "total": 136061,
+      "average": 1790.2763157894738
+    }
+  },
+  "executionTime": {
+    "total": 412147,
+    "average": 5422.986842105263
+  },
+  "details": [
+    {
+      "question": "Existe correlação entre a prioridade da iniciativa e o progresso médio de seus OKRs?",
+      "costInfo": {
+        "promptTokens": 1657,
+        "completionTokens": 125,
+        "totalTokens": 1782,
+        "cost": 0.00009801
+      },
+      "executionTimeMs": 5304,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Iniciativas com maior prioridade tendem a ter maior progresso médio nos OKRs?",
+      "costInfo": {
+        "promptTokens": 1655,
+        "completionTokens": 131,
+        "totalTokens": 1786,
+        "cost": 0.00009823
+      },
+      "executionTimeMs": 13084,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual é a relação entre prioridade da iniciativa e o desempenho médio dos seus OKRs?",
+      "costInfo": {
+        "promptTokens": 1659,
+        "completionTokens": 166,
+        "totalTokens": 1825,
+        "cost": 0.00010037500000000001
+      },
+      "executionTimeMs": 3396,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Iniciativas de qual categoria têm maior taxa de conclusão de KRs?",
+      "costInfo": {
+        "promptTokens": 1652,
+        "completionTokens": 205,
+        "totalTokens": 1857,
+        "cost": 0.00010213500000000001
+      },
+      "executionTimeMs": 10023,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual categoria de iniciativa apresenta menor frequência de updates?",
+      "costInfo": {
+        "promptTokens": 1648,
+        "completionTokens": 84,
+        "totalTokens": 1732,
+        "cost": 0.00009526
+      },
+      "executionTimeMs": 3687,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Colaboradores com mais KRs favoritos têm desempenho melhor nos OKRs?",
+      "costInfo": {
+        "promptTokens": 1655,
+        "completionTokens": 126,
+        "totalTokens": 1781,
+        "cost": 0.000097955
+      },
+      "executionTimeMs": 3971,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Há diferença de progresso médio entre KRs do tipo “YES_NO” e “NUMERIC”?",
+      "costInfo": {
+        "promptTokens": 1660,
+        "completionTokens": 159,
+        "totalTokens": 1819,
+        "cost": 0.000100045
+      },
+      "executionTimeMs": 22007,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais iniciativas concentram mais KRs com métrica percentual?",
+      "costInfo": {
+        "promptTokens": 1651,
+        "completionTokens": 111,
+        "totalTokens": 1762,
+        "cost": 0.00009690999999999999
+      },
+      "executionTimeMs": 1175,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual a média de progresso dos OKRs de iniciativas de alta prioridade?",
+      "costInfo": {
+        "promptTokens": 1653,
+        "completionTokens": 119,
+        "totalTokens": 1772,
+        "cost": 0.00009745999999999999
+      },
+      "executionTimeMs": 3576,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual o impacto dos updates de iniciativa no progresso dos KRs associados?",
+      "costInfo": {
+        "promptTokens": 1673,
+        "completionTokens": 143,
+        "totalTokens": 1816,
+        "cost": 0.00009988
+      },
+      "executionTimeMs": 3615,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Há aumento no ritmo de updates próximo aos deadlines dos OKRs?",
+      "costInfo": {
+        "promptTokens": 1650,
+        "completionTokens": 140,
+        "totalTokens": 1790,
+        "cost": 0.00009845
+      },
+      "executionTimeMs": 3526,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual é o alinhamento entre as datas de fim de iniciativa e deadlines de OKRs?",
+      "costInfo": {
+        "promptTokens": 1656,
+        "completionTokens": 105,
+        "totalTokens": 1761,
+        "cost": 0.00009685500000000001
+      },
+      "executionTimeMs": 2894,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quantos OKRs estão diretamente vinculados a iniciativas prioritárias (por categoria) e quantos ainda não possuem ligação clara com uma iniciativa?",
+      "costInfo": {
+        "promptTokens": 1671,
+        "completionTokens": 96,
+        "totalTokens": 1767,
+        "cost": 0.000097185
+      },
+      "executionTimeMs": 2617,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quantas atualizações de iniciativas foram registradas neste trimestre e quais são os principais temas dos “highlights” e “brutal facts”?",
+      "costInfo": {
+        "promptTokens": 1669,
+        "completionTokens": 145,
+        "totalTokens": 1814,
+        "cost": 0.00009977
+      },
+      "executionTimeMs": 4236,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Apresentar os KRs com maior desvio padrão de progresso ao longo do histórico, indicando instabilidade.",
+      "costInfo": {
+        "promptTokens": 1663,
+        "completionTokens": 140,
+        "totalTokens": 1803,
+        "cost": 0.000099165
+      },
+      "executionTimeMs": 6816,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Comparar o progresso médio dos KRs com o progresso médio das iniciativas às quais estão vinculados, destacando as maiores variações.",
+      "costInfo": {
+        "promptTokens": 1672,
+        "completionTokens": 219,
+        "totalTokens": 1891,
+        "cost": 0.000104005
+      },
+      "executionTimeMs": 3874,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Construir o ranking das categorias de iniciativa com base no progresso médio ponderado pelo número de KRs associados.",
+      "costInfo": {
+        "promptTokens": 1663,
+        "completionTokens": 142,
+        "totalTokens": 1805,
+        "cost": 0.000099275
+      },
+      "executionTimeMs": 2480,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Avaliar a correlação entre o número de updates registrados em cada iniciativa e o progresso médio de seus KRs.",
+      "costInfo": {
+        "promptTokens": 1662,
+        "completionTokens": 110,
+        "totalTokens": 1772,
+        "cost": 0.00009746
+      },
+      "executionTimeMs": 1436,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Detectar iniciativas que apresentaram regressão média no progresso de KRs durante o último ciclo.",
+      "costInfo": {
+        "promptTokens": 1658,
+        "completionTokens": 158,
+        "totalTokens": 1816,
+        "cost": 0.00009988
+      },
+      "executionTimeMs": 2559,
+      "categoria": "Alinhamento Estratégico",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Qual a distribuição de iniciativas por categoria?",
+      "costInfo": {
+        "promptTokens": 1645,
+        "completionTokens": 51,
+        "totalTokens": 1696,
+        "cost": 0.00009328
+      },
+      "executionTimeMs": 5253,
+      "categoria": "Execução",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais iniciativas têm mais OKRs associados?",
+      "costInfo": {
+        "promptTokens": 1647,
+        "completionTokens": 99,
+        "totalTokens": 1746,
+        "cost": 0.00009603
+      },
+      "executionTimeMs": 1948,
+      "categoria": "Execução",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quantas iniciativas estão em andamento neste trimestre?",
+      "costInfo": {
+        "promptTokens": 1648,
+        "completionTokens": 86,
+        "totalTokens": 1734,
+        "cost": 0.00009537
+      },
+      "executionTimeMs": 1827,
+      "categoria": "Execução",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais iniciativas estão sem updates há mais de 30 dias?",
+      "costInfo": {
+        "promptTokens": 1649,
+        "completionTokens": 106,
+        "totalTokens": 1755,
+        "cost": 0.000096525
+      },
+      "executionTimeMs": 3761,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais iniciativas têm prioridade máxima, mas baixo progresso de OKRs?",
+      "costInfo": {
+        "promptTokens": 1655,
+        "completionTokens": 128,
+        "totalTokens": 1783,
+        "cost": 0.000098065
+      },
+      "executionTimeMs": 2299,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quantas iniciativas estão planejadas para começar no próximo mês?",
+      "costInfo": {
+        "promptTokens": 1651,
+        "completionTokens": 68,
+        "totalTokens": 1719,
+        "cost": 0.000094545
+      },
+      "executionTimeMs": 2207,
+      "categoria": "Execução",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais iniciativas têm fim previsto antes do término de seus OKRs?",
+      "costInfo": {
+        "promptTokens": 1653,
+        "completionTokens": 138,
+        "totalTokens": 1791,
+        "cost": 0.00009850499999999999
+      },
+      "executionTimeMs": 2492,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais iniciativas têm mais de três pessoas no time?",
+      "costInfo": {
+        "promptTokens": 1647,
+        "completionTokens": 111,
+        "totalTokens": 1758,
+        "cost": 0.00009669
+      },
+      "executionTimeMs": 14389,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual é a média de duração (em dias) das iniciativas concluídas?",
+      "costInfo": {
+        "promptTokens": 1655,
+        "completionTokens": 89,
+        "totalTokens": 1744,
+        "cost": 0.00009592
+      },
+      "executionTimeMs": 1736,
+      "categoria": "Execução",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual percentual de iniciativas por categoria está concluído?",
+      "costInfo": {
+        "promptTokens": 1649,
+        "completionTokens": 103,
+        "totalTokens": 1752,
+        "cost": 0.00009635999999999999
+      },
+      "executionTimeMs": 2314,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais iniciativas estão com maior prioridade, mas apresentam baixo progresso ou atualizações atrasadas?",
+      "costInfo": {
+        "promptTokens": 1680,
+        "completionTokens": 202,
+        "totalTokens": 1882,
+        "cost": 0.00010351000000000002
+      },
+      "executionTimeMs": 3709,
+      "categoria": "Execução",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Quais KRs estão com direção “NEGATIVA” (indicando desempenho decrescente) e estão abaixo de 50% do target?",
+      "costInfo": {
+        "promptTokens": 1669,
+        "completionTokens": 69,
+        "totalTokens": 1738,
+        "cost": 0.00009559
+      },
+      "executionTimeMs": 8864,
+      "categoria": "Execução",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais iniciativas apresentaram maior variação positiva de progresso nos últimos ciclos de atualização?",
+      "costInfo": {
+        "promptTokens": 1657,
+        "completionTokens": 195,
+        "totalTokens": 1852,
+        "cost": 0.00010186
+      },
+      "executionTimeMs": 13831,
+      "categoria": "Execução",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Quais colaboradores foram responsáveis pelos KRs com melhor taxa de atingimento?",
+      "costInfo": {
+        "promptTokens": 1653,
+        "completionTokens": 107,
+        "totalTokens": 1760,
+        "cost": 0.0000968
+      },
+      "executionTimeMs": 13002,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais colaboradores têm progresso médio de KRs acima da média geral dos colaboradores?",
+      "costInfo": {
+        "promptTokens": 1658,
+        "completionTokens": 132,
+        "totalTokens": 1790,
+        "cost": 0.00009845
+      },
+      "executionTimeMs": 3425,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais colaboradores possuem mais KRs “bookmarked” do que a média geral de bookmarks por colaborador?",
+      "costInfo": {
+        "promptTokens": 1661,
+        "completionTokens": 148,
+        "totalTokens": 1809,
+        "cost": 0.000099495
+      },
+      "executionTimeMs": 2911,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Gerar o ranking de colaboradores com maior média de progresso em KRs dentro de cada categoria de iniciativa.",
+      "costInfo": {
+        "promptTokens": 1660,
+        "completionTokens": 133,
+        "totalTokens": 1793,
+        "cost": 0.000098615
+      },
+      "executionTimeMs": 9866,
+      "categoria": "Execução",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Selecionar colaboradores que contribuíram para KRs com progresso superior ao percentil 90 global.",
+      "costInfo": {
+        "promptTokens": 1659,
+        "completionTokens": 131,
+        "totalTokens": 1790,
+        "cost": 0.00009845000000000001
+      },
+      "executionTimeMs": 2647,
+      "categoria": "Execução",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Como evoluiu o progresso médio dos KRs nos últimos 6 meses?",
+      "costInfo": {
+        "promptTokens": 1654,
+        "completionTokens": 137,
+        "totalTokens": 1791,
+        "cost": 0.000098505
+      },
+      "executionTimeMs": 9063,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Qual foi a variação de progresso por colaborador no último trimestre?",
+      "costInfo": {
+        "promptTokens": 1651,
+        "completionTokens": 156,
+        "totalTokens": 1807,
+        "cost": 0.000099385
+      },
+      "executionTimeMs": 15585,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Quantos registros de histórico de KR foram criados no último mês?",
+      "costInfo": {
+        "promptTokens": 1652,
+        "completionTokens": 81,
+        "totalTokens": 1733,
+        "cost": 0.000095315
+      },
+      "executionTimeMs": 1810,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais KRs apresentaram regressão de progresso em algum momento?",
+      "costInfo": {
+        "promptTokens": 1651,
+        "completionTokens": 123,
+        "totalTokens": 1774,
+        "cost": 0.00009757
+      },
+      "executionTimeMs": 2641,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual a média de variação percentual de progresso por métrica (PERC, NUMERIC, YES_NO)?",
+      "costInfo": {
+        "promptTokens": 1662,
+        "completionTokens": 107,
+        "totalTokens": 1769,
+        "cost": 0.00009729500000000001
+      },
+      "executionTimeMs": 4019,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Quantos KRs tiveram histórico de progresso acima de 90% antes do prazo final?",
+      "costInfo": {
+        "promptTokens": 1659,
+        "completionTokens": 128,
+        "totalTokens": 1787,
+        "cost": 0.00009828500000000001
+      },
+      "executionTimeMs": 3852,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais colaboradores atualizaram o maior número de KRs no histórico?",
+      "costInfo": {
+        "promptTokens": 1672,
+        "completionTokens": 124,
+        "totalTokens": 1796,
+        "cost": 0.00009878000000000001
+      },
+      "executionTimeMs": 1877,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quantos updates de iniciativa foram registrados por mês neste ano?",
+      "costInfo": {
+        "promptTokens": 1651,
+        "completionTokens": 134,
+        "totalTokens": 1785,
+        "cost": 0.000098175
+      },
+      "executionTimeMs": 2327,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais iniciativas tiveram maior número de updates em um único mês?",
+      "costInfo": {
+        "promptTokens": 1653,
+        "completionTokens": 261,
+        "totalTokens": 1914,
+        "cost": 0.00010527
+      },
+      "executionTimeMs": 1647,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual o tempo médio entre updates consecutivos de uma mesma iniciativa?",
+      "costInfo": {
+        "promptTokens": 1651,
+        "completionTokens": 120,
+        "totalTokens": 1771,
+        "cost": 0.00009740499999999999
+      },
+      "executionTimeMs": 17413,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Para cada iniciativa, qual é o KR mais recente e seu progresso atual?",
+      "costInfo": {
+        "promptTokens": 1654,
+        "completionTokens": 118,
+        "totalTokens": 1772,
+        "cost": 0.00009746
+      },
+      "executionTimeMs": 2663,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Analisar a tendência de redução na frequência de updates conforme o deadline dos OKRs se aproxima.",
+      "costInfo": {
+        "promptTokens": 1659,
+        "completionTokens": 139,
+        "totalTokens": 1798,
+        "cost": 0.00009889000000000001
+      },
+      "executionTimeMs": 14528,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Listar KRs com lacunas maiores que 30 dias entre atualizações de progresso",
+      "costInfo": {
+        "promptTokens": 1656,
+        "completionTokens": 187,
+        "totalTokens": 1843,
+        "cost": 0.000101365
+      },
+      "executionTimeMs": 3340,
+      "categoria": "Histórico e Tendências",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais OKRs estão com prazo próximo do vencimento?",
+      "costInfo": {
+        "promptTokens": 1649,
+        "completionTokens": 116,
+        "totalTokens": 1765,
+        "cost": 0.000097075
+      },
+      "executionTimeMs": 2558,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual é a média de progresso dos KRs em cada OKR?",
+      "costInfo": {
+        "promptTokens": 1651,
+        "completionTokens": 77,
+        "totalTokens": 1728,
+        "cost": 0.00009504
+      },
+      "executionTimeMs": 1250,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais OKRs têm menor progresso médio?",
+      "costInfo": {
+        "promptTokens": 1646,
+        "completionTokens": 101,
+        "totalTokens": 1747,
+        "cost": 0.00009608499999999999
+      },
+      "executionTimeMs": 1036,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual é o percentual de KRs concluídos por iniciativa?",
+      "costInfo": {
+        "promptTokens": 1650,
+        "completionTokens": 145,
+        "totalTokens": 1795,
+        "cost": 0.000098725
+      },
+      "executionTimeMs": 6199,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual o tempo médio restante até o deadline dos OKRs ativos?",
+      "costInfo": {
+        "promptTokens": 1652,
+        "completionTokens": 67,
+        "totalTokens": 1719,
+        "cost": 0.00009454500000000001
+      },
+      "executionTimeMs": 2086,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais OKRs estão vinculados a iniciativas que já encerraram?",
+      "costInfo": {
+        "promptTokens": 1652,
+        "completionTokens": 73,
+        "totalTokens": 1725,
+        "cost": 0.000094875
+      },
+      "executionTimeMs": 6732,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quantos KRs estão atrasados em relação à meta planejada?",
+      "costInfo": {
+        "promptTokens": 1651,
+        "completionTokens": 98,
+        "totalTokens": 1749,
+        "cost": 0.000096195
+      },
+      "executionTimeMs": 2023,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual o progresso médio dos KRs de tipo “PERC” em comparação aos de tipo “NUMERIC”?",
+      "costInfo": {
+        "promptTokens": 1661,
+        "completionTokens": 89,
+        "totalTokens": 1750,
+        "cost": 0.00009625
+      },
+      "executionTimeMs": 8916,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Quais OKRs têm maior número de KRs associados?",
+      "costInfo": {
+        "promptTokens": 1648,
+        "completionTokens": 99,
+        "totalTokens": 1747,
+        "cost": 0.000096085
+      },
+      "executionTimeMs": 2215,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual o percentual de KRs marcados como “bookmarked” pelos colaboradores?",
+      "costInfo": {
+        "promptTokens": 1653,
+        "completionTokens": 112,
+        "totalTokens": 1765,
+        "cost": 0.00009707499999999999
+      },
+      "executionTimeMs": 10543,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual é o percentual médio de progresso dos KRs (Key Results) em relação às metas estabelecidas nos últimos três meses?",
+      "costInfo": {
+        "promptTokens": 1667,
+        "completionTokens": 111,
+        "totalTokens": 1778,
+        "cost": 0.00009779
+      },
+      "executionTimeMs": 2984,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais colaboradores têm mais KRs marcados como “bookmarked” (favoritos) e demonstram maior engajamento com os objetivos da empresa?",
+      "costInfo": {
+        "promptTokens": 1669,
+        "completionTokens": 107,
+        "totalTokens": 1776,
+        "cost": 0.00009768
+      },
+      "executionTimeMs": 2168,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual é o tempo médio entre a criação de um OKR e a primeira atualização de progresso registrada?",
+      "costInfo": {
+        "promptTokens": 1661,
+        "completionTokens": 179,
+        "totalTokens": 1840,
+        "cost": 0.0001012
+      },
+      "executionTimeMs": 4990,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quantos OKRs estão próximos do prazo final (deadline) e ainda não atingiram 80% de progresso?",
+      "costInfo": {
+        "promptTokens": 1664,
+        "completionTokens": 87,
+        "totalTokens": 1751,
+        "cost": 0.000096305
+      },
+      "executionTimeMs": 2284,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Quais iniciativas possuem OKRs cujo progresso médio supera o progresso médio global de todas as iniciativas da mesma categoria?",
+      "costInfo": {
+        "promptTokens": 1666,
+        "completionTokens": 183,
+        "totalTokens": 1849,
+        "cost": 0.00010169500000000001
+      },
+      "executionTimeMs": 20930,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Qual colaborador teve o maior aumento percentual de progresso médio de KRs entre o último e o penúltimo mês?",
+      "costInfo": {
+        "promptTokens": 1666,
+        "completionTokens": 379,
+        "totalTokens": 2045,
+        "cost": 0.00011247500000000001
+      },
+      "executionTimeMs": 6547,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Quais iniciativas tiveram pelo menos um KR com progresso superior a 100% em algum ponto do histórico?",
+      "costInfo": {
+        "promptTokens": 1661,
+        "completionTokens": 123,
+        "totalTokens": 1784,
+        "cost": 0.00009811999999999999
+      },
+      "executionTimeMs": 1662,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Baixa"
+    },
+    {
+      "question": "Qual é o tempo médio (em dias) entre atualizações consecutivas de um mesmo KR no histórico?",
+      "costInfo": {
+        "promptTokens": 1661,
+        "completionTokens": 108,
+        "totalTokens": 1769,
+        "cost": 0.000097295
+      },
+      "executionTimeMs": 2307,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Quais iniciativas têm pelo menos dois OKRs com deadlines no mesmo mês?",
+      "costInfo": {
+        "promptTokens": 1652,
+        "completionTokens": 145,
+        "totalTokens": 1797,
+        "cost": 0.00009883500000000001
+      },
+      "executionTimeMs": 14568,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Qual é a distribuição percentual de KRs por tipo de métrica dentro de cada iniciativa?",
+      "costInfo": {
+        "promptTokens": 1657,
+        "completionTokens": 141,
+        "totalTokens": 1798,
+        "cost": 0.00009889
+      },
+      "executionTimeMs": 3005,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Listar os KRs cujo progresso atual está abaixo da média dos KRs do mesmo tipo e direção.",
+      "costInfo": {
+        "promptTokens": 1660,
+        "completionTokens": 177,
+        "totalTokens": 1837,
+        "cost": 0.000101035
+      },
+      "executionTimeMs": 3689,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Identificar iniciativas que mantêm registros de atualização em meses consecutivos, sem interrupções.",
+      "costInfo": {
+        "promptTokens": 1657,
+        "completionTokens": 162,
+        "totalTokens": 1819,
+        "cost": 0.000100045
+      },
+      "executionTimeMs": 3456,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Calcular a taxa média de crescimento mensal do progresso dos KRs, segmentada por tipo de métrica.",
+      "costInfo": {
+        "promptTokens": 1662,
+        "completionTokens": 223,
+        "totalTokens": 1885,
+        "cost": 0.00010367500000000001
+      },
+      "executionTimeMs": 1829,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Detectar iniciativas que apresentaram regressão média no progresso de seus KRs durante o último ciclo de atualização.",
+      "costInfo": {
+        "promptTokens": 1661,
+        "completionTokens": 198,
+        "totalTokens": 1859,
+        "cost": 0.000102245
+      },
+      "executionTimeMs": 1373,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Alta"
+    },
+    {
+      "question": "Apontar iniciativas cujos OKRs estão vencidos, mas cujo progresso médio permanece abaixo de 80%.",
+      "costInfo": {
+        "promptTokens": 1663,
+        "completionTokens": 175,
+        "totalTokens": 1838,
+        "cost": 0.00010109000000000001
+      },
+      "executionTimeMs": 14891,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Média"
+    },
+    {
+      "question": "Identificar KRs com direção “NEGATIVA” que mantêm melhora contínua e atingem o target definido.",
+      "costInfo": {
+        "promptTokens": 1664,
+        "completionTokens": 99,
+        "totalTokens": 1763,
+        "cost": 0.00009696499999999999
+      },
+      "executionTimeMs": 4384,
+      "categoria": "Monitoramento / Desempenho",
+      "complexidade": "Alta"
+    }
+  ]
+}

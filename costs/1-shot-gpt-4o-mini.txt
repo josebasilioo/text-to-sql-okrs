@@ -1,0 +1,34 @@
+
+================================================================================
+💰 RELATÓRIO DE CUSTOS
+================================================================================
+Timestamp: 2026-01-13T19:45:50.948Z
+Modelo: gpt-4o-mini
+Tipo de execução: 1-shot
+Provider: openai
+Total de perguntas: 76
+
+--- CUSTOS ---
+Custo total: $0.027627
+Custo médio por prompt: $0.000364
+Custo mínimo: $0.000311
+Custo máximo: $0.000468
+
+--- TOKENS ---
+Tokens de entrada (prompt):
+  Total: 140.928
+  Média por prompt: 1854.32
+
+Tokens de saída (completion):
+  Total: 10.813
+  Média por prompt: 142.28
+
+Tokens totais:
+  Total: 151.741
+  Média por prompt: 1996.59
+
+--- TEMPO DE EXECUÇÃO ---
+Tempo total: 376.71s
+Tempo médio por prompt: 4956.67ms
+
+================================================================================
